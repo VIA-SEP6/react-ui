@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from "./containers/Login";
+import Movies from "./containers/Movies";
+import './App.css';
+import Layout from "./hoc/Layout";
+
+class App extends Component {
+  componentDidMount() {
+    // this.props.onTryAutoSignUp()
+  }
+
+  render() {
+    let routes = (
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/" exact component={Movies} />
+          <Redirect to="/" />
+        </Switch>
+    )
+
+    if (this.props.isAuthenticated)
+      routes = (
+          <Switch>
+              <Route path="/auth" component={Login} />
+              <Route path="/" exact component={Movies} />
+              <Redirect to="/" />
+          </Switch>
+      )
+    return (
+        <div className="App">
+          <Layout>{routes}</Layout>
+        </div>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // onTryAutoSignUp: () => dispatch(actions.authCheckState())
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+
