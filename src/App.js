@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Login from "./containers/Login";
 import Movies from "./containers/Movies";
 import './App.css';
-import Layout from "./hoc/Layout";
+import Layout from "./components/Layout/Layout";
 
 class App extends Component {
   componentDidMount() {
