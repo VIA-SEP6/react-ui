@@ -4,7 +4,10 @@ import {connect} from "react-redux";
 class Login extends Component {
     render() {
         return (
-            <div>Hello Login</div>
+            <div>
+                <p>Hello Login</p>
+                <p>{process.env.REACT_APP_API_BASE_PATH}</p>
+            </div>
         )
     }
 }

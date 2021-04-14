@@ -26,7 +26,7 @@ export const fetchMovies = () => {
         dispatch(setMoviesFetchStarted())
         // TODO: Definitely not hard-coded URL - this is just POC
         axios
-            .post("https://us-central1-sep6-310611.cloudfunctions.net/helloHttp")
+            .post(`${process.env.REACT_APP_API_BASE_PATH}/helloHttp`)
             .then((response) => {
                 dispatch(setMoviesFetchSuccess(response.data))
             })
