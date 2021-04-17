@@ -18,6 +18,5 @@ export default function NavigationDrawer() {
         <div className={classes.navigationDrawer}>
             <NavItems/>
         </div>
-    )
-    
+    )  
 }
