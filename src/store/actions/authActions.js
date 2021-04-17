@@ -22,6 +22,12 @@ const setAuthFail = (error) => {
     }
 }
 
+const setAuthLogOut = () => {
+    return {
+        type: actionsTypes.AUTH_LOGOUT,
+    }
+}
+
 
 export const registerUser = (email, password) => {
     return (dispatch) => {
@@ -53,8 +59,8 @@ export const logoutUser = (email, password) => {
     return (dispatch) => {
         dispatch(setAuthStarted())
         logoutUserAccount(email, password)
-            .then(response => {
-                dispatch(setAuthSuccess(response))
+            .then(() => {
+                dispatch(setAuthLogOut())
             })
             .catch(error => {
                 dispatch(setAuthFail(error))
