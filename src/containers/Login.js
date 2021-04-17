@@ -1,5 +1,6 @@
 import {Component} from "react";
 import {connect} from "react-redux";
+import LoginComponent from "../components/Auth/LoginComponent";
 
 class Login extends Component {
     render() {
@@ -7,6 +8,8 @@ class Login extends Component {
             <div>
                 <p>Hello Login</p>
                 <p>{process.env.REACT_APP_API_BASE_PATH}</p>
+                <p>Is authenticated? {this.props.isAuthenticated ? "Yes" : "No"}</p>
+                <LoginComponent/>
             </div>
         )
     }

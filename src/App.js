@@ -21,14 +21,6 @@ class App extends Component {
         </Switch>
     )
 
-    if (this.props.isAuthenticated)
-      routes = (
-          <Switch>
-              <Route path="/auth" component={Login} />
-              <Route path="/" exact component={Movies} />
-              <Redirect to="/" />
-          </Switch>
-      )
     return (
         <div className="App">
           <Layout>{routes}</Layout>
