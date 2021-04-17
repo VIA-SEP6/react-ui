@@ -10,6 +10,7 @@ class Login extends Component {
                 <p>Hello Login</p>
                 <p>{process.env.REACT_APP_API_BASE_PATH}</p>
                 <p>Is authenticated? {this.props.isAuthenticated ? "Yes" : "No"}</p>
+                <p>{this.props.userEmail}</p>
                 <LoginComponent loginUser = {this.props.loginUser} logoutUser = {this.props.logoutUser} registerUser = {this.props.registerUser}/>
             </div>
         )
@@ -18,7 +19,8 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isAuthenticated: state.auth.user !== null
+        isAuthenticated: state.auth.user !== null,
+        userEmail: state.auth.user ? state.auth.user.user.email : "no user logged"
     }
 }
 
