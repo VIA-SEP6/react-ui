@@ -2,9 +2,9 @@ steps:
   - id: 'npm install'
     name: 'gcr.io/cloud-builders/npm'
     args: [ 'install' ]
-  - id: 'npm create-env'
+  - id: 'npm run create-env'
     name: 'gcr.io/cloud-builders/npm'
-    args: [ 'create-env' ]
+    args: [ 'run', 'create-env' ]
     env:
       - 'REACT_APP_API_BASE_PATH=${_API_BASE_PATH}'
       - 'REACT_APP_API_KEY=${_API_KEY}'
@@ -14,9 +14,9 @@ steps:
       - 'REACT_APP_MESSAGING_SENDER_ID=${_MESSAGING_SENDER_ID}'
       - 'REACT_APP_APP_ID=${_APP_ID}'
       - 'REACT_APP_MEASUREMENT_ID=${_MEASUREMENT_ID}'
-  - id: 'npm build'
+  - id: 'npm run build'
     name: 'gcr.io/cloud-builders/npm'
-    args: [ 'build' ]
+    args: [ 'run', 'build' ]
   - name: gcr.io/$PROJECT_ID/firebase
     args: [ 'deploy', '--project=$PROJECT_ID', '--only=hosting', '--token=${_FIREBASE_TOKEN}' ]
 timeout: '1600s'
