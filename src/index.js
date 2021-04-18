@@ -17,7 +17,7 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    movie: movieReducer,
+    movie: movieReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))

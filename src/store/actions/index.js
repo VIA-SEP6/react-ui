@@ -1,2 +1,2 @@
 export {fetchMovies} from './movieActions'
-export {createUserAccount} from './authActions'
+export {loginUser, registerUser, logoutUser} from './authActions'

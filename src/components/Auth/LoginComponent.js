@@ -1,7 +1,4 @@
 import {Component} from "react";
-import {connect} from "react-redux";
-
-import {createUserAccount} from '../../store/actions/index'
 
 class LoginComponent extends Component {
     state = {
@@ -18,22 +15,12 @@ class LoginComponent extends Component {
                 <label htmlFor="password">Password</label>
                 <input onInput={(e) => this.setState({password: e.target.value})} id="password" type="text"/>
 
-                <button>Login</button>
+                <button onClick={() => this.props.loginUser(this.state.email, this.state.password)}>Login</button>
                 <button onClick={() => this.props.registerUser(this.state.email, this.state.password)}>Register</button>
+                <button onClick={() => this.props.logoutUser(this.state.email, this.state.password)}>Logout</button>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        registerUser: (email, password) => dispatch(createUserAccount(email, password))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent)
+export default LoginComponent
