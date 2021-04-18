@@ -1,9 +1,6 @@
 steps:
   - name: node:14.16.1
     entrypoint: npm
-    args: [ "install" ]
-  - name: node:14.16.1
-    entrypoint: npm
     args: [ "run", "create-env" ]
     env:
       - 'REACT_APP_API_BASE_PATH=${_API_BASE_PATH}'
@@ -15,5 +12,5 @@ steps:
       - 'REACT_APP_APP_ID=${_APP_ID}'
       - 'REACT_APP_MEASUREMENT_ID=${_MEASUREMENT_ID}'
   - name: gcr.io/$PROJECT_ID/firebase
-    args: ['deploy', '--project=$PROJECT_ID', '--only=hosting']
+    args: ['deploy', '--project=$PROJECT_ID', '--only=hosting', '--token=$FIREBASE_TOKEN']
 timeout: '1600s'
