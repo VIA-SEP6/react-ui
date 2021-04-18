@@ -36,4 +36,4 @@ package-lock.json
 
 # Environment
 *.env
-
+.firebase
