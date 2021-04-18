@@ -12,5 +12,5 @@ steps:
       - 'REACT_APP_APP_ID=${_APP_ID}'
       - 'REACT_APP_MEASUREMENT_ID=${_MEASUREMENT_ID}'
   - name: gcr.io/$PROJECT_ID/firebase
-    args: ['deploy', '--project=$PROJECT_ID', '--only=hosting', '--token=$FIREBASE_TOKEN']
+    args: ['deploy', '--project=$PROJECT_ID', '--only=hosting', '--token=${_FIREBASE_TOKEN}']
 timeout: '1600s'
