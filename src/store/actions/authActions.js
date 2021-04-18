@@ -1,5 +1,5 @@
 import * as actionsTypes from "./actionsTypes";
-import {login, createAccount} from '../../services/firebase/auth'
+import {loginUserAccount, registerUserAccount, logoutUserAccount} from '../../services/firebase/auth'
 
 
 const setAuthStarted = () => {
@@ -22,13 +22,45 @@ const setAuthFail = (error) => {
     }
 }
 
+const setAuthLogOut = () => {
+    return {
+        type: actionsTypes.AUTH_LOGOUT,
+    }
+}
 
-export const createUserAccount = (email, password) => {
+
+export const registerUser = (email, password) => {
     return (dispatch) => {
         dispatch(setAuthStarted())
-        createAccount(email, password)
+        registerUserAccount(email, password)
             .then(response => {
                 dispatch(setAuthSuccess(response))
+            })
+            .catch(error => {
+                dispatch(setAuthFail(error))
+            })
+    }
+}
+
+export const loginUser = (email, password) => {
+    return (dispatch) => {
+        dispatch(setAuthStarted())
+        loginUserAccount(email, password)
+            .then(response => {
+                dispatch(setAuthSuccess(response))
+            })
+            .catch(error => {
+                dispatch(setAuthFail(error))
+            })
+    }
+}
+
+export const logoutUser = (email, password) => {
+    return (dispatch) => {
+        dispatch(setAuthStarted())
+        logoutUserAccount(email, password)
+            .then(() => {
+                dispatch(setAuthLogOut())
             })
             .catch(error => {
                 dispatch(setAuthFail(error))
