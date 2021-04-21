@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionsTypes from "./actionsTypes"
+import { setSnackbar } from "./snackbarActions";
 
 const setMoviesFetchStarted = () => {
     return {
@@ -28,9 +29,11 @@ export const fetchMovies = () => {
             .post(`${process.env.REACT_APP_API_BASE_PATH}/helloHttp`)
             .then((response) => {
                 dispatch(setMoviesFetchSuccess(response.data))
+                dispatch(setSnackbar(true, "warning", "Successfully fetched the movies"))
             })
             .catch((error) => {
                 dispatch(setMoviesFetchError(error))
+                dispatch(setSnackbar(true, "error", "Successfully fetched the movies"))
             })
     }
 }
