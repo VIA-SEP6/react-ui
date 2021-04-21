@@ -25,7 +25,6 @@ const Register = (props) => {
     const [emailError, setEmailError] = useState("");
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const [repPassword, setRepPassword] = useState("");
     const [age, setAge] = useState(0);
     const [ageError, setAgeError] = useState("");
     const [country, setCountry] = useState("");
@@ -87,7 +86,6 @@ const Register = (props) => {
     }
 
     const validateRepPassword = (value) => {
-        setRepPassword(value)
         if (value !== password || !value || value.length < 6)
             return setPasswordError("Passwords do not match")
         setPasswordError(null)

@@ -1,5 +1,6 @@
 import * as actionsTypes from "./actionsTypes";
-import {loginUserAccount, registerUserAccount, logoutUserAccount} from '../../services/firebase/auth'
+import {loginUserAccount, logoutUserAccount} from '../../services/firebase/auth'
+import firebaseFunctions from "../../services/firebase/functions";
 
 
 const setAuthStarted = () => {
@@ -32,10 +33,9 @@ const setAuthLogOut = () => {
 export const registerUser = (newUserObject) => {
     return (dispatch) => {
         dispatch(setAuthStarted())
-        registerUserAccount(newUserObject)
+        firebaseFunctions.registerUserAccount(newUserObject)
             .then(response => {
-                dispatch(setAuthSuccess(response))
-                window.history.push("/")
+                dispatch(loginUser(newUserObject.email, newUserObject.password))
             })
             .catch(error => {
                 dispatch(setAuthFail(error))

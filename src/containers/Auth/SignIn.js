@@ -1,7 +1,7 @@
 import {Component} from "react";
 import {connect} from "react-redux";
 import Login from "../../components/Auth/Login";
-import {loginUser, registerUser} from '../../store/actions'
+import {loginUser} from '../../store/actions'
 
 class SignIn extends Component {
     render() {
