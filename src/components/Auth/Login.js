@@ -1,23 +1,16 @@
 import {useState} from "react";
 import CustomInput from "../Form/CustomInput";
 import CustomButton from "../Form/CustomButton";
-import {makeStyles} from "@material-ui/core";
+import {Grid, makeStyles} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-    login: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '400px'
+    root: {
+        flexGrow: 1,
+        maxWidth: '300px',
     },
-    actions: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        '& button': {
-            margin: theme.spacing(1)
-        }
+    action: {
+        margin: '0'
     }
 }));
 
@@ -25,19 +18,29 @@ const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const classes = useStyles();
+    const history = useHistory();
 
     return (
-        <div className={classes.login}>
-            <CustomInput label="Email" type="text" placeholder="Enter your email address"
-                         onInput={(e) => setEmail(e.target.value)}/>
-            <CustomInput label="Password" type="password" placeholder="Enter your password"
-                         onInput={(e) => setPassword(e.target.value)}/>
-
-            <div className={classes.actions}>
-                <CustomButton onClick={() => props.loginUser(email, password)} color="primary" size="small">Login</CustomButton>
-                <CustomButton onClick={() => props.registerUser(email, password)} color="primary" size="small">Register</CustomButton>
-            </div>
-        </div>
+        <Grid className={classes.root} container>
+            <Grid item sm={12}>
+                <CustomInput label="Email" type="text" placeholder="Enter your email address"
+                             onInput={(e) => setEmail(e.target.value)}/>
+            </Grid>
+            <Grid item sm={12}>
+                <CustomInput label="Password" type="password" placeholder="Enter your password"
+                             onInput={(e) => setPassword(e.target.value)}/>
+            </Grid>
+            <Grid container justify="center" spacing={2} className={classes.action}>
+                <Grid item sm={6}>
+                    <CustomButton onClick={() => props.loginUser(email, password)} color="primary"
+                                  size="small" fullWidth>Login</CustomButton>
+                </Grid>
+                <Grid item sm={6}>
+                    <CustomButton onClick={() => history.push("/register")} color="primary"
+                                  size="small" fullWidth>Register</CustomButton>
+                </Grid>
+            </Grid>
+        </Grid>
     )
 }
 

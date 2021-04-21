@@ -29,12 +29,13 @@ const setAuthLogOut = () => {
 }
 
 
-export const registerUser = (email, password) => {
+export const registerUser = (newUserObject) => {
     return (dispatch) => {
         dispatch(setAuthStarted())
-        registerUserAccount(email, password)
+        registerUserAccount(newUserObject)
             .then(response => {
                 dispatch(setAuthSuccess(response))
+                window.history.push("/")
             })
             .catch(error => {
                 dispatch(setAuthFail(error))

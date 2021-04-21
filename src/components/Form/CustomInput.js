@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         flexShrink: 0,
         margin: theme.spacing(1),
-        width: 300,
     },
     label: {
         marginLeft: theme.spacing(1),
@@ -24,11 +23,29 @@ const useStyles = makeStyles((theme) => ({
         flex: 1,
         fontSize: "12px"
     },
+    error: {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(0),
+        marginLeft: theme.spacing(1),
+        fontSize: "12px",
+        fontWeight: '300',
+        color: theme.palette.error.main
+    }
 }));
 
 
 const CustomInput = (props) => {
     const classes = useStyles();
+
+    const getError = () => {
+        const errorText = props.error
+        if (errorText)
+            return (
+                <p className={classes.error}>{props.error}</p>
+            )
+        return null
+    }
+
     return (
         <div className={classes.root}>
             <label className={classes.label} htmlFor={props.label}>{props.label}</label>
@@ -39,8 +56,10 @@ const CustomInput = (props) => {
                     placeholder={props.placeholder}
                     inputProps={{'aria-label': 'search google maps'}}
                     onInput={props.onInput}
+                    onBlur={props.onBlur}
                 />
             </Paper>
+            {getError()}
             {/*<TextField  id={props.label} variant="outlined" onInput={props.onInput}/>*/}
         </div>
     )
