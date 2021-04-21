@@ -8,6 +8,7 @@ import thunk from 'redux-thunk'
 
 import authReducer from "./store/reducers/authReducer";
 import movieReducer from "./store/reducers/movieReducer";
+import snackbarReducer from "./store/reducers/snackbarReducer";
 import { ThemeProvider} from "@material-ui/core";
 import theme from './styles/theme'
 
@@ -19,7 +20,8 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    movie: movieReducer
+    movie: movieReducer,
+    snackbar: snackbarReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))

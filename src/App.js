@@ -6,6 +6,7 @@ import SignIn from "./containers/Auth/SignIn";
 import Movies from "./containers/Movies";
 import SignOut from "./containers/Auth/SignOut";
 import Profile from "./containers/Profile"
+import Snackbar from "./components/Snackbar/Snackbar"
 import './App.css';
 import Layout from "./components/Layout/Layout";
 
@@ -37,6 +38,7 @@ class App extends Component {
 
         return (
             <div className="App">
+                <Snackbar />
                 <Layout isAuthenticated={this.props.isAuthenticated}>{routes}</Layout>
             </div>
         )
