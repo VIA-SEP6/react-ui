@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
-import {setSnackbar} from '../../store/actions'
+import {removeSnackbar} from '../../store/actions'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,7 +24,7 @@ const CustomizedSnackbars = () => {
     if (reason === "clickaway") {
       return;
     }
-    dispatch(setSnackbar(false, snackbarType, snackbarMessage));
+    dispatch(removeSnackbar(false, snackbarType, snackbarMessage));
   };
 
   return (
@@ -33,12 +33,13 @@ const CustomizedSnackbars = () => {
         open={snackbarOpen}
         autoHideDuration={3000}
         onClose={handleClose}
+        severity={snackbarType}
       >
         <Alert
           elevation={6}
           variant="filled"
           onClose={handleClose}
-          color={snackbarType}
+          severity={snackbarType}
         >
           {snackbarMessage}
         </Alert>

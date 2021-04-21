@@ -1,23 +1,23 @@
 import axios from "axios";
-import * as actionsTypes from "./actionsTypes"
-import { setSnackbar } from "./snackbarActions";
+import * as actionTypes from "./actionTypes"
+import { addSnackbar, addErrorSnackbar } from "./snackbarActions";
 
 const setMoviesFetchStarted = () => {
     return {
-        type: actionsTypes.FETCH_DATA_STARTED,
+        type: actionTypes.FETCH_DATA_STARTED,
     }
 }
 
 const setMoviesFetchSuccess = (movies) => {
     return {
-        type: actionsTypes.FETCH_DATA_SUCCESS,
+        type: actionTypes.FETCH_DATA_SUCCESS,
         payload: movies
     }
 }
 
 const setMoviesFetchError = (error) => {
     return {
-        type: actionsTypes.FETCH_DATA_FAILED,
+        type: actionTypes.FETCH_DATA_FAILED,
         error: error
     }
 }
@@ -29,11 +29,11 @@ export const fetchMovies = () => {
             .post(`${process.env.REACT_APP_API_BASE_PATH}/helloHttp`)
             .then((response) => {
                 dispatch(setMoviesFetchSuccess(response.data))
-                dispatch(setSnackbar(true, "warning", "Successfully fetched the movies"))
+                dispatch(addSnackbar("Successfully fetched the movies"))
             })
             .catch((error) => {
                 dispatch(setMoviesFetchError(error))
-                dispatch(setSnackbar(true, "error", "Successfully fetched the movies"))
+                dispatch(addErrorSnackbar("Error fetching the movies"))
             })
     }
 }
