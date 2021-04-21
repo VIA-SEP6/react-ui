@@ -1,7 +1,7 @@
 import {Component} from "react";
 import {connect} from "react-redux";
 import Login from "../../components/Auth/Login";
-import {loginUser, logoutUser, registerUser} from '../../store/actions'
+import {loginUser, registerUser} from '../../store/actions'
 
 class SignIn extends Component {
     render() {
@@ -24,8 +24,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         loginUser: (email, password) => dispatch(loginUser(email, password)),
-        registerUser: (email, password) => dispatch(registerUser(email, password)),
-        logoutUser: (email, password) => dispatch(logoutUser(email, password))
+        registerUser: (email, password) => dispatch(registerUser(email, password))
     }
 }
 
