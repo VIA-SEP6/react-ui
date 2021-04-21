@@ -55,10 +55,10 @@ export const loginUser = (email, password) => {
     }
 }
 
-export const logoutUser = (email, password) => {
+export const logoutUser = () => {
     return (dispatch) => {
         dispatch(setAuthStarted())
-        logoutUserAccount(email, password)
+        logoutUserAccount()
             .then(() => {
                 dispatch(setAuthLogOut())
             })

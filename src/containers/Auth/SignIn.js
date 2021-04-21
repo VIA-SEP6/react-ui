@@ -1,17 +1,14 @@
 import {Component} from "react";
 import {connect} from "react-redux";
-import LoginComponent from "../components/Auth/LoginComponent";
-import {registerUser, loginUser, logoutUser} from '../store/actions/index'
+import Login from "../../components/Auth/Login";
+import {loginUser, logoutUser, registerUser} from '../../store/actions'
 
-class Login extends Component {
+class SignIn extends Component {
     render() {
         return (
             <div>
-                <p>Hello Login</p>
-                <p>{process.env.REACT_APP_API_BASE_PATH}</p>
-                <p>Is authenticated? {this.props.isAuthenticated ? "Yes" : "No"}</p>
-                <p>{this.props.userEmail}</p>
-                <LoginComponent loginUser = {this.props.loginUser} logoutUser = {this.props.logoutUser} registerUser = {this.props.registerUser}/>
+                <Login loginUser={this.props.loginUser}
+                       registerUser={this.props.registerUser}/>
             </div>
         )
     }
@@ -32,4 +29,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

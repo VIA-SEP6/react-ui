@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Button} from "@material-ui/core";
 import {connect} from "react-redux";
 
 import * as actions from "../store/actions/index"
+import CustomButton from "../components/Form/CustomButton";
 
 class Movies extends Component {
     getMovies = () => {
@@ -26,7 +26,8 @@ class Movies extends Component {
             <div>
                 <p>{this.getMovies()}</p>
                 <p>{this.getErrorMessage()}</p>
-                <Button onClick={this.props.fetchMovies} variant="contained" color="primary">Fetch POC Data</Button>
+                <CustomButton onClick={this.props.fetchMovies} variant="contained" color="primary">Fetch POC
+                    Data</CustomButton>
             </div>
         )
     }
