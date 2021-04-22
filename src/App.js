@@ -3,8 +3,9 @@ import {Redirect, Route, Switch, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import SignIn from "./containers/Auth/SignIn";
-import Movies from "./containers/Movies";
+import SignUp from "./containers/Auth/SignUp";
 import SignOut from "./containers/Auth/SignOut";
+import Movies from "./containers/Movies";
 import Profile from "./containers/Profile"
 import './App.css';
 import Layout from "./components/Layout/Layout";
@@ -20,6 +21,7 @@ class App extends Component {
         let routes = (
             <Switch>
                 <Route path="/login" component={SignIn}/>
+                <Route path="/register" component={SignUp}/>
                 <Route path="/" exact component={Movies}/>
                 <Redirect to="/"/>
             </Switch>

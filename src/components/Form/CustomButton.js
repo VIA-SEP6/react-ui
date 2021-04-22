@@ -8,6 +8,8 @@ const CustomButton = (props) => {
             onClick={props.onClick}
             size={props.size}
             variant="contained"
+            fullWidth={props.fullWidth}
+            disabled={props.disabled}
         >
             {props.children}
         </Button>

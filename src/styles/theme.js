@@ -10,7 +10,7 @@ const theme = createMuiTheme({
         },
         tertiary: {
             main: "#E85A50"
-        }
+        },
     },
     typography: {
         fontFamily: [

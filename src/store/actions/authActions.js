@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import {loginUserAccount, registerUserAccount, logoutUserAccount} from '../../services/firebase/auth'
 import { addSnackbar, addErrorSnackbar} from '../actions/index'
-
+import firebaseFunctions from "../../services/firebase/functions";
 
 const setAuthStarted = () => {
     return {
@@ -30,12 +30,12 @@ const setAuthLogOut = () => {
 }
 
 
-export const registerUser = (email, password) => {
+export const registerUser = (newUserObject) => {
     return (dispatch) => {
         dispatch(setAuthStarted())
-        registerUserAccount(email, password)
+        firebaseFunctions.registerUserAccount(newUserObject)
             .then(response => {
-                dispatch(setAuthSuccess(response))
+                dispatch(loginUser(newUserObject.email, newUserObject.password))
             })
             .catch(error => {
                 dispatch(setAuthFail(error))
