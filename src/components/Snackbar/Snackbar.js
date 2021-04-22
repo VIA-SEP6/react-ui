@@ -24,7 +24,7 @@ const CustomizedSnackbars = () => {
     if (reason === "clickaway") {
       return;
     }
-    dispatch(removeSnackbar(false, snackbarType, snackbarMessage));
+    dispatch(removeSnackbar());
   };
 
   return (
