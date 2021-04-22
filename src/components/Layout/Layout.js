@@ -1,5 +1,6 @@
 import {Container, makeStyles} from "@material-ui/core";
 import NavigationDrawer from "./NavigationDrawer/NavigationDrawer";
+import Snackbar from "../Snackbar/Snackbar"
 
 const useStyles = makeStyles((theme) => ({
     layout: {
@@ -24,6 +25,7 @@ export default function Layout(props) {
                 {props.children}
             </Container>
             <div>
+                <Snackbar />
                 <NavigationDrawer isAuthenticated={props.isAuthenticated}/>
             </div>
         </div>

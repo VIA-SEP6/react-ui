@@ -1,4 +1,4 @@
-import * as actionsTypes from '../actions/actionsTypes'
+import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
     user: null,
@@ -8,13 +8,13 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionsTypes.AUTH_START:
+        case actionTypes.AUTH_START:
             return {...state, loading: true};
-        case actionsTypes.AUTH_SUCCESS:
+        case actionTypes.AUTH_SUCCESS:
             return {...state, loading: false, user: action.payload};
-        case actionsTypes.AUTH_FAILED:
+        case actionTypes.AUTH_FAILED:
             return {...state, loading: false, error: action.error}
-        case actionsTypes.AUTH_LOGOUT:
+        case actionTypes.AUTH_LOGOUT:
             return {...state, loading: false, user: null}
         default:
             return state;
