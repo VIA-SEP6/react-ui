@@ -9,12 +9,12 @@ import Movies from "./containers/Movies";
 import Profile from "./containers/Profile"
 import './App.css';
 import Layout from "./components/Layout/Layout";
-
+import {verifyAuth} from "./store/actions";
 
 
 class App extends Component {
     componentDidMount() {
-        // this.props.onTryAutoSignUp()
+        this.props.tryAutoLogin()
     }
 
     render() {
@@ -53,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // onTryAutoSignUp: () => dispatch(actions.authCheckState())
+        tryAutoLogin: () => dispatch(verifyAuth())
     }
 }
 
