@@ -3,6 +3,7 @@ import CustomInput from "../Form/CustomInput";
 import CustomButton from "../Form/CustomButton";
 import {Grid, makeStyles} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
+import GoogleButton from "./GoogleButton";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,9 +40,8 @@ const Login = (props) => {
                                   size="small" fullWidth>Register</CustomButton>
                 </Grid>
             </Grid>
-            <Grid item sm={12}>
-                <CustomButton onClick={() => props.loginWithGoogle()} color="primary"
-                              size="small" fullWidth>Google Sign In</CustomButton>
+            <Grid container sm={12} justify="center">
+                <GoogleButton onClick={() => props.loginWithGoogle()}/>
             </Grid>
         </Grid>
     )
