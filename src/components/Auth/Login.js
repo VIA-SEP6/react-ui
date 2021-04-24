@@ -19,7 +19,6 @@ const Login = (props) => {
     const [password, setPassword] = useState("");
     const classes = useStyles();
     const history = useHistory();
-
     return (
         <Grid className={classes.root} container>
             <Grid item sm={12}>
@@ -39,6 +38,10 @@ const Login = (props) => {
                     <CustomButton onClick={() => history.push("/register")} color="primary"
                                   size="small" fullWidth>Register</CustomButton>
                 </Grid>
+            </Grid>
+            <Grid item sm={12}>
+                <CustomButton onClick={() => props.loginWithGoogle()} color="primary"
+                              size="small" fullWidth>Google Sign In</CustomButton>
             </Grid>
         </Grid>
     )
