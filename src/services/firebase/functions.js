@@ -5,6 +5,9 @@ const registerUserAccount = (axios) => (newUserObject) => {
     return axios.post("/registerUser", newUserObject).then(response => response.data)
 }
 
-export default {
+const firebaseFunctionsService = {
     registerUserAccount: registerUserAccount(instance)
+
 }
+
+export default firebaseFunctionsService;

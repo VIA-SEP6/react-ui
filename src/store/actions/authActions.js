@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import {loginUserAccount, registerUserAccount, logoutUserAccount} from '../../services/firebase/auth'
+import {loginUserAccount, logoutUserAccount} from '../../services/firebase/auth'
 import { addSnackbar, addErrorSnackbar} from '../actions/index'
 import firebaseFunctions from "../../services/firebase/functions";
 
