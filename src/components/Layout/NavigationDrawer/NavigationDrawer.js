@@ -1,11 +1,14 @@
 import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import {useState} from "react";
+import React, {useState} from "react";
 import clsx from 'clsx';
 import {IconButton} from "@material-ui/core";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import NavItems from "../Navigation/NavItems";
+import CustomModal from "../Modal/CustomModal";
+import Login from "../../Auth/Login/Login";
+import NavItem from "../Navigation/NavItem";
 
 const drawerWidth = 240;
 const drawerWidthClosed = 64;
@@ -44,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
             color: 'white'
         }
     },
+    userData: {
+        marginTop: "auto",
+        marginBottom: theme.spacing(1)
+    }
 }));
 
 
@@ -58,6 +65,19 @@ export default function NavigationDrawer(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+
+    let userData = (
+        <CustomModal
+            content={<Login loginUser={props.loginUser}
+                            loginWithGoogle={props.loginWithGoogle}/>}
+            toggle={<NavItem key="Login" header="Login" icon="login"/>}
+        />
+    )
+
+    if (props.isAuthenticated) {
+        userData = (<p>User</p>)
+    }
 
     return (
         <Drawer
@@ -78,6 +98,9 @@ export default function NavigationDrawer(props) {
                 <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
                     {open ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
                 </IconButton>
+            </div>
+            <div className={classes.userData}>
+                {userData}
             </div>
         </Drawer>
     )

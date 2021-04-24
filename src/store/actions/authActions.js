@@ -92,8 +92,7 @@ export const logInWithGoogle = () => {
                 dispatch(addSnackbar("Successfully logged In"))
             })
             .catch(error => {
-                dispatch(setAuthFail(error))
-                dispatch(addErrorSnackbar("Error logging In"))
+                console.log(error)
             })
     }
 }

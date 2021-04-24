@@ -12,7 +12,5 @@ export const loginUserWithGoogle = () => {
         .signInWithPopup(provider)
         .then((result) => {
             return result.user;
-        }).catch((error) => {
-            console.log(error)
-        });
+        })
 }
