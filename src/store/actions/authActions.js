@@ -39,6 +39,7 @@ export const registerUser = (newUserObject) => {
             })
             .catch(error => {
                 dispatch(setAuthFail(error))
+                dispatch(addErrorSnackbar("Error creating account " + error.message))
             })
     }
 }
