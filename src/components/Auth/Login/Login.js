@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {Button, Grid, makeStyles, Paper, TextField} from "@material-ui/core";
-import {useHistory} from "react-router-dom";
 import GoogleButton from "./GoogleButton";
+import CustomModal from "../../Layout/Modal/CustomModal";
+import Register from "../Register";
 
 const useStyles = makeStyles((theme) => ({
     action: {
@@ -33,7 +34,13 @@ const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const classes = useStyles();
-    const history = useHistory();
+
+    const handleLogin = (event) => {
+        if (event.keyCode === 13) {
+            props.loginUser(email, password)
+        }
+    }
+
     return (
         <Paper className={classes.paper}>
             <h4>Sign In to account</h4>
@@ -43,6 +50,7 @@ const Login = (props) => {
                 label="Email"
                 type="text"
                 size="small"
+                onKeyDown={handleLogin}
             />
             <TextField
                 className={classes.input}
@@ -50,6 +58,7 @@ const Login = (props) => {
                 label="Password"
                 type="password"
                 size="small"
+                onKeyDown={handleLogin}
             />
             <Grid container justify="center" spacing={2} className={classes.action}>
                 <Grid item sm={12} md={6}>
@@ -63,13 +72,12 @@ const Login = (props) => {
                     </Button>
                 </Grid>
                 <Grid item sm={12} md={6}>
-                    <Button
-                        variant={"text"}
-                        color={"primary"}
-                        fullWidth
+                    <CustomModal
+                        toggle={<Button variant={"text"} color={"primary"} fullWidth>Register</Button>}
                     >
-                        Register
-                    </Button>
+                        <Register registerUser={props.registerUser}/>
+                    </CustomModal>
+
                 </Grid>
             </Grid>
             <GoogleButton onClick={() => props.loginWithGoogle()}/>

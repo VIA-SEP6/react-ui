@@ -31,6 +31,7 @@ export default function Layout(props) {
                     isAuthenticated={props.isAuthenticated}
                     loginUser={props.loginUser}
                     loginWithGoogle={props.loginWithGoogle}
+                    registerUser={props.registerUser}
                 />
             </div>
         </div>

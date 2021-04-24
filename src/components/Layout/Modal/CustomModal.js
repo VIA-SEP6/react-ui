@@ -4,8 +4,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import {animated, useSpring} from 'react-spring/web.cjs';
-import NavItem from "../Navigation/NavItem";
-import Login from "../../Auth/Login/Login"; // web.cjs is required for IE 11 support
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -77,7 +75,7 @@ export default function CustomModal(props) {
                 }}
             >
                 <Fade in={open}>
-                    {props.content}
+                    {props.children}
                 </Fade>
             </Modal>
         </div>

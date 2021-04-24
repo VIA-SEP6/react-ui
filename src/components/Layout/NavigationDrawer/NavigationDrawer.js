@@ -66,13 +66,13 @@ export default function NavigationDrawer(props) {
         setOpen(false);
     };
 
-
     let userData = (
-        <CustomModal
-            content={<Login loginUser={props.loginUser}
-                            loginWithGoogle={props.loginWithGoogle}/>}
-            toggle={<NavItem key="Login" header="Login" icon="login"/>}
-        />
+        <CustomModal toggle={<NavItem key="Login" header="Login" icon="login"/>}>
+            <Login loginUser={props.loginUser}
+                   loginWithGoogle={props.loginWithGoogle}
+                   registerUser={props.registerUser}
+            />
+        </CustomModal>
     )
 
     if (props.isAuthenticated) {
