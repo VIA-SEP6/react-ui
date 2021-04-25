@@ -2,6 +2,7 @@ import React from "react"
 import {Divider, List} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import NavItem from "./NavItem";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     divider: {
@@ -14,10 +15,14 @@ const useStyles = makeStyles((theme) => ({
 
 const NavItems = (props) => {
     const classes = useStyles()
+    const history = useHistory();
+
+    function navigateTo(path) {
+        history.push(path);
+    }
 
     const defaultNavigation = [
         {to: "/", header: "Movies", icon: "subscriptions"},
-        {to: "/login", header: "Login", icon: "login"}
     ]
 
     const authenticatedNavigation = [
@@ -32,7 +37,7 @@ const NavItems = (props) => {
         <div>
             <List>
                 {navigation.map(item => (
-                    <NavItem key={item.header} to={item.to} header={item.header} icon={item.icon}/>
+                    <NavItem key={item.header} onClick={() => navigateTo(item.to)} header={item.header} icon={item.icon}/>
                 ))}
             </List>
             <Divider classes={{root: classes.divider}}/>
