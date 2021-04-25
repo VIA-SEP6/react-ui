@@ -2,6 +2,7 @@ import * as actionTypes from "./actionTypes";
 import {loginUserAccount, logoutUserAccount} from '../../services/firebase/auth'
 import { addSnackbar, addErrorSnackbar} from '../actions/index'
 import firebaseFunctions from "../../services/firebase/functions";
+import {auth} from "../../services/firebase/firebase";
 
 const setAuthStarted = () => {
     return {
@@ -49,7 +50,7 @@ export const loginUser = (email, password) => {
         dispatch(setAuthStarted())
         loginUserAccount(email, password)
             .then(response => {
-                dispatch(setAuthSuccess(response))
+                dispatch(setAuthSuccess(response.user))
                 dispatch(addSnackbar("Successfully logged In"))
             })
             .catch(error => {
@@ -74,11 +75,23 @@ export const logoutUser = () => {
         logoutUserAccount()
             .then(() => {
                 dispatch(setAuthLogOut())
-                dispatch(addSnackbar("Succesfully logged Out"))
+                dispatch(addSnackbar("Successfully logged Out"))
             })
             .catch(error => {
                 dispatch(setAuthFail(error))
                 dispatch(addErrorSnackbar("Error logging Out"))
             })
+    }
+}
+
+export const verifyAuth = () => {
+    return function (dispatch) {
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                dispatch(setAuthSuccess(user))
+            } else {
+                dispatch(setAuthLogOut());
+            }
+        });
     }
 }
