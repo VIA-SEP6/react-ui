@@ -5,6 +5,7 @@ import "firebase/database";
 const config = {
     apiKey: "AIzaSyAJ0f2lWAEXNGgvKRwXPxrDdWZi_eSjR7E",
     projectId: "sep6-310611",
+    authDomain: "sep6-310611.firebaseapp.com"
 };
 
 if (!firebase.apps.length) {

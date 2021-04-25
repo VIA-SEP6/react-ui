@@ -1,13 +1,14 @@
 import {Container, makeStyles} from "@material-ui/core";
 import NavigationDrawer from "./NavigationDrawer/NavigationDrawer";
 import Snackbar from "../Snackbar/Snackbar"
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
     layout: {
         display: 'flex',
         flexDirection: 'row',
         minHeight: '100vh',
-        backgroundColor: theme.palette.secondary.main
+        backgroundColor: theme.palette.tertiary.main
     },
     content: {
         display: 'flex',
@@ -26,7 +27,12 @@ export default function Layout(props) {
             </Container>
             <div>
                 <Snackbar />
-                <NavigationDrawer isAuthenticated={props.isAuthenticated}/>
+                <NavigationDrawer
+                    isAuthenticated={props.isAuthenticated}
+                    loginUser={props.loginUser}
+                    loginWithGoogle={props.loginWithGoogle}
+                    registerUser={props.registerUser}
+                />
             </div>
         </div>
     )

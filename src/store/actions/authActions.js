@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import {loginUserAccount, logoutUserAccount} from '../../services/firebase/auth'
+import {loginUserAccount, logoutUserAccount, loginUserWithGoogle} from '../../services/firebase/auth'
 import { addSnackbar, addErrorSnackbar} from '../actions/index'
 import firebaseFunctions from "../../services/firebase/functions";
 import {auth} from "../../services/firebase/firebase";
@@ -80,6 +80,20 @@ export const logoutUser = () => {
             .catch(error => {
                 dispatch(setAuthFail(error))
                 dispatch(addErrorSnackbar("Error logging Out"))
+            })
+    }
+}
+
+export const logInWithGoogle = () => {
+    return (dispatch) => {
+        dispatch(setAuthStarted())
+        loginUserWithGoogle()
+            .then((user) => {
+                dispatch(setAuthSuccess(user))
+                dispatch(addSnackbar("Successfully logged In"))
+            })
+            .catch(error => {
+                console.log(error)
             })
     }
 }

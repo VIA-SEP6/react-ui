@@ -1,16 +1,12 @@
 import React, {Component} from 'react'
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-
-import SignIn from "./containers/Auth/SignIn";
-import SignUp from "./containers/Auth/SignUp";
 import SignOut from "./containers/Auth/SignOut";
 import Movies from "./containers/Movies";
 import Profile from "./containers/Profile"
 import './App.css';
 import Layout from "./components/Layout/Layout";
-import {verifyAuth} from "./store/actions";
-
+import {loginUser, logInWithGoogle, registerUser, verifyAuth} from "./store/actions";
 
 class App extends Component {
     componentDidMount() {
@@ -20,8 +16,6 @@ class App extends Component {
     render() {
         let routes = (
             <Switch>
-                <Route path="/login" component={SignIn}/>
-                <Route path="/register" component={SignUp}/>
                 <Route path="/" exact component={Movies}/>
                 <Redirect to="/"/>
             </Switch>
@@ -39,7 +33,14 @@ class App extends Component {
 
         return (
             <div className="App">
-                <Layout isAuthenticated={this.props.isAuthenticated}>{routes}</Layout>
+                <Layout
+                    isAuthenticated={this.props.isAuthenticated}
+                    loginUser={this.props.loginUser}
+                    loginWithGoogle={this.props.loginWithGoogle}
+                    registerUser={this.props.registerUser}
+                >
+                    {routes}
+                </Layout>
             </div>
         )
     }
@@ -53,7 +54,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        tryAutoLogin: () => dispatch(verifyAuth())
+        tryAutoLogin: () => dispatch(verifyAuth()),
+        loginUser: (email, password) => dispatch(loginUser(email, password)),
+        loginWithGoogle: () => dispatch(logInWithGoogle()),
+        registerUser: (newUserObject) => dispatch(registerUser(newUserObject))
     }
 }
 
