@@ -2,6 +2,8 @@ import * as actionTypes from "./actionTypes";
 import {loginUserAccount, logoutUserAccount, loginUserWithGoogle} from '../../services/firebase/auth'
 import { addSnackbar, addErrorSnackbar} from '../actions/index'
 import firebaseFunctions from "../../services/firebase/functions";
+import {auth} from "../../services/firebase/firebase";
+
 
 const setAuthStarted = () => {
     return {
@@ -74,7 +76,7 @@ export const logoutUser = () => {
         logoutUserAccount()
             .then(() => {
                 dispatch(setAuthLogOut())
-                dispatch(addSnackbar("Succesfully logged Out"))
+                dispatch(addSnackbar("Successfully logged Out"))
             })
             .catch(error => {
                 dispatch(setAuthFail(error))
@@ -94,5 +96,17 @@ export const logInWithGoogle = () => {
             .catch(error => {
                 console.log(error)
             })
+    }
+}
+
+export const verifyAuth = () => {
+    return function (dispatch) {
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                dispatch(setAuthSuccess(user))
+            } else {
+                dispatch(setAuthLogOut());
+            }
+        });
     }
 }

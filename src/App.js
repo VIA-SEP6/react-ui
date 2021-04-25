@@ -6,12 +6,11 @@ import Movies from "./containers/Movies";
 import Profile from "./containers/Profile"
 import './App.css';
 import Layout from "./components/Layout/Layout";
-import {loginUser, logInWithGoogle, registerUser} from "./store/actions";
-
+import {loginUser, logInWithGoogle, registerUser, verifyAuth} from "./store/actions";
 
 class App extends Component {
     componentDidMount() {
-        // this.props.onTryAutoSignUp()
+        this.props.tryAutoLogin()
     }
 
     render() {
@@ -55,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // onTryAutoSignUp: () => dispatch(actions.authCheckState())
+        tryAutoLogin: () => dispatch(verifyAuth()),
         loginUser: (email, password) => dispatch(loginUser(email, password)),
         loginWithGoogle: () => dispatch(logInWithGoogle()),
         registerUser: (newUserObject) => dispatch(registerUser(newUserObject))
