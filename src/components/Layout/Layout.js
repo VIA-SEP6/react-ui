@@ -1,12 +1,10 @@
 import {Container, makeStyles} from "@material-ui/core";
-import NavigationDrawer from "./NavigationDrawer/NavigationDrawer";
 import Snackbar from "../Snackbar/Snackbar"
 import React from "react";
+import TopBar from "./TopBar/TopBar";
 
 const useStyles = makeStyles((theme) => ({
     layout: {
-        display: 'flex',
-        flexDirection: 'row',
         minHeight: '100vh',
         backgroundColor: theme.palette.tertiary.main
     },
@@ -22,18 +20,19 @@ export default function Layout(props) {
     const classes = useStyles()
     return (
         <div className={classes.layout}>
+            <TopBar
+                isAuthenticated={props.isAuthenticated}
+                currentUser={props.currentUser}
+                loginUser={props.loginUser}
+                loginWithGoogle={props.loginWithGoogle}
+                registerUser={props.registerUser}
+                logoutUser={props.logoutUser}
+            />
             <Container className={classes.content}>
                 {props.children}
             </Container>
-            <div>
-                <Snackbar />
-                <NavigationDrawer
-                    isAuthenticated={props.isAuthenticated}
-                    loginUser={props.loginUser}
-                    loginWithGoogle={props.loginWithGoogle}
-                    registerUser={props.registerUser}
-                />
-            </div>
+            <Snackbar/>
+
         </div>
     )
 }

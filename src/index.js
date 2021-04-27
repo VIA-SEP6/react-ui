@@ -9,14 +9,11 @@ import thunk from 'redux-thunk'
 import authReducer from "./store/reducers/authReducer";
 import movieReducer from "./store/reducers/movieReducer";
 import snackbarReducer from "./store/reducers/snackbarReducer";
-import { ThemeProvider} from "@material-ui/core";
+import {ThemeProvider} from "@material-ui/core";
 import theme from './styles/theme'
 
 
-const composeEnhancers =
-    process.env.NODE_ENV === 'development'
-        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-        : null || compose
+const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null) || compose;
 
 const rootReducer = combineReducers({
     auth: authReducer,
