@@ -3,9 +3,7 @@ import React from "react";
 import CustomModal from "../Modal/CustomModal";
 import Login from "../../Auth/Login/Login";
 import {makeStyles} from "@material-ui/core/styles";
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     avatarSmall: {
@@ -36,6 +34,7 @@ const StyledMenu = withStyles({
 
 export default function UserMenuItem(props) {
     const classes = useStyles();
+    const history = useHistory();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -51,6 +50,16 @@ export default function UserMenuItem(props) {
         handleClose()
         props.logoutUser()
     }
+
+    const navigateToProfile = () => {
+        handleClose()
+        history.push("/profile")
+    }
+
+    const menuItems = [
+        {text: "Profile", icon: "person", onClickFunction: navigateToProfile},
+        {text: "Sign Out", icon: "logout", onClickFunction: handleLogout},
+    ]
 
     let userData = (
         <CustomModal toggle={<IconButton><Icon>login</Icon></IconButton>}>
@@ -80,18 +89,14 @@ export default function UserMenuItem(props) {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem>
-                        <ListItemIcon>
-                            <Icon>person</Icon>
-                        </ListItemIcon>
-                        <ListItemText primary="Profile"/>
-                    </MenuItem>
-                    <MenuItem onClick={handleLogout}>
-                        <ListItemIcon>
-                            <Icon>logout</Icon>
-                        </ListItemIcon>
-                        <ListItemText primary="Sign Out"/>
-                    </MenuItem>
+                    {menuItems.map(menuItem => (
+                        <MenuItem key={menuItem.text} onClick={menuItem.onClickFunction}>
+                            <ListItemIcon>
+                                <Icon>{menuItem.icon}</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary={menuItem.text}/>
+                        </MenuItem>
+                    ))}
                 </StyledMenu>
             </div>
         )

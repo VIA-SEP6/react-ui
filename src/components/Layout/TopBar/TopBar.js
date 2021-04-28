@@ -2,6 +2,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {FormControl, Hidden, IconButton, InputAdornment, InputLabel, OutlinedInput} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import React from "react";
+import {useHistory} from "react-router-dom"
 import UserMenuItem from "./UserMenuItem";
 
 const useStyles = makeStyles(theme => ({
@@ -35,7 +36,7 @@ export default function TopBar(props) {
     return (
         <div className={classes.root}>
             <div className={classes.logo}>
-                <h3>The Movie App</h3>
+                <h3 onClick={() => history.push("/")}>The Movie App</h3>
             </div>
             <div className={classes.search}>
                 <Hidden xsDown>
