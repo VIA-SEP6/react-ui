@@ -1,9 +1,10 @@
 import {makeStyles} from "@material-ui/core/styles";
-import {FormControl, Hidden, IconButton, InputAdornment, InputLabel, OutlinedInput} from "@material-ui/core";
+import {Hidden, IconButton} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import React from "react";
 import {useHistory} from "react-router-dom"
 import UserMenuItem from "./UserMenuItem";
+import DesktopSearch from "../../Movie/DesktopSearch";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,23 +40,10 @@ export default function TopBar(props) {
                 <h3 onClick={() => history.push("/")}>The Movie App</h3>
             </div>
             <div className={classes.search}>
-                <Hidden xsDown>
-                    <FormControl variant="outlined" size="small">
-                        <InputLabel htmlFor="search-field">Search for a movie</InputLabel>
-                        <OutlinedInput
-                            id="search-field"
-                            labelWidth={135}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton>
-                                        <SearchIcon/>
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                        />
-                    </FormControl>
+                <Hidden smDown>
+                    <DesktopSearch/>
                 </Hidden>
-                <Hidden smUp>
+                <Hidden mdUp>
                     <IconButton>
                         <SearchIcon/>
                     </IconButton>

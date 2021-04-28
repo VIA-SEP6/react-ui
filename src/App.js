@@ -6,7 +6,7 @@ import Movies from "./containers/Movies";
 import Profile from "./containers/Profile"
 import './App.css';
 import Layout from "./components/Layout/Layout";
-import {loginUser, logInWithGoogle, registerUser, verifyAuth, logoutUser} from "./store/actions";
+import {loginUser, logInWithGoogle, registerUser, verifyAuth, logoutUser, searchMovie} from "./store/actions";
 
 class App extends Component {
     componentDidMount() {
@@ -62,6 +62,7 @@ const mapDispatchToProps = (dispatch) => {
         loginWithGoogle: () => dispatch(logInWithGoogle()),
         registerUser: (newUserObject) => dispatch(registerUser(newUserObject)),
         logoutUser: () => dispatch(logoutUser()),
+        searchMovie: (name) => dispatch(searchMovie(name))
     }
 }
 

@@ -1,39 +1,41 @@
-import axios from "axios";
 import * as actionTypes from "./actionTypes"
-import { addSnackbar, addErrorSnackbar } from "./snackbarActions";
+import movieApiService from "../../services/firebase/api/movie";
 
 const setMoviesFetchStarted = () => {
     return {
-        type: actionTypes.FETCH_DATA_STARTED,
+        type: actionTypes.SEARCH_MOVIE_STARTED,
     }
 }
 
 const setMoviesFetchSuccess = (movies) => {
     return {
-        type: actionTypes.FETCH_DATA_SUCCESS,
+        type: actionTypes.SEARCH_MOVIE_SUCCESS,
         payload: movies
     }
 }
 
 const setMoviesFetchError = (error) => {
     return {
-        type: actionTypes.FETCH_DATA_FAILED,
+        type: actionTypes.SEARCH_MOVIE_FAILED,
         error: error
     }
 }
 
-export const fetchMovies = () => {
+export const clearMovies = () => {
+    return {
+        type: actionTypes.SEARCH_MOVIE_RESET,
+    }
+}
+
+export const searchMovie = (name) => {
     return (dispatch) => {
         dispatch(setMoviesFetchStarted())
-        axios
-            .post(`${process.env.REACT_APP_API_BASE_PATH}/helloHttp`)
+        movieApiService.searchMovie(name)
             .then((response) => {
-                dispatch(setMoviesFetchSuccess(response.data))
-                dispatch(addSnackbar("Successfully fetched the movies"))
+                dispatch(setMoviesFetchSuccess(response.data.results))
             })
             .catch((error) => {
                 dispatch(setMoviesFetchError(error))
-                dispatch(addErrorSnackbar("Error fetching the movies"))
             })
     }
 }
