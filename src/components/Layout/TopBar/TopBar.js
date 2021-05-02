@@ -17,10 +17,10 @@ const useStyles = makeStyles(theme => ({
     },
     search: {
         paddingLeft: theme.spacing(2),
-        [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down('sm')]: {
             marginLeft: "auto",
         },
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             marginRight: "auto",
         },
     },

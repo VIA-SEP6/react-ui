@@ -5,12 +5,12 @@ const searchMovie = (axios) => (movieName) => {
 }
 
 const getMovieDetails = (axios) => (movieId) => {
-    return axios.post("/getMovie", {id: movieId, append_to_response: "credits"}).then(response => response.data.data)
+    return axios.post("/getMovie", {id: movieId, append_to_response: "credits,videos,similar"}).then(response => response.data.data)
 }
 
 const movieApiService = {
     searchMovie: searchMovie(instance),
-    getMovie: getMovieDetails(instance)
+    getMovieDetails: getMovieDetails(instance),
 }
 
 export default movieApiService;

@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function DesktopSearch(props) {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [timeout, initTimeout] = useState(0)
     const [value, setValue] = useState({})
     const movies = useSelector(state => state.movie.movies);
