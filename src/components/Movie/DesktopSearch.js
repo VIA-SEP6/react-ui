@@ -18,13 +18,15 @@ const useStyles = makeStyles(theme => ({
     },
     listBox: {
         padding: 0,
-        maxHeight: '50vh'
+        maxHeight: '50vh',
+        backgroundColor: theme.palette.tertiary.main
     }
 }))
 
 export default function DesktopSearch(props) {
     const [open, setOpen] = useState(true);
     const [timeout, initTimeout] = useState(0)
+    const [value, setValue] = useState({})
     const movies = useSelector(state => state.movie.movies);
 
     const loading = open && movies.length === 0;
@@ -57,11 +59,13 @@ export default function DesktopSearch(props) {
     const handleClose = () => {
         setOpen(false)
         dispatch(clearMovies())
+        setValue({})
     }
 
     return (
         <div>
             <Autocomplete
+                value={value}
                 classes={{option: classes.option, listbox: classes.listBox, paper: classes.paper}}
                 id="asynchronous-demo"
                 size="small"
@@ -73,7 +77,7 @@ export default function DesktopSearch(props) {
                 onClose={handleClose}
                 onChange={handleSelect}
                 getOptionSelected={(option, value) => option.id === value.id}
-                getOptionLabel={(option) => option.title}
+                getOptionLabel={(option) => option.title || ""}
                 options={movies.slice(0,3)}
                 loading={loading}
                 loadingText="Search movie"

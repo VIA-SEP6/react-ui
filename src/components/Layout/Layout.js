@@ -6,7 +6,7 @@ import TopBar from "./TopBar/TopBar";
 const useStyles = makeStyles((theme) => ({
     layout: {
         minHeight: '100vh',
-        backgroundColor: theme.palette.tertiary.main
+        backgroundColor: theme.palette.secondary.main
     },
     content: {
         display: 'flex',

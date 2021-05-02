@@ -6,10 +6,10 @@ const theme = createMuiTheme({
             main: "#68b0ab"
         },
         secondary: {
-            main: "#faf3dd"
+            main: "#edf6f9"
         },
         tertiary: {
-            main: "#edf6f9"
+            main: "#FFFBFB"
         },
     },
     typography: {
