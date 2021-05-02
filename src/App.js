@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import SignOut from "./containers/Auth/SignOut";
 import Movies from "./containers/Movies";
 import Profile from "./containers/Profile"
+import Movie from "./containers/Movie"
 import './App.css';
 import Layout from "./components/Layout/Layout";
 import {loginUser, logInWithGoogle, registerUser, verifyAuth, logoutUser, searchMovie} from "./store/actions";
@@ -17,6 +18,7 @@ class App extends Component {
         let routes = (
             <Switch>
                 <Route path="/" exact component={Movies}/>
+                <Route path="/movie/:id" component={Movie}/>
                 <Redirect to="/"/>
             </Switch>
         );
@@ -26,6 +28,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/logout" component={SignOut}/>
                     <Route path="/profile" component={Profile}/>
+                    <Route path="/movie/:id" component={Movie}/>
                     <Route path="/" exact component={Movies}/>
                     <Redirect to="/"/>
                 </Switch>

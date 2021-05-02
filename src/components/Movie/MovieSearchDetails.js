@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MovieSearchDetails(props) {
     const classes = useStyles();
-    const theme = useTheme();
 
     const {movie} = props
 
@@ -66,7 +65,7 @@ export default function MovieSearchDetails(props) {
             />
             <div className={classes.details}>
                 <CardContent className={classes.content}>
-                    <p>{movie.original_title}</p>
+                    <p>{movie.title}</p>
                 </CardContent>
                 <CardActions className={classes.rating}>
                     <p>{movie.vote_average}/10</p>

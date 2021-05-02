@@ -9,14 +9,17 @@ const useStyles = makeStyles(theme => ({
     avatarSmall: {
         width: theme.spacing(4),
         height: theme.spacing(4),
+        border: '1px solid',
+        borderColor: theme.palette.primary.main
     },
 }))
 
-const StyledMenu = withStyles({
+const StyledMenu = withStyles(theme => ({
     paper: {
-        border: '1px solid #d3d4d5',
+        border: '1px solid',
+        borderColor: theme.palette.primary.main
     },
-})((props) => (
+}))((props) => (
     <Menu
         elevation={0}
         getContentAnchorEl={null}

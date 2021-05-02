@@ -1,5 +1,5 @@
 import {makeStyles} from "@material-ui/core/styles";
-import {Hidden, IconButton} from "@material-ui/core";
+import {Hidden, Icon, IconButton} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import React from "react";
 import {useHistory} from "react-router-dom"
@@ -25,7 +25,13 @@ const useStyles = makeStyles(theme => ({
         },
     },
     logo: {
-        paddingLeft: theme.spacing(2)
+        paddingLeft: theme.spacing(2),
+        display: "flex",
+        cursor: "pointer",
+        alignItems: "center",
+        "& h3": {
+            padding: theme.spacing(0, 2)
+        }
     }
 }))
 
@@ -37,7 +43,8 @@ export default function TopBar(props) {
     return (
         <div className={classes.root}>
             <div className={classes.logo}>
-                <h3 onClick={() => history.push("/")}>The Movie App</h3>
+                <Icon>movie</Icon>
+                <h3 onClick={() => history.push("/")}>The Movie Agent</h3>
             </div>
             <div className={classes.search}>
                 <Hidden smDown>
