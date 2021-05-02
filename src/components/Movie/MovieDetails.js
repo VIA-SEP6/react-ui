@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
-import {Button, Grid, Icon, IconButton} from "@material-ui/core";
+import {Button, Icon, IconButton} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: 24,
     },
     releaseYear: {
-        margin: theme.spacing(1,0),
+        margin: theme.spacing(1, 0),
         fontWeight: 300,
         fontSize: 16,
         fontStyle: "italic",

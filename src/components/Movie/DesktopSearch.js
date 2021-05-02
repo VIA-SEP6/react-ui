@@ -1,4 +1,4 @@
-import {CircularProgress, Popper, TextField} from "@material-ui/core";
+import {CircularProgress, TextField} from "@material-ui/core";
 import React, {useState} from "react";
 import {Autocomplete} from "@material-ui/lab";
 import MovieSearchDetails from "./MovieSearchDetails";
@@ -9,8 +9,8 @@ import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     paper: {
-      border: '1px solid',
-      borderColor: theme.palette.primary.main
+        border: '1px solid',
+        borderColor: theme.palette.primary.main
     },
     option: {
         margin: 0,
@@ -78,7 +78,7 @@ export default function DesktopSearch(props) {
                 onChange={handleSelect}
                 getOptionSelected={(option, value) => option.id === value.id}
                 getOptionLabel={(option) => option.title || ""}
-                options={movies.slice(0,3)}
+                options={movies.slice(0, 3)}
                 loading={loading}
                 loadingText="Search movie"
                 renderInput={(params) => (
