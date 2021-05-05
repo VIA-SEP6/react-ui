@@ -69,6 +69,15 @@ class Movie extends Component {
                 <Grid item xs={12}>
                     <HorizontalLine/>
                 </Grid>
+                <Grid item xs={12}>
+                    Comments
+                </Grid>
+                <Grid item xs={12}>
+                    <HorizontalLine/>
+                </Grid>
+                <Grid item xs={12}>
+                    People have also seen
+                </Grid>
             </Grid>
         )
 
@@ -78,7 +87,7 @@ class Movie extends Component {
             )
 
         return (
-            <div style={{width: "100%", textAlign: "center"}}>{content}</div>
+            <div style={{width: "100%"}}>{content}</div>
         )
     }
 }

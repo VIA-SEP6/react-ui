@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     },
     creditsContent: {
         maxHeight: "585px",
-        overflowY: "hidden"
+        overflowY: "hidden",
+        textAlign: "center"
     },
     scrollUp: {
         position: "absolute",

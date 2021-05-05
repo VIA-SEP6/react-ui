@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
-import {Button, Icon, IconButton} from "@material-ui/core";
+import {Button, Grid, Icon, IconButton} from "@material-ui/core";
 import MovieRating from "./MovieRating";
 
 const useStyles = makeStyles(theme => ({
@@ -16,10 +16,6 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         alignItems: "center"
     },
-    poster: {
-        width: 180,
-        height: 263
-    },
     ratings: {
         justifyContent: "space-between",
         padding: theme.spacing(1, 1),
@@ -30,6 +26,7 @@ const useStyles = makeStyles(theme => ({
     },
     movieTitle: {
         fontSize: 24,
+        textAlign: "left"
     },
     releaseYear: {
         margin: theme.spacing(1, 0),
@@ -38,14 +35,7 @@ const useStyles = makeStyles(theme => ({
         fontStyle: "italic",
         textAlign: "left",
     },
-    addToFavorite: {
-        marginLeft: "auto",
-        "& button": {
-            padding: 0
-        }
-    },
     description: {
-        height: 170,
         fontWeight: 300,
         fontSize: 12,
         textAlign: "justify"
@@ -71,33 +61,51 @@ export default function MovieDetails(props) {
         return "https://ngmintlsubs.nationalgeographic.com/Solo/Content/Images/noCover.gif"
     }
 
-    return (
-        <div className={[classes.row].join(' ')}>
-            <div className={[classes.column].join(' ')}>
-                <img src={getImage(movie.poster_path)} className={classes.poster} alt="Movie Poster"/>
+    const content = (
+        <Grid container spacing={2} direction="row">
+            <Grid item xs={12} sm={4}>
+                <img width="100%" src={getImage(movie.poster_path)} alt="Movie Poster"/>
                 <div className={[classes.row, classes.ratings].join(' ')}>
                     <MovieRating rating={movie.vote_average}
                                  iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>
                     <MovieRating rating={movie.vote_average}
                                  iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>
                 </div>
-            </div>
-            <div className={[classes.column, classes.movieDetails].join(' ')}>
-                <div className={[classes.row, classes.rowAlign].join(' ')}>
-                    <div className={classes.movieTitle}>{movie.original_title}</div>
-                    <div className={classes.addToFavorite}>
-                        <IconButton>
-                            <Icon>favorite_border</Icon>
-                        </IconButton>
-                    </div>
-                </div>
-                <div className={classes.releaseYear}>{new Date(movie.release_date).getFullYear()}</div>
-                <div className={classes.description}>{movie.overview}</div>
-                <div className={[classes.row, classes.rowAlign].join(' ')}>
-                    <div className={classes.genres}>{movie.genres.map(genre => genre.name).join(", ")}</div>
-                    <Button className={classes.showReviews} color="primary">Write Review</Button>
-                </div>
-            </div>
+            </Grid>
+            <Grid item xs={12} sm={8}>
+                <Grid container direction="row">
+                    <Grid item container xs={10} alignItems="center">
+                        <div className={classes.movieTitle}>{movie.original_title}</div>
+                    </Grid>
+                    <Grid item container xs={2} alignItems="center">
+                        <Grid container justify="flex-end" alignItems="center">
+                            <IconButton>
+                                <Icon>favorite_border</Icon>
+                            </IconButton>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <div className={classes.releaseYear}>{new Date(movie.release_date).getFullYear()}</div>
+                    </Grid>
+                    <Grid container justify="space-between" alignItems="center">
+                        <Grid item xs={8} sm={8}>
+                            <div className={classes.genres}>{movie.genres.map(genre => genre.name).join(", ")}</div>
+                        </Grid>
+                        <Grid item xs={4} sm={4}>
+                            <Button className={classes.showReviews} color="primary">Write Review</Button>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <div className={classes.description}>{movie.overview}</div>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    )
+
+    return (
+        <div>
+            {content}
         </div>
     )
 }

@@ -2,7 +2,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
     root: {
-      display: "inline-block"
+      display: "inline-block",
     },
     content: {
         fontSize: 10,
@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         justifyContent: "start",
         overflow: "hidden",
-        margin: theme.spacing(1)
+        margin: theme.spacing(0.5)
     },
     image: {
         width: 100,
