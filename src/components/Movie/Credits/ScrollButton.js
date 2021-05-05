@@ -1,4 +1,4 @@
-import {Button, IconButton} from "@material-ui/core";
+import {IconButton} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -28,6 +28,7 @@ export default function ScrollButton(props) {
     }
 
     return (
-        <IconButton className={classes.root} style={{...borderRadius}} onClick={props.onClick}>{props.children}</IconButton>
+        <IconButton className={classes.root} style={{...borderRadius}}
+                    onClick={props.onClick}>{props.children}</IconButton>
     )
 }
