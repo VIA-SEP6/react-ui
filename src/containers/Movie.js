@@ -6,8 +6,9 @@ import MovieDetails from "../components/Movie/MovieDetails";
 import MovieCarousel from "../components/Movie/Videos/MovieCarousel";
 import MovieCredits from "../components/Movie/Credits/MovieCredits";
 import SimilarMovies from "../components/Movie/Similar/SimilarMovies";
-import MovieComments from "../components/Movie/Comments/MovieComments";
+import MovieComments from "../components/Movie/Comment/MovieComments";
 import {connect} from "react-redux";
+import {addReview} from "../store/actions";
 
 class Movie extends Component {
     initialState = {
@@ -69,7 +70,12 @@ class Movie extends Component {
             <Grid container spacing={2} justify="center" alignItems="center">
                 <Grid item xs={12} md={7}>
                     <Grid item xs={12}>
-                        <MovieDetails movie={this.state.details}/>
+                        <MovieDetails
+                            movie={this.state.details}
+                            authenticated={this.props.isAuthenticated}
+                            currentUser={this.props.currentUser}
+                            addReview={this.props.addReview}
+                        />
                     </Grid>
                     <Grid item xs={12} style={{padding: "1rem 0"}}>
                         <MovieCarousel movie={this.state.details}/>
@@ -99,8 +105,16 @@ class Movie extends Component {
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.user !== null,
+        currentUser: state.auth.user,
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addReview: (review) => dispatch(addReview(review))
     }
 }
 
 
-export default connect(mapStateToProps, null)(Movie)
+export default connect(mapStateToProps, mapDispatchToProps)(Movie)

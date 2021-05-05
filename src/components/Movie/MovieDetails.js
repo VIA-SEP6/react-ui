@@ -1,7 +1,8 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
-import {Button, Grid, Icon, IconButton} from "@material-ui/core";
+import {Grid, Icon, IconButton} from "@material-ui/core";
 import MovieRating from "./MovieRating";
+import WriteReview from "./Review/WriteReview";
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -44,22 +45,33 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 300,
         fontSize: 12,
         fontStyle: "italic",
+        textAlign: "right"
     },
-    showReviews: {
-        marginLeft: "auto"
-    }
 }))
 
 export default function MovieDetails(props) {
     const classes = useStyles()
 
-    const {movie} = props
+    const {movie, authenticated, currentUser} = props
 
     const getImage = (imagePath) => {
         if (imagePath)
             return `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
         return "https://ngmintlsubs.nationalgeographic.com/Solo/Content/Images/noCover.gif"
     }
+
+    const submitReview = (reviewData) => {
+        props.addReview({...reviewData, movieId: movie.id, userId: currentUser.uid})
+    }
+
+    let addReview = null
+
+    if (authenticated)
+        addReview = (
+            <Grid container justify="center" alignItems="center">
+                <WriteReview submit={submitReview}/>
+            </Grid>
+        )
 
     const content = (
         <Grid container spacing={2} direction="row">
@@ -84,20 +96,20 @@ export default function MovieDetails(props) {
                             </IconButton>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                        <div className={classes.releaseYear}>{new Date(movie.release_date).getFullYear()}</div>
-                    </Grid>
+
                     <Grid container justify="space-between" alignItems="center">
+                        <Grid item xs={4}>
+                            <div className={classes.releaseYear}>{new Date(movie.release_date).getFullYear()}</div>
+                        </Grid>
                         <Grid item xs={8} sm={8}>
                             <div className={classes.genres}>{movie.genres.map(genre => genre.name).join(", ")}</div>
-                        </Grid>
-                        <Grid item xs={4} sm={4}>
-                            <Button className={classes.showReviews} color="primary">Write Review</Button>
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
                         <div className={classes.description}>{movie.overview}</div>
                     </Grid>
+                    {addReview}
+
                 </Grid>
             </Grid>
         </Grid>

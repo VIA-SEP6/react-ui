@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: "4px"
     },
     creditsContent: {
-        maxHeight: "585px",
+        maxHeight: "668px",
         overflowY: "hidden",
         textAlign: "center"
     },
