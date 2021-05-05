@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
             margin: theme.spacing(0, 0.5),
             fontWeight: 300,
             fontSize: 12,
-            color: theme.palette.gray.main
+            color: theme.palette.text.main
         },
         "& span": {
             margin: theme.spacing(0,2),

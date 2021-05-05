@@ -2,7 +2,8 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
     root: {
-      display: "inline-block",
+        display: "inline-block",
+        cursor: "pointer"
     },
     content: {
         fontSize: 10,
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function PersonDetail(props) {
+export default function ImageDetails(props) {
     const {imgSrc, title, subtitle} = props
     const classes = useStyles()
 
@@ -37,7 +38,7 @@ export default function PersonDetail(props) {
     }
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} onClick={props.onClick}>
             <div className={classes.content}>
                 <img className={classes.image} src={getImage()} alt=""/>
                 <span className={classes.title}>{title}</span>

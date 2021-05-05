@@ -1,4 +1,4 @@
-import PersonDetail from "./PersonDetails";
+import ImageDetails from "../ImageDetails";
 import React, {createRef, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import ScrollButton from "./ScrollButton";
@@ -89,7 +89,7 @@ export default function MovieCredits(props) {
                             <ScrollButton onClick={scrollUp}><Icon>expand_less</Icon></ScrollButton>
                             <div className={classes.creditsContent} ref={(reference) => setRef(reference)}>
                                 {cast.map(cast =>
-                                    <PersonDetail
+                                    <ImageDetails
                                         key={cast.id}
                                         imgSrc={process.env.REACT_APP_TMDB_IMG_API_BASE + cast.profile_path}
                                         title={cast.name}
@@ -105,7 +105,7 @@ export default function MovieCredits(props) {
                             <ScrollButton onClick={scrollUp}><Icon>expand_less</Icon></ScrollButton>
                             <div className={classes.creditsContent} ref={(reference) => setRef(reference)}>
                                 {crew.map(cast =>
-                                    <PersonDetail
+                                    <ImageDetails
                                         key={cast.id + cast.job}
                                         imgSrc={process.env.REACT_APP_TMDB_IMG_API_BASE + cast.profile_path}
                                         title={cast.name}

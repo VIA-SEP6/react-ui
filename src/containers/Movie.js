@@ -5,7 +5,9 @@ import Spinner from "../components/Layout/Loader/Spinner";
 import MovieDetails from "../components/Movie/MovieDetails";
 import MovieCarousel from "../components/Movie/Videos/MovieCarousel";
 import MovieCredits from "../components/Movie/Credits/MovieCredits";
-import HorizontalLine from "../components/Layout/Seperator/HorizontalLine";
+import SimilarMovies from "../components/Movie/Similar/SimilarMovies";
+import MovieComments from "../components/Movie/Comments/MovieComments";
+import {connect} from "react-redux";
 
 class Movie extends Component {
     initialState = {
@@ -53,6 +55,16 @@ class Movie extends Component {
     };
 
     render() {
+        let comments = null
+        if (this.props.isAuthenticated) {
+            comments = (
+                <Grid item xs={12}>
+                    <MovieComments/>
+                </Grid>
+            )
+        }
+
+
         let content = (
             <Grid container spacing={2} justify="center" alignItems="center">
                 <Grid item xs={12} md={7}>
@@ -66,17 +78,9 @@ class Movie extends Component {
                 <Grid item xs={12} md={5}>
                     <MovieCredits movie={this.state.details}/>
                 </Grid>
+                {comments}
                 <Grid item xs={12}>
-                    <HorizontalLine/>
-                </Grid>
-                <Grid item xs={12}>
-                    Comments
-                </Grid>
-                <Grid item xs={12}>
-                    <HorizontalLine/>
-                </Grid>
-                <Grid item xs={12}>
-                    People have also seen
+                    <SimilarMovies movie={this.state.details}/>
                 </Grid>
             </Grid>
         )
@@ -92,5 +96,11 @@ class Movie extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.user !== null,
+    }
+}
 
-export default Movie
+
+export default connect(mapStateToProps, null)(Movie)
