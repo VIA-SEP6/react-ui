@@ -4,6 +4,8 @@ import {Grid} from "@material-ui/core";
 import Spinner from "../components/Layout/Loader/Spinner";
 import MovieDetails from "../components/Movie/MovieDetails";
 import MovieCarousel from "../components/Movie/Videos/MovieCarousel";
+import MovieCredits from "../components/Movie/Credits/MovieCredits";
+import HorizontalLine from "../components/Layout/Seperator/HorizontalLine";
 
 class Movie extends Component {
     initialState = {
@@ -62,7 +64,10 @@ class Movie extends Component {
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={5}>
-                    <div>Cast</div>
+                    <MovieCredits movie={this.state.details}/>
+                </Grid>
+                <Grid item xs={12}>
+                    <HorizontalLine/>
                 </Grid>
             </Grid>
         )

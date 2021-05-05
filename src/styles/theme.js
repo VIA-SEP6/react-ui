@@ -11,6 +11,12 @@ const theme = createMuiTheme({
         tertiary: {
             main: "#FFFBFB"
         },
+        black: {
+            main: "#000"
+        },
+        gray: {
+            main: "#828282"
+        },
     },
     typography: {
         fontFamily: [
