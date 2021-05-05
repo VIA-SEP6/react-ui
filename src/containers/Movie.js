@@ -3,6 +3,7 @@ import movieApiService from "../services/firebase/api/movie";
 import {Grid} from "@material-ui/core";
 import Spinner from "../components/Layout/Loader/Spinner";
 import MovieDetails from "../components/Movie/MovieDetails";
+import MovieCarousel from "../components/Movie/Videos/MovieCarousel";
 
 class Movie extends Component {
     initialState = {
@@ -12,6 +13,12 @@ class Movie extends Component {
 
     state = {
         ...this.initialState
+    }
+
+    init() {
+        this.fetchMovieDetails(this.props.match.params.id);
+        this.fetchReviews(this.props.match.params.id);
+        this.fetchComments(this.props.match.params.id);
     }
 
     fetchMovieDetails = (id) => {
@@ -26,20 +33,20 @@ class Movie extends Component {
     }
 
     fetchComments = () => {
-        throw new DOMException("Not implemented")
+        console.log("Fetch Comments not implemented")
     }
 
     fetchReviews = () => {
-        throw new DOMException("Not implemented")
+        console.log("Fetch Review not implemented")
     }
 
     componentDidMount() {
-        this.fetchMovieDetails(this.props.match.params.id);
+        this.init()
     }
 
     componentDidUpdate = (prevProps) => {
-        if(this.props.match.params.id !== prevProps.match.params.id ) {
-            this.fetchMovieDetails(this.props.match.params.id)
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.init()
         }
     };
 
@@ -50,7 +57,9 @@ class Movie extends Component {
                     <Grid item xs={12}>
                         <MovieDetails movie={this.state.details}/>
                     </Grid>
-                    <Grid item xs={12}>Videos</Grid>
+                    <Grid item xs={12} style={{padding: "1rem 0"}}>
+                        <MovieCarousel movie={this.state.details}/>
+                    </Grid>
                 </Grid>
                 <Grid item xs={12} md={5}>
                     <div>Cast</div>

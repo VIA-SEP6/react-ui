@@ -1,6 +1,7 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
 import {Button, Icon, IconButton} from "@material-ui/core";
+import MovieRating from "./MovieRating";
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     },
     ratings: {
         justifyContent: "space-between",
-        padding: theme.spacing(1, 2),
+        padding: theme.spacing(1, 1),
     },
     movieDetails: {
         padding: theme.spacing(0, 2),
@@ -75,13 +76,10 @@ export default function MovieDetails(props) {
             <div className={[classes.column].join(' ')}>
                 <img src={getImage(movie.poster_path)} className={classes.poster} alt="Movie Poster"/>
                 <div className={[classes.row, classes.ratings].join(' ')}>
-                    <div>rating 1</div>
-                    <div>
-                        <span>{movie.vote_average}/10</span>
-                        <img
-                            src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"
-                            alt="IMDB icon" height="12px"/>
-                    </div>
+                    <MovieRating rating={movie.vote_average}
+                                 iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>
+                    <MovieRating rating={movie.vote_average}
+                                 iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>
                 </div>
             </div>
             <div className={[classes.column, classes.movieDetails].join(' ')}>
@@ -97,7 +95,7 @@ export default function MovieDetails(props) {
                 <div className={classes.description}>{movie.overview}</div>
                 <div className={[classes.row, classes.rowAlign].join(' ')}>
                     <div className={classes.genres}>{movie.genres.map(genre => genre.name).join(", ")}</div>
-                    <Button className={classes.showReviews} color="primary">Show Reviews</Button>
+                    <Button className={classes.showReviews} color="primary">Write Review</Button>
                 </div>
             </div>
         </div>

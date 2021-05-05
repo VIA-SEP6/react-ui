@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import {CardActions} from "@material-ui/core";
+import MovieRating from "./MovieRating";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,7 +53,7 @@ export default function MovieSearchDetails(props) {
 
     const getImage = () => {
         if (movie.poster_path)
-            return `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+            return process.env.REACT_APP_TMDB_IMG_API_BASE + movie.poster_path
         return "https://ngmintlsubs.nationalgeographic.com/Solo/Content/Images/noCover.gif"
     }
 
@@ -68,10 +69,8 @@ export default function MovieSearchDetails(props) {
                     <p>{movie.title}</p>
                 </CardContent>
                 <CardActions className={classes.rating}>
-                    <p>{movie.vote_average}/10</p>
-                    <img
-                        src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"
-                        alt="IMDB icon" height="12px"/>
+                    <MovieRating rating={movie.vote_average}
+                                 iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>
                 </CardActions>
             </div>
         </Card>
