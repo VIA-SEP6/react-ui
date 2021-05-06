@@ -20,7 +20,7 @@ const theme = createMuiTheme({
     },
     typography: {
         fontFamily: [
-            '"Ubuntu"',
+            '"Raleway"',
             'Roboto',
             'sans-serif',
         ].join(','),
