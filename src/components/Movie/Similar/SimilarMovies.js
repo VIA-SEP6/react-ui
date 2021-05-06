@@ -46,7 +46,7 @@ export default function SimilarMovies(props) {
     const scrollLeft = () => {
         ref.scrollBy({
             top: 0,
-            left: -500,
+            left: - window.innerWidth / 3,
             behavior: 'smooth'
         })
     }
@@ -54,7 +54,7 @@ export default function SimilarMovies(props) {
     const scrollRight = () => {
         ref.scrollBy({
             top: 0,
-            left: 500,
+            left: window.innerWidth / 3,
             behavior: 'smooth'
         })
     }
