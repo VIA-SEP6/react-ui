@@ -1,5 +1,5 @@
 import {makeStyles} from "@material-ui/core/styles";
-import UserAvatar from "../../../../../User/UserAvatar";
+import UserAvatar from "../../../../User/UserAvatar";
 import React from "react";
 import {useHistory} from "react-router-dom";
 import {Grid} from "@material-ui/core";
