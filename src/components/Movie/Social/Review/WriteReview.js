@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
             borderColor: theme.palette.primary.main,
         }
     },
+    root: {
+        marginTop: theme.spacing(2)
+    },
     paper: {
         textAlign: "center",
         backgroundColor: "#fff",
@@ -51,33 +54,36 @@ export default function WriteReview(props) {
     }
 
     return (
-        <CustomModal toggle={<Button color="primary">Write Review</Button>}>
-            <Paper className={classes.paper}>
-                <h4>Write Review</h4>
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <Rating
-                            onChange={e => setRating(e.target.value)}
-                            icon={<Icon color="primary">star</Icon>}
-                            emptyIcon={<Icon>star</Icon>}
-                            defaultValue={3}
-                            max={10}
-                            name="Rating"
-                        />
+        <div className={classes.root}>
+            <CustomModal toggle={<Button color="primary">Write Review</Button>}>
+                <Paper className={classes.paper}>
+                    <h4>Write Review</h4>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <Rating
+                                onChange={e => setRating(e.target.value)}
+                                icon={<Icon color="primary">star</Icon>}
+                                emptyIcon={<Icon>star</Icon>}
+                                defaultValue={3}
+                                max={10}
+                                name="Rating"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <textarea onChange={e => setDescription(e.target.value)} maxLength={300} rows={15}/>
+                        </Grid>
+                        <Grid container justify="center">
+                            <span className={classes.characterCount}>{description.length}/300</span>
+                        </Grid>
+                        <Grid container justify="center" className={classes.actions}>
+                            <Button type="submit" color="primary" size="small" onClick={addReview}>
+                                Add Review
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                        <textarea onChange={e => setDescription(e.target.value)} maxLength={300} rows={15}/>
-                    </Grid>
-                    <Grid container justify="center">
-                        <span className={classes.characterCount}>{description.length}/300</span>
-                    </Grid>
-                    <Grid container justify="center" className={classes.actions}>
-                        <Button type="submit" color="primary" size="small" onClick={addReview}>
-                            Add Review
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Paper>
-        </CustomModal>
+                </Paper>
+            </CustomModal>
+
+        </div>
     )
 }
