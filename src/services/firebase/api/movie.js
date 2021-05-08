@@ -44,41 +44,41 @@ const clearReviewReaction = (axios) => (userId, reviewId) => {
 }
 
 const addComment = axios => (userId, movieId, comment, parentComment = null) => {
-    const addCommentRequest = {
+    const data = {
         userId: userId,
         movieId: movieId,
         content: comment,
         parent: parentComment
     }
 
-    return axios.post("/comments-create", {data: {addCommentRequest}}).then(response => response.data.data)
+    return axios.post("/comments-add", {data}).then(response => response.data.data)
 }
 
 const likeComment = axios => (userId, commentId) => {
-    const likeCommentRequest = {
+    const data = {
         userId: userId,
         commentId: commentId
     }
 
-    return axios.post("/comments-like", {data: {likeCommentRequest}}).then(response => response.data.data)
+    return axios.post("/comments-like", {data}).then(response => response.data.data)
 }
 
 const dislikeComment = axios => (userId, commentId) => {
-    const dislikeCommentRequest = {
+    const data = {
         userId: userId,
         commentId: commentId
     }
 
-    return axios.post("/comments-create", {data: {dislikeCommentRequest}}).then(response => response.data.data)
+    return axios.post("/comments-dislike", {data}).then(response => response.data.data)
 }
 
 const clearCommentReaction = axios => (userId, commentId) => {
-    const clearCommentRequest = {
+    const data = {
         userId: userId,
         commentId: commentId
     }
 
-    return axios.post("/comments-clear", {data: {clearCommentRequest}}).then(response => response.data.data)
+    return axios.post("/comments-removeReaction", {data}).then(response => response.data.data)
 }
 
 const movieApiService = {
