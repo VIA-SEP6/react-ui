@@ -5,7 +5,7 @@ const registerUserAccount = (axios) => (newUserObject) => {
 }
 
 const getUserProfile = (axios) => (uuid) => {
-    return axios.post('/user-getProfile ', {data: {userUid: uuid}}).then(response => response.data)
+    return axios.post('/user-getProfile ', {data: {userUid: uuid}}).then(response => response.data.result.message.user)
 }
 
 const authApiService = {
