@@ -41,9 +41,9 @@ export const searchMovie = (name) => {
     }
 }
 
-export const addReview = (review) => {
+export const addReview = (userId, description, rating, movieId) => {
     return (dispatch) => {
-        movieApiService.addReview(review)
+        movieApiService.addReview(userId, description, rating, movieId)
             .then((response) => {
                 dispatch(addSnackbar("Review successfully added"))
             })

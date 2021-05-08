@@ -1,4 +1,3 @@
-import HorizontalLine from "../../Layout/Seperator/HorizontalLine";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -13,7 +12,6 @@ export default function MovieComments(props) {
 
     return (
         <div className={classes.root}>
-            <HorizontalLine/>
             <h3>Comments</h3>
         </div>
     )

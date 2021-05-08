@@ -2,7 +2,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
 import {Grid, Icon, IconButton} from "@material-ui/core";
 import MovieRating from "./MovieRating";
-import WriteReview from "./Review/WriteReview";
+import WriteReview from "./Social/Review/WriteReview";
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -61,7 +61,7 @@ export default function MovieDetails(props) {
     }
 
     const submitReview = (reviewData) => {
-        props.addReview({...reviewData, movieId: movie.id, userId: currentUser.uid})
+        props.addReview(currentUser.uid, reviewData.description, reviewData.rating, movie.id)
     }
 
     let addReview = null

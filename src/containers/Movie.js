@@ -117,7 +117,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addReview: (review) => dispatch(addReview(review))
+        addReview: (userId, description, rating, movieId) => dispatch(addReview(userId, description, rating, movieId))
     }
 }
 

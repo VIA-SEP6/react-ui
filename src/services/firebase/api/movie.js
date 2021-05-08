@@ -5,36 +5,42 @@ const searchMovie = (axios) => (movieName) => {
 }
 
 const getMovieDetails = (axios) => (movieId) => {
-    return axios.post("/getMovie", {id: movieId, append_to_response: "credits,videos,similar"}).then(response => response.data.data)
+    return axios.post("/getMovie", {
+        id: movieId,
+        append_to_response: "credits,videos,similar"
+    }).then(response => response.data.data)
 }
 
-const addReview = (axios) => (review) => {
-    return axios.post("/reviews-add", {data: {review}}).then(response => response.data.data)
+const addReview = (axios) => (userId, description, rating, movieId) => {
+    const data = {
+        userId, description, rating, movieId
+    }
+    return axios.post("/reviews-add", {data}).then(response => response.data.data)
 }
 
 const likeReview = (axios) => (userId, reviewId) => {
-    const likeReviewRequest = {
-        userUid: userId,
+    const data = {
+        userId,
         reviewId
     }
-    return axios.post("/reviews-like", {data: {likeReviewRequest}}).then(response => response.data.data)
+    return axios.post("/reviews-like", {data}).then(response => response.data.data)
 }
 
 const dislikeReview = (axios) => (userId, reviewId) => {
-    const dislikeReviewRequest = {
-        userUid: userId,
+    const data = {
+        userId,
         reviewId
     }
-    return axios.post("/reviews-dislike", {data: {dislikeReviewRequest}}).then(response => response.data.data)
+    return axios.post("/reviews-dislike", {data}).then(response => response.data.data)
 }
 
 const clearReviewReaction = (axios) => (userId, reviewId) => {
-    const clearReviewReactionRequest = {
-        userUid: userId,
+    const data = {
+        userId,
         reviewId
     }
 
-    return axios.post("/reviews-removeReaction", {data: {clearReviewReactionRequest}}).then(response => response.data.data)
+    return axios.post("/reviews-removeReaction", {data}).then(response => response.data.data)
 }
 
 const addComment = axios => (userId, movieId, comment, parentComment = null) => {

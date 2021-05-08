@@ -43,6 +43,13 @@ const useStyles = makeStyles((theme) => ({
         height: 38,
         width: 38,
     },
+    overview: {
+        fontSize: 10,
+        fontWeight: 300,
+        textAlign: "justify",
+        overflow: "hidden",
+        padding: theme.spacing(0.5, 1, 0, 1)
+    }
 }));
 
 
@@ -67,6 +74,7 @@ export default function MovieSearchDetails(props) {
             <div className={classes.details}>
                 <CardContent className={classes.content}>
                     <p>{movie.title}</p>
+                    <div className={classes.overview}>{movie.overview.slice(0, 260)} ...</div>
                 </CardContent>
                 <CardActions className={classes.rating}>
                     <MovieRating rating={movie.vote_average}

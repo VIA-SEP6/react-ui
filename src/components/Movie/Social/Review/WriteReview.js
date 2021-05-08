@@ -1,5 +1,5 @@
 import {Button, Grid, Icon, makeStyles, Paper} from "@material-ui/core";
-import CustomModal from "../../Layout/Modal/CustomModal";
+import CustomModal from "../../../Layout/Modal/CustomModal";
 import React, {useState} from "react";
 import {Rating} from "@material-ui/lab";
 
