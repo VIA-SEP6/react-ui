@@ -6,9 +6,9 @@ import MovieDetails from "../components/Movie/MovieDetails";
 import MovieCarousel from "../components/Movie/Videos/MovieCarousel";
 import MovieCredits from "../components/Movie/Credits/MovieCredits";
 import SimilarMovies from "../components/Movie/Similar/SimilarMovies";
-import MovieComments from "../components/Movie/Comment/MovieComments";
 import {connect} from "react-redux";
 import {addReview} from "../store/actions";
+import MovieSocialData from "../components/Movie/Social/MovieSocialData";
 
 class Movie extends Component {
     initialState = {
@@ -21,9 +21,9 @@ class Movie extends Component {
     }
 
     init() {
-        this.fetchMovieDetails(this.props.match.params.id);
-        this.fetchReviews(this.props.match.params.id);
-        this.fetchComments(this.props.match.params.id);
+        this.fetchMovieDetails(this.getSelectedMovieId());
+        this.fetchReviews(this.getSelectedMovieId());
+        this.fetchComments(this.getSelectedMovieId());
     }
 
     fetchMovieDetails = (id) => {
@@ -50,17 +50,22 @@ class Movie extends Component {
     }
 
     componentDidUpdate = (prevProps) => {
-        if (this.props.match.params.id !== prevProps.match.params.id) {
+        if (this.getSelectedMovieId() !== prevProps.match.params.id) {
             this.init()
         }
     };
 
+    getSelectedMovieId() {
+        return this.props.match.params.id
+    }
+
     render() {
-        let comments = null
+        let socialData = null
+
         if (this.props.isAuthenticated) {
-            comments = (
+            socialData = (
                 <Grid item xs={12}>
-                    <MovieComments/>
+                    <MovieSocialData movieId={this.getSelectedMovieId()}/>
                 </Grid>
             )
         }
@@ -84,7 +89,7 @@ class Movie extends Component {
                 <Grid item xs={12} md={5}>
                     <MovieCredits movie={this.state.details}/>
                 </Grid>
-                {comments}
+                {socialData}
                 <Grid item xs={12}>
                     <SimilarMovies movie={this.state.details}/>
                 </Grid>
