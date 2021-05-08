@@ -8,6 +8,14 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
         flexDirection: "row"
+    },
+    username: {
+        fontWeight: 400,
+        fontSize: 14
+    },
+    date: {
+        fontWeight: 300,
+        fontSize: 12
     }
 }));
 
@@ -29,8 +37,8 @@ export default function UserData(props) {
                 onClick={handleClick}
             />
             <div>
-                <div>{username}</div>
-                <div>{postDate}</div>
+                <div className={classes.username}>{username}</div>
+                <div className={classes.date}>{postDate}</div>
             </div>
         </Grid>
     )
