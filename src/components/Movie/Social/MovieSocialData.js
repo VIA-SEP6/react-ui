@@ -2,10 +2,10 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Grid} from "@material-ui/core";
 import {useState} from "react";
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
-import MovieComments from "./Comment/MovieComments";
 import MovieReviewContainer from "./Review/MovieReviewContainer";
 import HorizontalLine from "../../Layout/Seperator/HorizontalLine";
 import {useSelector} from "react-redux";
+import MovieCommentContainer from "./Comment/MovieCommentContainer";
 
 const COMMENTS = "COMMENTS"
 const REVIEWS = "REVIEWS"
@@ -40,7 +40,7 @@ export default function MovieSocialData(props) {
             </ToggleButtonGroup>
             <Grid container>
                 {socialComponentName === COMMENTS
-                    ? <MovieComments movieId={movieId} currentUser={currentUser}/>
+                    ? <MovieCommentContainer movieId={movieId} currentUser={currentUser}/>
                     : <MovieReviewContainer movieId={movieId} currentUser={currentUser}/>}
             </Grid>
         </Grid>

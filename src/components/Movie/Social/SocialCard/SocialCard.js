@@ -12,6 +12,9 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 const useStyles = makeStyles(theme => ({
     root: {
         marginBottom: theme.spacing(2)
+    },
+    likesRight: {
+        marginLeft: 'auto'
     }
 }));
 
@@ -36,11 +39,11 @@ export default function SocialCard(props) {
     } = props
 
     const getPostDate = () => {
-        return `${postDate.getDate()} ${monthNames[postDate.getMonth()]} ${postDate.getFullYear()}`
+        return postDate ? `${postDate.getDate()} ${monthNames[postDate.getMonth()]} ${postDate.getFullYear()}` : ""
     }
 
     const renderLikes = (
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} className={type === "comment" ? classes.likesRight : null}>
             <Likes
                 isDislike={isDislike}
                 dislikes={dislikes}
@@ -65,7 +68,7 @@ export default function SocialCard(props) {
                 <UserData avatarSrc={avatarSrc} username={username} postDate={getPostDate()} userId={userId} />
             </Grid>
             {type !== "comment" ? renderRating : null}
-            {type === "review" ? renderLikes : null}
+            {type !== "external-review" ? renderLikes : null}
             <Grid item xs={12}>
                 <Description text={description}/>
             </Grid>

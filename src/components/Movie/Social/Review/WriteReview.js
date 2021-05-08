@@ -11,8 +11,10 @@ const useStyles = makeStyles((theme) => ({
             border: "1px solid",
             borderColor: theme.palette.primary.main,
             borderRadius: 4,
-            padding: theme.spacing(1),
-            width: "80%"
+            width: "100%",
+            fontFamily: theme.typography.fontFamily,
+            fontSize: 12,
+            padding: theme.spacing(1)
         },
         "textarea:focus, textarea:active": {
             borderColor: theme.palette.primary.main,
@@ -27,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '600px',
         padding: theme.spacing(3),
         margin: theme.spacing(3),
+    },
+    textArea: {
+        width: "80% !important"
     },
     actions: {
         margin: theme.spacing(2),
@@ -70,10 +75,7 @@ export default function WriteReview(props) {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <textarea onChange={e => setDescription(e.target.value)} maxLength={300} rows={15}/>
-                        </Grid>
-                        <Grid container justify="center">
-                            <span className={classes.characterCount}>{description.length}/300</span>
+                            <textarea className={classes.textArea} onChange={e => setDescription(e.target.value)} rows={15}/>
                         </Grid>
                         <Grid container justify="center" className={classes.actions}>
                             <Button type="submit" color="primary" size="small" onClick={addReview}>

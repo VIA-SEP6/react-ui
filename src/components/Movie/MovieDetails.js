@@ -61,7 +61,7 @@ export default function MovieDetails(props) {
     }
 
     const submitReview = (reviewData) => {
-        props.addReview(currentUser.uid, reviewData.description, reviewData.rating, movie.id)
+        props.addReview(currentUser.uid, reviewData.description, reviewData.rating, `${movie.id}`)
     }
 
     let addReview = null

@@ -6,8 +6,7 @@ import TheMovieAgentReviews from "./TheMovieAgent/TheMovieAgentReviews";
 import ImdbReviews from "./IMDb/ImdbReviews";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-    },
+    root: {},
     tabRoot: {
         maxWidth: "350px",
         margin: theme.spacing(1, "auto")
@@ -17,9 +16,12 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        "& h4" : {
+        "& h4": {
             margin: theme.spacing(1, 1)
         }
+    },
+    tabPanel: {
+        padding: theme.spacing(2, 0)
     }
 }));
 
@@ -36,7 +38,8 @@ export default function MovieReviewContainer(props) {
 
     const imdbTab = (
         <div className={classes.tabLabel}>
-            <img src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png" alt="imdb icon" height="24"/>
+            <img src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"
+                 alt="imdb icon" height="24"/>
             <h4>IMDb</h4>
         </div>
     )
@@ -64,12 +67,12 @@ export default function MovieReviewContainer(props) {
             </Tabs>
             <Grid container justify="center" alignItems="center">
                 <Grid item xs={12} md={7}>
-                    <TabPanel value="1">
+                    <TabPanel classes={{root: classes.tabPanel}} value="1">
                         <TheMovieAgentReviews movieId={movieId} currentUser={currentUser}/>
                     </TabPanel>
                 </Grid>
                 <Grid item xs={12} md={7}>
-                    <TabPanel value="2">
+                    <TabPanel classes={{root: classes.tabPanel}} value="2">
                         <ImdbReviews movieId={movieId}/>
                     </TabPanel>
                 </Grid>

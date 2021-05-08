@@ -1,13 +1,7 @@
 import {makeStyles} from "@material-ui/core/styles";
-import {Icon, IconButton} from "@material-ui/core";
+import {Grid, Icon, IconButton} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-    },
     rating: {
         display: "flex",
         flexDirection: "row",
@@ -69,9 +63,9 @@ export default function Likes(props) {
     )
 
     return (
-        <div className={classes.root}>
+        <Grid container alignItems="center" justify="flex-end" direction="row">
             {generateIconButton(isLike, classes.like, "thumb_up_off_alt", likes, handleLikeClick)}
             {generateIconButton(isDislike, classes.dislike, "thumb_down_off_alt", dislikes, handleDislikeClick)}
-        </div>
+        </Grid>
     )
 }
