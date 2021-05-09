@@ -47,7 +47,7 @@ export default function MovieComment(props) {
                 error => {
                     console.log(error.message)
                 })
-    }, [setComments])
+    }, [setComments, movieId])
 
     return (
         <div className={classes.root}>
