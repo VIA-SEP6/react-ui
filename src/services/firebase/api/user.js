@@ -1,11 +1,11 @@
 import instance from "./axios";
 
 const registerUserAccount = (axios) => (newUserObject) => {
-    return axios.post("/registerUser", {data: {user: {...newUserObject}}}).then(response => response.data)
+    return axios.post("/user-register", {data: {user: {...newUserObject}}}).then(response => response.data)
 }
 
 const getUserProfile = (axios) => (uuid) => {
-    return axios.post('/userProfile-getUserProfile', {data: {userUid: uuid}}).then(response => response.data)
+    return axios.post('/user-getProfile ', {data: {userUid: uuid}}).then(response => response.data.result.message.user)
 }
 
 const authApiService = {

@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         textTransform: "none",
-        fontFamily: ["Roboto", "sans-serif"].join(",")
+        fontFamily: ["Roboto", "sans-serif"].join(","),
+        width: 200
     }
 }));
 

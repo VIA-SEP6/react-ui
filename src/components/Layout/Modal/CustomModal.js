@@ -57,6 +57,11 @@ export default function CustomModal(props) {
         setOpen(false);
     };
 
+    const onSubmit = (event) => {
+        event.preventDefault()
+        handleClose()
+    }
+
     return (
         <div>
             <div onClick={handleOpen}>
@@ -75,7 +80,9 @@ export default function CustomModal(props) {
                 }}
             >
                 <Fade in={open}>
-                    {props.children}
+                    <form action="#" onSubmit={onSubmit}>
+                        {props.children}
+                    </form>
                 </Fade>
             </Modal>
         </div>

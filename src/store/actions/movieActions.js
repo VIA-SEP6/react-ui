@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes"
 import movieApiService from "../../services/firebase/api/movie";
+import {addErrorSnackbar, addSnackbar} from "./snackbarActions";
 
 const setMoviesFetchStarted = () => {
     return {
@@ -36,6 +37,18 @@ export const searchMovie = (name) => {
             })
             .catch((error) => {
                 dispatch(setMoviesFetchError(error))
+            })
+    }
+}
+
+export const addReview = (userId, description, rating, movieId) => {
+    return (dispatch) => {
+        movieApiService.addReview(userId, description, rating, movieId)
+            .then((response) => {
+                dispatch(addSnackbar("Review successfully added"))
+            })
+            .catch((error) => {
+                dispatch(addErrorSnackbar("Error Submitting review"))
             })
     }
 }

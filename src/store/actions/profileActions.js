@@ -26,7 +26,7 @@ export const fetchProfile = (uuid) => {
         dispatch(setProfileFetchStarted())
         authApiService.getUserProfile(uuid)
             .then((response) => {
-                dispatch(setProfileFetchSuccess(response.result.message))
+                dispatch(setProfileFetchSuccess(response))
             })
             .catch((error) => {
                 dispatch(setProfileFetchError(error))

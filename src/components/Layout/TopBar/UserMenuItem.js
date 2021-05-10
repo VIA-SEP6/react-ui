@@ -1,18 +1,9 @@
-import {Avatar, Icon, IconButton, ListItemIcon, ListItemText, Menu, MenuItem, withStyles} from "@material-ui/core";
+import {Icon, IconButton, ListItemIcon, ListItemText, Menu, MenuItem, withStyles} from "@material-ui/core";
 import React from "react";
 import CustomModal from "../Modal/CustomModal";
 import Login from "../../Auth/Login/Login";
-import {makeStyles} from "@material-ui/core/styles";
 import {useHistory} from "react-router-dom";
-
-const useStyles = makeStyles(theme => ({
-    avatarSmall: {
-        width: theme.spacing(4),
-        height: theme.spacing(4),
-        border: '1px solid',
-        borderColor: theme.palette.primary.main
-    },
-}))
+import UserAvatar from "../../User/UserAvatar";
 
 const StyledMenu = withStyles(theme => ({
     paper: {
@@ -36,7 +27,6 @@ const StyledMenu = withStyles(theme => ({
 ));
 
 export default function UserMenuItem(props) {
-    const classes = useStyles();
     const history = useHistory();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -76,15 +66,10 @@ export default function UserMenuItem(props) {
     if (props.isAuthenticated) {
         userData = (
             <div>
-                <IconButton
-                    aria-controls="customized-menu"
-                    aria-haspopup="true"
-                    variant="contained"
-                    color="primary"
+                <UserAvatar
+                    src={props.currentUser.photoURL}
                     onClick={handleClick}
-                >
-                    <Avatar className={classes.avatarSmall} alt="Profile Avatar" src={props.currentUser.photoURL}/>
-                </IconButton>
+                />
                 <StyledMenu
                     id="customized-menu"
                     anchorEl={anchorEl}
