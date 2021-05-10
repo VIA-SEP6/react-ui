@@ -1,4 +1,3 @@
-import {makeStyles} from "@material-ui/core/styles";
 import {Grid} from "@material-ui/core";
 import {useState} from "react";
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
@@ -10,11 +9,8 @@ import MovieCommentContainer from "./Comment/MovieCommentContainer";
 const COMMENTS = "COMMENTS"
 const REVIEWS = "REVIEWS"
 
-const useStyles = makeStyles(theme => ({}));
-
 export default function MovieSocialData(props) {
     const [socialComponentName, setSocialComponentName] = useState(COMMENTS)
-    const classes = useStyles()
     const currentUser = useSelector(state => state.auth.user);
 
     const {movieId} = props

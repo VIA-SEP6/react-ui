@@ -40,7 +40,7 @@ export default function SimilarMovies(props) {
     const classes = useStyles()
     const history = useHistory()
 
-    const similar = props.movie.similar.results
+    const similar = props.movie.recommendations.results
 
 
     const scrollLeft = () => {

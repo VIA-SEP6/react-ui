@@ -46,7 +46,7 @@ export default function TheMovieAgentReviews(props) {
                 error => {
                     console.log(error.message)
                 })
-    }, [setReviews])
+    }, [setReviews, movieId])
 
     return (
         <div className={classes.root}>

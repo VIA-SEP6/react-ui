@@ -1,5 +1,5 @@
 import ImageDetails from "../ImageDetails";
-import React, {createRef, useState} from "react";
+import React, {createRef, useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import ScrollButton from "./ScrollButton";
 import {TabContext, TabPanel} from "@material-ui/lab";
@@ -67,6 +67,14 @@ export default function MovieCredits(props) {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    useEffect(() => {
+        crew.sort(function(a, b){
+            if(a.job < b.job) { return -1; }
+            if(a.job > b.job) { return 1; }
+            return 0;
+        })
+    }, [crew])
 
 
     return (

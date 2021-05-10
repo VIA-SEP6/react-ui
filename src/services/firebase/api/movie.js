@@ -7,7 +7,7 @@ const searchMovie = (axios) => (movieName) => {
 const getMovieDetails = (axios) => (movieId) => {
     return axios.post("/movies-get", {
         id: movieId,
-        append_to_response: "credits,videos,similar"
+        append_to_response: "credits,videos,recommendations"
     }).then(response => response.data.data)
 }
 
