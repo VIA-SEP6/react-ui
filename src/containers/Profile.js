@@ -1,6 +1,8 @@
 import {Component} from "react";
 import {connect} from "react-redux";
 import {fetchProfile} from "../store/actions";
+import {ProfileData} from "../components/Profile/ProfileData"
+import {FavoriteMovies} from "../components/Profile/FavoriteMovies"
 
 class Profile extends Component {
     componentDidMount() {
@@ -10,8 +12,14 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <p>This will be a profile page</p>
-                <p>Current User: {this.props.currentUser.email}</p>
+                <Grid container spacing={2} justify="center" alignItems="center">
+                    <Grid item xs={12} md={3}>
+                        <ProfileData profileData={this.props.profileData}/>
+                    </Grid>
+                    <Grid item xs={12} md={9}>
+                        <FavoriteMovies userId={this.state.userId}/>
+                    </Grid>
+                </Grid>
             </div>
         )
     }
@@ -19,8 +27,8 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.auth.user,
-        userProfile: state.profile.profile
+        userId: state.auth.user.uid,
+        profileData: state.profile.profile
     }
 }
 
