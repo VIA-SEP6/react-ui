@@ -37,17 +37,13 @@ export default function DesktopSearch(props) {
     const classes = useStyles()
 
     const handleSearch = (event) => {
-        doSearch(event);
-    }
-
-    const doSearch = (event) => {
         const movieName = event.target.value;
         if (timeout) clearTimeout(timeout);
         initTimeout(setTimeout(() => {
             if (movieName) {
                 dispatch(searchMovie(movieName))
             }
-        }, 800));
+        }, 400));
     }
 
     const handleSelect = (event, value) => {

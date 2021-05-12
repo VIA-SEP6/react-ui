@@ -14,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 300,
         fontSize: 14,
         borderBottom: '1px solid #d5d5d5',
+        backgroundColor: theme.palette.tertiary.main,
+        cursor: "pointer"
     },
     details: {
         display: 'flex',
