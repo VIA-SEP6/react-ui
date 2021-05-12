@@ -15,8 +15,8 @@ const registerUserAccount = (axios) => (newUserObject) => {
     return axios.post("/user-register", {data}).then(response => response.data)
 }
 
-const getUserProfile = (axios) => (uuid) => {
-    return axios.post('/user-getProfile ', {data: {userId: uuid}}).then(response => response.data.result.message.user)
+const getUserProfile = (axios) => (userId) => {
+    return axios.post('/user-getProfile ', {data: {userId: userId}}).then(response => response.data.result.message.user)
 }
 
 const authApiService = {

@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
-import {loginUserAccount, logoutUserAccount, loginUserWithGoogle} from '../../services/firebase/auth'
-import { addSnackbar, addErrorSnackbar} from '../actions/index'
+import {loginUserAccount, loginUserWithGoogle, logoutUserAccount} from '../../services/firebase/auth'
+import {addErrorSnackbar, addSnackbar} from '../actions/index'
 import authApiService from "../../services/firebase/api/user";
 import {auth} from "../../services/firebase/firebase";
 
@@ -55,7 +55,7 @@ export const loginUser = (email, password) => {
             })
             .catch(error => {
                 dispatch(setAuthFail(error))
-                switch (error.code){
+                switch (error.code) {
                     case "auth/wrong-password":
                         dispatch(addErrorSnackbar("Invalid password"))
                         break;
