@@ -1,8 +1,9 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
 import {Grid, Icon, IconButton} from "@material-ui/core";
-import MovieRating from "./MovieRating";
-import WriteReview from "./Social/Review/WriteReview";
+import MovieRating from "../MovieRating";
+import WriteReview from "../Social/Review/WriteReview";
+import FavoriteMovieIcon from "./FavoriteMovieIcon";
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -91,9 +92,7 @@ export default function MovieDetails(props) {
                     </Grid>
                     <Grid item container xs={2} alignItems="center">
                         <Grid container justify="flex-end" alignItems="center">
-                            <IconButton>
-                                <Icon>favorite_border</Icon>
-                            </IconButton>
+                            <FavoriteMovieIcon currentUser={currentUser} movie={movie}/>
                         </Grid>
                     </Grid>
 
