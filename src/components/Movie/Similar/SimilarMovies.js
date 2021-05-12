@@ -77,7 +77,7 @@ export default function SimilarMovies(props) {
                     {similar.map((movie) => (
                         <ImageDetails
                             key={movie.id}
-                            imgSrc={process.env.REACT_APP_TMDB_IMG_API_BASE + movie.poster_path}
+                            imgSrc={movie.poster_path}
                             title={movie.title}
                             onClick={() => openMovieDetails(movie.id)}
                         />

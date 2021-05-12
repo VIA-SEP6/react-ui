@@ -99,7 +99,7 @@ export default function MovieCredits(props) {
                                 {cast.map(cast =>
                                     <ImageDetails
                                         key={cast.id}
-                                        imgSrc={process.env.REACT_APP_TMDB_IMG_API_BASE + cast.profile_path}
+                                        imgSrc={cast.profile_path}
                                         title={cast.name}
                                         subtitle={cast.character}
                                     />)
@@ -115,7 +115,7 @@ export default function MovieCredits(props) {
                                 {crew.map(cast =>
                                     <ImageDetails
                                         key={cast.id + cast.job}
-                                        imgSrc={process.env.REACT_APP_TMDB_IMG_API_BASE + cast.profile_path}
+                                        imgSrc={cast.profile_path}
                                         title={cast.name}
                                         subtitle={cast.job}
                                     />)

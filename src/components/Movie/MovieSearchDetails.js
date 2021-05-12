@@ -60,7 +60,7 @@ export default function MovieSearchDetails(props) {
 
     const getImage = () => {
         if (movie.poster_path)
-            return process.env.REACT_APP_TMDB_IMG_API_BASE + movie.poster_path
+            return movie.poster_path
         return "https://ngmintlsubs.nationalgeographic.com/Solo/Content/Images/noCover.gif"
     }
 
@@ -74,7 +74,7 @@ export default function MovieSearchDetails(props) {
             <div className={classes.details}>
                 <CardContent className={classes.content}>
                     <p>{movie.title}</p>
-                    <div className={classes.overview}>{movie.overview.slice(0, 260)} ...</div>
+                    <div className={classes.overview}>{movie.overview.slice(0, 220)} ...</div>
                 </CardContent>
                 <CardActions className={classes.rating}>
                     <MovieRating rating={movie.tma_vote_average}
