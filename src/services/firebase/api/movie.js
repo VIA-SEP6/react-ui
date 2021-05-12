@@ -11,6 +11,24 @@ const getMovieDetails = (axios) => (movieId) => {
     }).then(response => response.data.data)
 }
 
+const addMovieToFavourites = axios => (movieId, userId) => {
+    console.log("Add to favorites")
+    // const data = {
+    //     movieId,
+    //     userId
+    // }
+    // return axios.post("/movie-like", {data}).then(response => response.data.data)
+}
+
+const removeMovieFromFavourites = axios => (movieId, userId) => {
+    console.log("Remove from favorites")
+    // const data = {
+    //     movieId,
+    //     userId
+    // }
+    // return axios.post("/movie-dislike", {data}).then(response => response.data.data)
+}
+
 const addReview = (axios) => (userId, description, rating, movieId) => {
     const data = {
         userId, description, rating, movieId
@@ -84,6 +102,8 @@ const clearCommentReaction = axios => (userId, commentId) => {
 const movieApiService = {
     searchMovie: searchMovie(instance),
     getMovieDetails: getMovieDetails(instance),
+    addMovieToFavourites: addMovieToFavourites(instance),
+    removeMovieFromFavourites: removeMovieFromFavourites(instance),
     addReview: addReview(instance),
     likeReview: likeReview(instance),
     dislikeReview: dislikeReview(instance),
