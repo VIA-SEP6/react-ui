@@ -2,7 +2,7 @@ import instance from "./axios";
 
 const registerUserAccount = (axios) => (newUserObject) => {
     const data = {
-        username: newUserObject.username,
+        userName: newUserObject.username,
         password: newUserObject.password,
         email: newUserObject.email,
         userInfo: {
