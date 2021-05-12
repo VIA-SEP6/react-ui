@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         height: "150px",
     },
     rating: {
-        justifyContent: "end",
+        justifyContent: "space-between",
         alignItems: "center",
         fontSize: 12,
     },
@@ -77,6 +77,8 @@ export default function MovieSearchDetails(props) {
                     <div className={classes.overview}>{movie.overview.slice(0, 260)} ...</div>
                 </CardContent>
                 <CardActions className={classes.rating}>
+                    <MovieRating rating={movie.tma_vote_average}
+                                 icon="star"/>
                     <MovieRating rating={movie.vote_average}
                                  iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>
                 </CardActions>
