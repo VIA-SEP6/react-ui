@@ -27,15 +27,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = (props) => {
     const [username, setUsername] = useState("");
-    const [usernameError, setUsernameError] = useState("");
+    const [usernameError, setUsernameError] = useState(null);
     const [email, setEmail] = useState("");
-    const [emailError, setEmailError] = useState("");
+    const [emailError, setEmailError] = useState(null);
     const [password, setPassword] = useState("");
-    const [passwordError, setPasswordError] = useState("");
+    const [passwordError, setPasswordError] = useState(null);
     const [age, setAge] = useState(0);
-    const [ageError, setAgeError] = useState("");
+    const [ageError, setAgeError] = useState(null);
     const [country, setCountry] = useState("");
-    const [countryError, setCountryError] = useState("");
+    const [countryError, setCountryError] = useState(null);
     const [valid, setValid] = useState(false)
 
     const classes = useStyles();
@@ -46,7 +46,8 @@ const Register = (props) => {
             email,
             password,
             age,
-            country
+            country,
+            phone: "+4591919191"
         }
     }
 
