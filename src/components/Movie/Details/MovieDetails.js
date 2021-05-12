@@ -79,8 +79,8 @@ export default function MovieDetails(props) {
             <Grid item xs={12} sm={4}>
                 <img width="100%" src={getImage(movie.poster_path)} alt="Movie Poster"/>
                 <div className={[classes.row, classes.ratings].join(' ')}>
-                    <MovieRating rating={movie.vote_average}
-                                 iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>
+                    <MovieRating rating={movie.tma_vote_average}
+                                 icon="star"/>
                     <MovieRating rating={movie.vote_average}
                                  iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>
                 </div>
