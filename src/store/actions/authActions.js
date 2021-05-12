@@ -4,7 +4,6 @@ import { addSnackbar, addErrorSnackbar} from '../actions/index'
 import authApiService from "../../services/firebase/api/user";
 import {auth} from "../../services/firebase/firebase";
 
-
 const setAuthStarted = () => {
     return {
         type: actionTypes.AUTH_START,
