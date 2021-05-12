@@ -1,6 +1,5 @@
 import {makeStyles} from "@material-ui/core/styles";
-import {Hidden, Icon, IconButton} from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
+import {Hidden, Icon} from "@material-ui/core";
 import React from "react";
 import {useHistory} from "react-router-dom"
 import UserMenuItem from "./UserMenuItem";

@@ -65,7 +65,7 @@ export default function DesktopSearch(props) {
                 classes={{option: classes.option, listbox: classes.listBox, paper: classes.paper}}
                 id="asynchronous-demo"
                 size="small"
-                style={{width: 400}}
+                style={{width: 500}}
                 open={open}
                 onOpen={() => {
                     setOpen(true);
