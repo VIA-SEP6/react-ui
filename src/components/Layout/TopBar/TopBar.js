@@ -4,7 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import React from "react";
 import {useHistory} from "react-router-dom"
 import UserMenuItem from "./UserMenuItem";
-import DesktopSearch from "../../Movie/DesktopSearch";
+import DesktopSearch from "../../Movie/Search/DesktopSearch";
 
 const useStyles = makeStyles(theme => ({
     root: {

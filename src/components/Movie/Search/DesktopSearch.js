@@ -1,10 +1,10 @@
 import {CircularProgress, TextField} from "@material-ui/core";
 import React, {useState} from "react";
 import {Autocomplete} from "@material-ui/lab";
-import MovieSearchDetails from "./MovieSearchDetails";
+import MovieSearchDetails from "../MovieSearchDetails";
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
-import {clearMovies, searchMovie} from "../../store/actions/index"
+import {clearMovies, searchMovie} from "../../../store/actions"
 import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
