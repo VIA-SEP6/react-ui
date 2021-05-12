@@ -39,7 +39,7 @@ export default function FavoriteMovieIcon(props) {
                     error => {
                         console.log(`Encountered error: ${error}`);
                     })
-    }, [setIsFavorite, currentUser])
+    }, [setIsFavorite, currentUser, movie.id])
 
     return (
         <div className={classes.root}>
