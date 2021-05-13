@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import movieApiService from "../services/firebase/api/movie";
 import {Grid} from "@material-ui/core";
 import Spinner from "../components/Layout/Loader/Spinner";
-import MovieDetails from "../components/Movie/MovieDetails";
+import MovieDetails from "../components/Movie/Details/MovieDetails";
 import MovieCarousel from "../components/Movie/Videos/MovieCarousel";
 import MovieCredits from "../components/Movie/Credits/MovieCredits";
 import SimilarMovies from "../components/Movie/Similar/SimilarMovies";
