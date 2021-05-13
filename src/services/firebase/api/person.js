@@ -56,7 +56,30 @@ const getPersonDetails = (axios) => (personId) => {
                 poster_path: "https://image.tmdb.org/t/p/w500/fPaEadAVgyaCP1AKHKWrQHc9sbO.jpg",
                 title: "Galaxy of Terror"
             }
-        ]
+        ],
+        crew_statistics: {
+            "Horror": 2,
+            "SciFi": 2,
+            "Fantasy": 2,
+            "Drama": 1,
+            "Western": 3,
+            "Action": 1,
+            "Comedy": 42,
+            "Mindfuck": 3,
+            "Animation": 1,
+            "Anime": 2,
+            "Musical": 2,
+            "Catastrophic": 3
+        },
+        cast_statistics: {
+            "Art": 3,
+            "Crew": 10,
+            "Directing": 18,
+            "Editing": 5,
+            "Production": 32,
+            "Visual Effects": 1,
+            "Writing": 30
+        }
     })
 }
 
