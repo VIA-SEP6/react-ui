@@ -13,8 +13,13 @@ import CloseIcon from '@material-ui/icons/Close';
 import Spinner from "../../Layout/Loader/Spinner";
 
 const useStyles = makeStyles((theme) => ({
+    result: {
+        background: theme.palette.secondary.main,
+        minHeight: "100vh"
+    },
     appBar: {
         position: "relative",
+        background: "rgba(0, 0, 0, 0.05)",
     },
     input: {
         margin: theme.spacing(2, 0),
@@ -88,7 +93,10 @@ export default function PhoneSearch(props) {
                         </IconButton>
                     </Toolbar>
                 </AppBar>
-                {loading ? renderLoading : renderMovies}
+                <div className={classes.result}>
+                    {loading ? renderLoading : renderMovies}
+                </div>
+
             </Dialog>
         </div>
     )
