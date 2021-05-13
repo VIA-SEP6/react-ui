@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
-import {loginUserAccount, logoutUserAccount, loginUserWithGoogle} from '../../services/firebase/auth'
-import { addSnackbar, addErrorSnackbar} from '../actions/index'
-import firebaseFunctions from "../../services/firebase/functions";
+import {loginUserAccount, loginUserWithGoogle, logoutUserAccount} from '../../services/firebase/auth'
+import {addErrorSnackbar, addSnackbar} from '../actions/index'
+import authApiService from "../../services/firebase/api/user";
 import {auth} from "../../services/firebase/firebase";
 
 const setAuthStarted = () => {
@@ -34,7 +34,7 @@ const setAuthLogOut = () => {
 export const registerUser = (newUserObject) => {
     return (dispatch) => {
         dispatch(setAuthStarted())
-        firebaseFunctions.registerUserAccount(newUserObject)
+        authApiService.registerUserAccount(newUserObject)
             .then(response => {
                 dispatch(loginUser(newUserObject.email, newUserObject.password))
             })
@@ -55,7 +55,7 @@ export const loginUser = (email, password) => {
             })
             .catch(error => {
                 dispatch(setAuthFail(error))
-                switch (error.code){
+                switch (error.code) {
                     case "auth/wrong-password":
                         dispatch(addErrorSnackbar("Invalid password"))
                         break;

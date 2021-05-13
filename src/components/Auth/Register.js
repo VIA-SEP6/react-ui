@@ -27,15 +27,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = (props) => {
     const [username, setUsername] = useState("");
-    const [usernameError, setUsernameError] = useState("");
+    const [usernameError, setUsernameError] = useState(null);
     const [email, setEmail] = useState("");
-    const [emailError, setEmailError] = useState("");
+    const [emailError, setEmailError] = useState(null);
     const [password, setPassword] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const [age, setAge] = useState(0);
-    const [ageError, setAgeError] = useState("");
+    const [passwordError, setPasswordError] = useState(null);
+    const [age, setAge] = useState("");
     const [country, setCountry] = useState("");
-    const [countryError, setCountryError] = useState("");
+    const [phone, setPhone] = useState("");
     const [valid, setValid] = useState(false)
 
     const classes = useStyles();
@@ -46,7 +45,8 @@ const Register = (props) => {
             email,
             password,
             age,
-            country
+            country,
+            phone
         }
     }
 
@@ -59,8 +59,6 @@ const Register = (props) => {
             usernameError == null
             && emailError == null
             && passwordError == null
-            && ageError == null
-            && countryError == null
         )
     }
 
@@ -99,26 +97,11 @@ const Register = (props) => {
         validateForm()
     }
 
-    const validateAge = (value) => {
-        setAge(value)
-        if (!value)
-            return setAgeError("Age must not be empty")
-        setAgeError(null)
-        validateForm()
-    }
-
-    const validateCountry = (value) => {
-        setCountry(value)
-        if (!value)
-            return setCountryError("Country must not be empty")
-        setCountryError(null)
-        validateForm()
-    }
 
     return (
         <Paper className={classes.paper}>
             <h4 className={classes.header}>Create a new Account</h4>
-            <Grid container spacing={3} justify={"center"} alignItems={"center"}>
+            <Grid container spacing={2} justify={"center"} alignItems={"center"}>
                 <Grid item xs={12} sm={6} className={classes.input}>
                     <TextField
                         error={usernameError != null}
@@ -128,7 +111,7 @@ const Register = (props) => {
                         placeholder="Enter the username"
                         onBlur={(e) => validateUsername(e.target.value)}
                         onChange={(e) => validateUsername(e.target.value)}
-                        size="small"
+                        fullWidth={true}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} className={classes.input}>
@@ -140,7 +123,7 @@ const Register = (props) => {
                         placeholder="Enter the email address"
                         onBlur={(e) => validateEmail(e.target.value)}
                         onChange={(e) => validateEmail(e.target.value)}
-                        size="small"
+                        fullWidth={true}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} className={classes.input}>
@@ -152,7 +135,7 @@ const Register = (props) => {
                         placeholder="Type the password"
                         onBlur={(e) => validatePassword(e.target.value)}
                         onChange={(e) => validatePassword(e.target.value)}
-                        size="small"
+                        fullWidth={true}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} className={classes.input}>
@@ -162,31 +145,34 @@ const Register = (props) => {
                         placeholder="Re-type the password"
                         onBlur={(e) => validateRepPassword(e.target.value)}
                         onChange={(e) => validateRepPassword(e.target.value)}
-                        size="small"
+                        fullWidth={true}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6} className={classes.input}>
+                <Grid item xs={12} sm={2} className={classes.input}>
                     <TextField
-                        error={ageError != null}
-                        helperText={ageError}
                         label="Age"
                         type="number"
                         placeholder="Enter the age"
-                        onBlur={(e) => validateAge(e.target.value)}
-                        onChange={(e) => validateAge(e.target.value)}
-                        size="small"
+                        onChange={(e) => setAge(e.target.value)}
+                        fullWidth={true}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6} className={classes.input}>
+                <Grid item xs={12} sm={5} className={classes.input}>
                     <TextField
-                        error={countryError != null}
-                        helperText={countryError}
                         label="Country"
                         type="text"
                         placeholder="Enter the country name"
-                        onBlur={(e) => validateCountry(e.target.value)}
-                        onChange={(e) => validateCountry(e.target.value)}
-                        size="small"
+                        onChange={(e) => setCountry(e.target.value)}
+                        fullWidth={true}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={5} className={classes.input}>
+                    <TextField
+                        label="Phone"
+                        type="phone"
+                        placeholder="Enter the phone number"
+                        onChange={(e) => setPhone(e.target.value)}
+                        fullWidth={true}
                     />
                 </Grid>
                 <Grid container justify="center" className={classes.actions}>

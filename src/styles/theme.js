@@ -6,15 +6,21 @@ const theme = createMuiTheme({
             main: "#68b0ab"
         },
         secondary: {
-            main: "#faf3dd"
+            main: "#edf6f9"
         },
         tertiary: {
-            main: "#edf6f9"
+            main: "#FFFBFB"
+        },
+        black: {
+            main: "#000"
+        },
+        gray: {
+            main: "#828282"
         },
     },
     typography: {
         fontFamily: [
-            '"Ubuntu"',
+            '"Raleway"',
             'Roboto',
             'sans-serif',
         ].join(','),

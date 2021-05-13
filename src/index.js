@@ -9,19 +9,19 @@ import thunk from 'redux-thunk'
 import authReducer from "./store/reducers/authReducer";
 import movieReducer from "./store/reducers/movieReducer";
 import snackbarReducer from "./store/reducers/snackbarReducer";
-import { ThemeProvider} from "@material-ui/core";
+import profileReducer from "./store/reducers/profileReducer";
+
+import {ThemeProvider} from "@material-ui/core";
 import theme from './styles/theme'
 
 
-const composeEnhancers =
-    process.env.NODE_ENV === 'development'
-        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-        : null || compose
+const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null) || compose;
 
 const rootReducer = combineReducers({
     auth: authReducer,
     movie: movieReducer,
-    snackbar: snackbarReducer
+    snackbar: snackbarReducer,
+    profile: profileReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
