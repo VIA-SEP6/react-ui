@@ -4,6 +4,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import ScrollButton from "./ScrollButton";
 import {TabContext, TabPanel} from "@material-ui/lab";
 import {Icon, Tab, Tabs} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     column: {
@@ -43,8 +44,8 @@ export default function MovieCredits(props) {
     const cast = props.movie.credits.cast
     const crew = props.movie.credits.crew
 
-
     const classes = useStyles()
+    const history = useHistory()
 
     const scrollUp = () => {
         ref.scrollBy({
@@ -60,6 +61,10 @@ export default function MovieCredits(props) {
             left: 0,
             behavior: 'smooth'
         })
+    }
+
+    const openPersonDetails = (personId) => {
+        history.push(`/person/${personId}`)
     }
 
     const [value, setValue] = React.useState('1');
@@ -98,6 +103,7 @@ export default function MovieCredits(props) {
                             <div className={classes.creditsContent} ref={(reference) => setRef(reference)}>
                                 {cast.map(cast =>
                                     <ImageDetails
+                                        onClick={() => openPersonDetails(cast.id)}
                                         key={cast.id}
                                         imgSrc={cast.profile_path}
                                         title={cast.name}
@@ -114,6 +120,7 @@ export default function MovieCredits(props) {
                             <div className={classes.creditsContent} ref={(reference) => setRef(reference)}>
                                 {crew.map(cast =>
                                     <ImageDetails
+                                        onClick={() => openPersonDetails(cast.id)}
                                         key={cast.id + cast.job}
                                         imgSrc={cast.profile_path}
                                         title={cast.name}
