@@ -3,6 +3,7 @@ import personApiService from "../services/firebase/api/person";
 import {Grid} from "@material-ui/core";
 import PersonDetails from "../components/Person/Details/PersonDetails";
 import Spinner from "../components/Layout/Loader/Spinner";
+import KnownForMovies from "../components/Person/KnownFor/KnownForMovies";
 
 class Person extends Component {
     initialState = {
@@ -60,9 +61,7 @@ class Person extends Component {
                 </Grid>
                 <Grid item xs={12}>
                     <Grid container direction="row" justify="center">
-                        <div>
-                            Known for
-                        </div>
+                        <KnownForMovies movies={details.movie_credits}/>
                     </Grid>
                 </Grid>
             </Grid>

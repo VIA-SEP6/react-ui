@@ -42,7 +42,7 @@ export default function PersonDetails(props) {
                 {details.known_for_department}
             </div>
             <div>
-                <img src={details.profile_path} alt="Profile Image" width="250"/>
+                <img src={details.profile_path} alt="Profile" width="250"/>
             </div>
             <div className={classes.subtitle}>
                 {getBirthDate()}

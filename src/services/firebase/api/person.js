@@ -14,7 +14,49 @@ const getPersonDetails = (axios) => (personId) => {
         known_for_department: "Directing",
         name: "James Cameron",
         place_of_birth: "Kapuskasing, Ontario, Canada",
-        profile_path: "https://image.tmdb.org/t/p/w500/9NAZnTjBQ9WcXAQEzZpKy4vdQto.jpg"
+        profile_path: "https://image.tmdb.org/t/p/w500/9NAZnTjBQ9WcXAQEzZpKy4vdQto.jpg",
+        movie_credits: [
+            {
+                id: 1,
+                poster_path: "https://image.tmdb.org/t/p/w500/fPaEadAVgyaCP1AKHKWrQHc9sbO.jpg",
+                title: "Galaxy of Terror"
+            },
+            {
+                id: 2,
+                poster_path: "https://image.tmdb.org/t/p/w500/fPaEadAVgyaCP1AKHKWrQHc9sbO.jpg",
+                title: "Galaxy of Terror"
+            },
+            {
+                id: 3,
+                poster_path: "https://image.tmdb.org/t/p/w500/fPaEadAVgyaCP1AKHKWrQHc9sbO.jpg",
+                title: "Galaxy of Terror"
+            },
+            {
+                id: 4,
+                poster_path: "https://image.tmdb.org/t/p/w500/fPaEadAVgyaCP1AKHKWrQHc9sbO.jpg",
+                title: "Galaxy of Terror"
+            },
+            {
+                id: 5,
+                poster_path: "https://image.tmdb.org/t/p/w500/fPaEadAVgyaCP1AKHKWrQHc9sbO.jpg",
+                title: "Galaxy of Terror"
+            },
+            {
+                id: 6,
+                poster_path: "https://image.tmdb.org/t/p/w500/fPaEadAVgyaCP1AKHKWrQHc9sbO.jpg",
+                title: "Galaxy of Terror"
+            },
+            {
+                id: 7,
+                poster_path: "https://image.tmdb.org/t/p/w500/fPaEadAVgyaCP1AKHKWrQHc9sbO.jpg",
+                title: "Galaxy of Terror"
+            },
+            {
+                id: 8,
+                poster_path: "https://image.tmdb.org/t/p/w500/fPaEadAVgyaCP1AKHKWrQHc9sbO.jpg",
+                title: "Galaxy of Terror"
+            }
+        ]
     })
 }
 
