@@ -1,10 +1,10 @@
 import {CircularProgress, TextField} from "@material-ui/core";
 import React, {useState} from "react";
 import {Autocomplete} from "@material-ui/lab";
-import MovieSearchDetails from "./MovieSearchDetails";
+import MovieSearchDetails from "../MovieSearchDetails";
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
-import {clearMovies, searchMovie} from "../../store/actions/index"
+import {clearMovies, searchMovie} from "../../../store/actions"
 import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
@@ -37,17 +37,13 @@ export default function DesktopSearch(props) {
     const classes = useStyles()
 
     const handleSearch = (event) => {
-        doSearch(event);
-    }
-
-    const doSearch = (event) => {
         const movieName = event.target.value;
         if (timeout) clearTimeout(timeout);
         initTimeout(setTimeout(() => {
             if (movieName) {
                 dispatch(searchMovie(movieName))
             }
-        }, 800));
+        }, 400));
     }
 
     const handleSelect = (event, value) => {
@@ -69,7 +65,7 @@ export default function DesktopSearch(props) {
                 classes={{option: classes.option, listbox: classes.listBox, paper: classes.paper}}
                 id="asynchronous-demo"
                 size="small"
-                style={{width: 400}}
+                style={{width: 500}}
                 open={open}
                 onOpen={() => {
                     setOpen(true);
