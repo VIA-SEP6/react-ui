@@ -15,7 +15,7 @@ import Spinner from "../../Layout/Loader/Spinner";
 const useStyles = makeStyles((theme) => ({
     result: {
         background: theme.palette.secondary.main,
-        minHeight: "100vh"
+        height: "100vh"
     },
     appBar: {
         position: "relative",
