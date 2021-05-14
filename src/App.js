@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import SignOut from "./containers/Auth/SignOut";
-import Movies from "./containers/Movies";
+import Main from "./containers/Main";
 import Profile from "./containers/Profile"
 import Movie from "./containers/Movie"
 import './App.css';
@@ -17,7 +17,7 @@ class App extends Component {
     render() {
         let routes = (
             <Switch>
-                <Route path="/" exact component={Movies}/>
+                <Route path="/" exact component={Main}/>
                 <Route path="/movie/:id" component={Movie}/>
                 <Redirect to="/"/>
             </Switch>
@@ -29,7 +29,7 @@ class App extends Component {
                     <Route path="/logout" component={SignOut}/>
                     <Route path="/profile" component={Profile}/>
                     <Route path="/movie/:id" component={Movie}/>
-                    <Route path="/" exact component={Movies}/>
+                    <Route path="/" exact component={Main}/>
                     <Redirect to="/"/>
                 </Switch>
             )
