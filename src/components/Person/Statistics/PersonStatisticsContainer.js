@@ -20,6 +20,12 @@ export default function PersonStatisticsContainer(props) {
         setValue(newValue);
     };
 
+    const noData = (
+        <div style={{textAlign: "center"}}>
+            <h5>No Data</h5>
+        </div>
+    )
+
     return (
         <TabContext value={value}>
             <Tabs
@@ -33,10 +39,16 @@ export default function PersonStatisticsContainer(props) {
                 <Tab label="Crew" value="2"/>
             </Tabs>
             <TabPanel className={classes.tabPanel} value="1">
-                <DoughnutChart labels={Object.keys(castStatistics)} data={Object.values(castStatistics)} title="Test"/>
+                {castStatistics
+                    ? <DoughnutChart labels={Object.keys(castStatistics)} data={Object.values(castStatistics)}
+                                     title="Test"/>
+                    : noData}
             </TabPanel>
             <TabPanel className={classes.tabPanel} value="2">
-                <DoughnutChart labels={Object.keys(crewStatistics)} data={Object.values(crewStatistics)} title="Test"/>
+                {crewStatistics.length === 0
+                    ? <DoughnutChart labels={Object.keys(crewStatistics)} data={Object.values(crewStatistics)}
+                                     title="Test"/>
+                    : noData}
             </TabPanel>
         </TabContext>
     )

@@ -4,7 +4,7 @@ export default function DoughnutChart(props) {
     const {labels, data, title} = props
 
     function getDoughnutData() {
-        const [fillColors, borderColors] = generateColors(labels.length)
+        const [fillColors] = generateColors(labels.length)
         return {
             labels,
             datasets: [
@@ -12,7 +12,6 @@ export default function DoughnutChart(props) {
                     label: title,
                     data,
                     backgroundColor: fillColors,
-                    borderColor: borderColors,
                     borderWidth: 1,
                 },
             ],
