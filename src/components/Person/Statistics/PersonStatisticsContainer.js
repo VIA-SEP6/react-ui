@@ -33,10 +33,10 @@ export default function PersonStatisticsContainer(props) {
                 <Tab label="Crew" value="2"/>
             </Tabs>
             <TabPanel className={classes.tabPanel} value="1">
-                <DoughnutChart labels={Object.keys(crewStatistics)} data={Object.values(crewStatistics)} title="Test"/>
+                <DoughnutChart labels={Object.keys(castStatistics)} data={Object.values(castStatistics)} title="Test"/>
             </TabPanel>
             <TabPanel className={classes.tabPanel} value="2">
-                <DoughnutChart labels={Object.keys(castStatistics)} data={Object.values(castStatistics)} title="Test"/>
+                <DoughnutChart labels={Object.keys(crewStatistics)} data={Object.values(crewStatistics)} title="Test"/>
             </TabPanel>
         </TabContext>
     )
