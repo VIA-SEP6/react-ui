@@ -1,6 +1,7 @@
 import {makeStyles} from "@material-ui/core/styles";
 import {Grid, Paper} from "@material-ui/core";
 import {formatDate} from "../../../../services/util/dateConverter";
+import Rank from "../../Common/Rank";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -72,7 +73,7 @@ export default function RankingCard(props) {
                 <div className={classes.content}>
                     <span className={classes.title}>{title}</span>
                     <span className={classes.releaseDate}>{formatDate(new Date(releaseDate))}</span>
-                    <span className={classes.rank}>{rank}</span>
+                    <Rank>{rank}</Rank>
                     <span className={classes.rating}>{rating}/<span>10</span></span>
                     <span className={classes.count}>({ratingsCount})</span>
                 </div>
