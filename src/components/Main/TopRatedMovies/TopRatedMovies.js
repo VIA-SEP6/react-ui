@@ -5,6 +5,7 @@ import mainPageApiService from "../../../services/firebase/api/main";
 import {Icon, Tab, Tabs} from "@material-ui/core";
 import {TabContext, TabPanel} from "@material-ui/lab";
 import RankingContainer from "./Components/RankingContainer";
+import TopicHeader from "../Common/TopicHeader";
 
 
 const useStyles = makeStyles(theme => ({
@@ -14,10 +15,6 @@ const useStyles = makeStyles(theme => ({
     tabRoot: {
         maxWidth: "350px",
         margin: theme.spacing(1, "auto")
-    },
-    header: {
-        fontSize: 24,
-        fontWeight: 400
     },
     tabLabel: {
         display: "flex",
@@ -76,29 +73,26 @@ export default function TopRatedMovies(props) {
     )
 
     let content = (
-        <React.Fragment>
-            <h3 className={classes.header}>Top Rated Movies</h3>
-            <TabContext value={value} className={classes.root}>
-                <Tabs
-                    classes={{root: classes.tabRoot}}
-                    value={value}
-                    onChange={handleTabChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    variant="fullWidth"
-                    aria-label="full width tabs example"
-                >
-                    <Tab value="1" label={tmaTab}/>
-                    <Tab value="2" label={imdbTab}/>
-                </Tabs>
-                <TabPanel value="1">
-                    <RankingContainer movies={tmaMovies}/>
-                </TabPanel>
-                <TabPanel value="2">
-                    <RankingContainer movies={imdbMovies}/>
-                </TabPanel>
-            </TabContext>
-        </React.Fragment>
+        <TabContext value={value} className={classes.root}>
+            <Tabs
+                classes={{root: classes.tabRoot}}
+                value={value}
+                onChange={handleTabChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="fullWidth"
+                aria-label="full width tabs example"
+            >
+                <Tab value="1" label={tmaTab}/>
+                <Tab value="2" label={imdbTab}/>
+            </Tabs>
+            <TabPanel value="1">
+                <RankingContainer movies={tmaMovies}/>
+            </TabPanel>
+            <TabPanel value="2">
+                <RankingContainer movies={imdbMovies}/>
+            </TabPanel>
+        </TabContext>
     )
 
     if (loading)
@@ -106,6 +100,7 @@ export default function TopRatedMovies(props) {
 
     return (
         <div className={classes.root}>
+            <TopicHeader>Top Rated Movies</TopicHeader>
             {content}
         </div>
     )

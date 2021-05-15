@@ -14,11 +14,15 @@ export default function ImdbReviews(props) {
 
     const classes = useStyles()
 
-    useEffect(() => {
+    const fetchReviews = (movieId) => {
         movieApiService.getReviews(movieId)
             .then(response => {
                 setReviews(response.reviews.results)
-            });
+            })
+    }
+
+    useEffect(() => {
+        fetchReviews(movieId);
         return () => {
             setReviews([])
         }

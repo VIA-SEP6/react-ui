@@ -12,9 +12,6 @@ export default function LoadingSkeleton(props) {
 
     return (
         <Grid container spacing={2} className={classes.root} justify="center" alignItems="center">
-            <Grid container item xs={12} justify="center">
-                <Skeleton variant="text" width={300} height={40}/>
-            </Grid>
             <Grid container direction="row" spacing={2} item xs={12} justify="center">
                 <Skeleton variant="text" width={160} height={100} style={{margin: "4px"}}/>
                 <Skeleton variant="text" width={160} height={100} style={{margin: "4px"}}/>

@@ -16,9 +16,6 @@ export default function LoadingSkeleton() {
 
     return (
         <Grid container direction="column" className={classes.root}>
-            <Grid container direction="row" alignItems="center" justify="center">
-                <Skeleton variant="text" width={300} height={40}/>
-            </Grid>
             <Grid container spacing={2} direction="row">
                 <Grid item xs={12} md={4}>
                     <Skeleton variant="text"/>
