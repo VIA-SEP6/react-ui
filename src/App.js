@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import './App.css';
+import Layout from "./components/Layout/Layout";
+import {loginUser, logInWithGoogle, logoutUser, registerUser, searchMovie, verifyAuth} from "./store/actions";
+
 import SignOut from "./containers/Auth/SignOut";
 import Main from "./containers/Main";
 import Profile from "./containers/Profile"
 import Movie from "./containers/Movie"
-import './App.css';
-import Layout from "./components/Layout/Layout";
-import {loginUser, logInWithGoogle, registerUser, verifyAuth, logoutUser, searchMovie} from "./store/actions";
+import Person from "./containers/Person"
 
 class App extends Component {
     componentDidMount() {
@@ -19,6 +21,7 @@ class App extends Component {
             <Switch>
                 <Route path="/" exact component={Main}/>
                 <Route path="/movie/:id" component={Movie}/>
+                <Route path="/person/:id" component={Person}/>
                 <Redirect to="/"/>
             </Switch>
         );
@@ -29,6 +32,7 @@ class App extends Component {
                     <Route path="/logout" component={SignOut}/>
                     <Route path="/profile" component={Profile}/>
                     <Route path="/movie/:id" component={Movie}/>
+                    <Route path="/person/:id" component={Person}/>
                     <Route path="/" exact component={Main}/>
                     <Redirect to="/"/>
                 </Switch>

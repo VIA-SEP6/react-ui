@@ -1,20 +1,20 @@
-import ImageDetails from "../ImageDetails";
+import ImageDetails from "../../Movie/ImageDetails";
 import React from "react";
-import {useHistory} from "react-router-dom";
 import HorizontalScroll from "../../Layout/HorizontalScroll/HorizontalScroll";
+import {useHistory} from "react-router-dom";
 
-export default function SimilarMovies(props) {
+export default function KnownForMovies(props) {
     const history = useHistory()
 
-    const similar = props.movie.recommendations.results
+    const {movies} = props
 
     const openMovieDetails = (id) => {
         history.push("/movie/" + id)
     }
 
     return (
-        <HorizontalScroll title="People have also seen">
-            {similar.map((movie) => (
+        <HorizontalScroll title="Known for">
+            {movies.map((movie) => (
                 <ImageDetails
                     key={movie.id}
                     imgSrc={movie.poster_path}
@@ -23,6 +23,5 @@ export default function SimilarMovies(props) {
                 />
             ))}
         </HorizontalScroll>
-
     )
 }
