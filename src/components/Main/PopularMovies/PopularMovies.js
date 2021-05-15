@@ -43,7 +43,7 @@ export default function PopularMovies(props) {
         <Paper elevation={8}>
             <GridList spacing={0} cellHeight={220} className={classes.gridList}>
                 {movies.map((movie) => (
-                    <MovieGridTile movie={movie}/>
+                    <MovieGridTile key={movie.id} movie={movie}/>
                 ))}
             </GridList>
         </Paper>

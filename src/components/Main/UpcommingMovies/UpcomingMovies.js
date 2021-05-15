@@ -41,7 +41,7 @@ export default function UpcomingMovies() {
         <Paper elevation={8}>
             <GridList spacing={0} className={classes.gridList} cols={2.5}>
                 {movies.map((movie) => (
-                    <MovieGridTile movie={movie} style={{width: 400, height: 220}}/>
+                    <MovieGridTile key={movie.id} movie={movie} style={{width: 400, height: 220}}/>
                 ))}
             </GridList>
         </Paper>
