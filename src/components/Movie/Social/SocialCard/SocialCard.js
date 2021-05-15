@@ -4,6 +4,7 @@ import UserData from "./Components/UserData";
 import Rating from "./Components/Rating";
 import Description from "./Components/Description";
 import Likes from "../Likes";
+import {useHistory} from "react-router-dom";
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -20,6 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SocialCard(props) {
     const classes = useStyles()
+    const history = useHistory()
 
     const {
         type, // "review" | "comment" | "external-review"
@@ -40,6 +42,11 @@ export default function SocialCard(props) {
 
     const getPostDate = () => {
         return postDate ? `${postDate.getDate()} ${monthNames[postDate.getMonth()]} ${postDate.getFullYear()}` : ""
+    }
+
+    const handleClick = () => {
+        if (userId)
+            history.push(`/user/${userId}/profile`)
     }
 
     const renderLikes = (
@@ -65,7 +72,7 @@ export default function SocialCard(props) {
     return (
         <Grid container item xs={12} alignItems="center" className={classes.root}>
             <Grid item xs={12} sm={4}>
-                <UserData avatarSrc={avatarSrc} username={username} postDate={getPostDate()} userId={userId} />
+                <UserData avatarSrc={avatarSrc} username={username} postDate={getPostDate()} userId={userId}/>
             </Grid>
             {type !== "comment" ? renderRating : null}
             {type !== "external-review" ? renderLikes : null}

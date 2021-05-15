@@ -81,6 +81,13 @@ const clearCommentReaction = axios => (userId, commentId) => {
     return axios.post("/comments-removeReaction", {data}).then(response => response.data.data)
 }
 
+const getReviews = axios => (movieId) => {
+    return axios.post("/movies-get", {
+        id: movieId,
+        append_to_response: "reviews"
+    }).then(response => response.data.data)
+}
+
 const movieApiService = {
     searchMovie: searchMovie(instance),
     getMovieDetails: getMovieDetails(instance),
@@ -92,6 +99,7 @@ const movieApiService = {
     likeComment: likeComment(instance),
     dislikeComment: dislikeComment(instance),
     clearCommentReaction: clearCommentReaction(instance),
+    getReviews: getReviews(instance),
 }
 
 export default movieApiService;
