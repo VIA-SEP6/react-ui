@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Grid} from "@material-ui/core";
 import UpcomingMovies from "../components/Main/UpcommingMovies/UpcomingMovies";
+import TopRatedMovies from "../components/Main/TopRatedMovies/TopRatedMovies";
+import HorizontalLine from "../components/Layout/Seperator/HorizontalLine";
 
 class Main extends Component {
     render() {
@@ -9,9 +11,11 @@ class Main extends Component {
                 <Grid item xs={12}>
                     <UpcomingMovies/>
                 </Grid>
+                <HorizontalLine/>
                 <Grid item xs={12}>
-                    Top Rated Movies
+                    <TopRatedMovies/>
                 </Grid>
+                <HorizontalLine/>
                 <Grid item xs={12} md={8}>
                     Popular Movies
                 </Grid>
