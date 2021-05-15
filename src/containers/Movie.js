@@ -22,8 +22,6 @@ class Movie extends Component {
 
     init() {
         this.fetchMovieDetails(this.getSelectedMovieId());
-        this.fetchReviews(this.getSelectedMovieId());
-        this.fetchComments(this.getSelectedMovieId());
     }
 
     fetchMovieDetails = (id) => {
@@ -35,14 +33,6 @@ class Movie extends Component {
                     detailsLoading: false
                 })
             })
-    }
-
-    fetchComments = () => {
-        console.log("Fetch Comments not implemented")
-    }
-
-    fetchReviews = () => {
-        console.log("Fetch Review not implemented")
     }
 
     componentDidMount() {
