@@ -4,8 +4,7 @@ import {useEffect, useState} from "react";
 import SocialCard from "../../SocialCard/SocialCard";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-    }
+    root: {}
 }));
 
 export default function ImdbReviews(props) {
@@ -15,15 +14,11 @@ export default function ImdbReviews(props) {
 
     const classes = useStyles()
 
-    const fetchReviews = () => {
+    useEffect(() => {
         movieApiService.getReviews(movieId)
             .then(response => {
                 setReviews(response.reviews.results)
-            })
-    }
-
-    useEffect(() => {
-        fetchReviews();
+            });
         return () => {
             setReviews([])
         }
