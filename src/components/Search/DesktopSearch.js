@@ -28,11 +28,10 @@ const useStyles = makeStyles(theme => ({
 export default function DesktopSearch(props) {
     const [open, setOpen] = useState(false);
     const [timeout, initTimeout] = useState(0)
-    const [value, setValue] = useState({})
     const [searchMovieName, setSearchMovieName] = useState("")
     const movies = useSelector(state => state.movie.movies);
+    const loading = useSelector(state => state.movie.loading);
 
-    const loading = open && movies.length === 0;
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -49,16 +48,15 @@ export default function DesktopSearch(props) {
         }, 400));
     }
 
-    const handleSelect = (event, value) => {
-        if (value) {
+    const handleSelect = (event, value, reason) => {
+        if (reason === "select-option")
             history.push(`/movie/${value.id}`)
-        }
+        if (reason === "clear")
+            dispatch(clearMovies())
     }
 
     const handleClose = () => {
         setOpen(false)
-        dispatch(clearMovies())
-        setValue({})
     }
 
     const PaperComponentCustom = options => {
@@ -86,7 +84,6 @@ export default function DesktopSearch(props) {
     return (
         <div>
             <Autocomplete
-                value={value}
                 classes={{option: classes.option, listbox: classes.listBox}}
                 id="asynchronous-demo"
                 size="small"
@@ -98,11 +95,10 @@ export default function DesktopSearch(props) {
                 onInput={e => setSearchMovieName(e.target.value)}
                 onClose={handleClose}
                 onChange={handleSelect}
-                getOptionSelected={(option, value) => true}
+                getOptionSelected={() => true}
                 getOptionLabel={(option) => option.title || ""}
                 options={movies.slice(0, 3)}
                 loading={loading}
-                loadingText="Search movie"
                 renderInput={(params) => (
                     <TextField
                         {...params}
