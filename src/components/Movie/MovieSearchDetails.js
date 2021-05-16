@@ -14,12 +14,13 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 300,
         fontSize: 14,
         borderBottom: '1px solid #d5d5d5',
-        cursor: "pointer"
+        cursor: "pointer",
     },
     details: {
         display: 'flex',
         flexDirection: 'column',
         width: '100%',
+        marginRight: theme.spacing(1),
         "& .MuiCardContent-root": {
             padding: theme.spacing(1)
         },
@@ -27,8 +28,9 @@ const useStyles = makeStyles((theme) => ({
             margin: 0
         }
     },
-    content: {
+    cardContentRoot: {
         flex: '1 0 auto',
+        paddingBottom: 0
     },
     cover: {
         minWidth: '100px',
@@ -49,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 300,
         textAlign: "justify",
         overflow: "hidden",
-        padding: theme.spacing(0.5, 1, 0, 1)
+        padding: theme.spacing(0.5, 0.5, 0, 0.5)
     }
 }));
 
@@ -73,11 +75,11 @@ export default function MovieSearchDetails(props) {
                 title="Live from space album cover"
             />
             <div className={classes.details}>
-                <CardContent className={classes.content}>
+                <CardContent classes={{root: classes.cardContentRoot}} style={{paddingBottom: 0}}>
                     <p>{movie.title}</p>
-                    <div className={classes.overview}>{movie.overview.slice(0, 220)} ...</div>
+                    <div className={classes.overview}>{movie.overview.slice(0, 720)} ...</div>
                 </CardContent>
-                <CardActions className={classes.rating}>
+                <CardActions className={classes.rating} style={{paddingTop: 0}}>
                     <MovieRating rating={movie.tma_vote_average}
                                  icon="star"/>
                     <MovieRating rating={movie.vote_average}

@@ -3,8 +3,8 @@ import {Hidden, Icon} from "@material-ui/core";
 import React from "react";
 import {useHistory} from "react-router-dom"
 import UserMenuItem from "./UserMenuItem";
-import DesktopSearch from "../../Movie/Search/DesktopSearch";
-import PhoneSearch from "../../Movie/Search/PhoneSearch";
+import PhoneSearch from "../Search/PhoneSearch";
+import SearchPopover from "../Search/SearchPopover";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,7 +48,7 @@ export default function TopBar(props) {
             </div>
             <div className={classes.search}>
                 <Hidden smDown>
-                    <DesktopSearch/>
+                    <SearchPopover/>
                 </Hidden>
                 <Hidden mdUp>
                     <PhoneSearch/>
