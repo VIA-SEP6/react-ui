@@ -5,12 +5,12 @@ import IconButton from '@material-ui/core/IconButton';
 import Slide from '@material-ui/core/Slide';
 import SearchIcon from "@material-ui/icons/Search";
 import {AppBar, TextField, Toolbar} from "@material-ui/core";
-import {clearMovies, searchMovie} from "../../../store/actions";
+import {clearMovies, searchMovie} from "../../store/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
-import MovieSearchDetails from "../../Movie/MovieSearchDetails";
+import MovieSearchDetails from "../Movie/MovieSearchDetails";
 import CloseIcon from '@material-ui/icons/Close';
-import Spinner from "../Loader/Spinner";
+import Spinner from "../Layout/Loader/Spinner";
 
 const useStyles = makeStyles((theme) => ({
     result: {

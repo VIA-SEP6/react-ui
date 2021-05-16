@@ -1,11 +1,14 @@
 import {makeStyles} from "@material-ui/core/styles";
-import {Button, Popover, TextField, useMediaQuery, useTheme} from "@material-ui/core";
-import React, {useEffect, useState} from "react";
+import {Button, CircularProgress, InputAdornment, Popover, TextField} from "@material-ui/core";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {clearMovies, searchMovie} from "../../../store/actions";
-import MovieSearchDetails from "../../Movie/MovieSearchDetails";
+import {clearMovies, searchMovie} from "../../store/actions";
+import MovieSearchDetails from "../Movie/MovieSearchDetails";
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        width: 500
+    },
     popover: {
         marginTop: theme.spacing(2)
     },
@@ -20,16 +23,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchPopover(props) {
     const classes = useStyles();
-    const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [timeout, initTimeout] = useState(0)
 
     const movies = useSelector(state => state.movie.movies);
+    const loading = useSelector(state => state.movie.loading);
     const dispatch = useDispatch();
-
-    const matches = useMediaQuery(theme.breakpoints.up('md'));
-
 
     const open = movies.length > 0;
 
@@ -47,18 +47,27 @@ export default function SearchPopover(props) {
     const handleClose = () => {
         dispatch(clearMovies())
         setAnchorEl(null);
-    };
-
-    useEffect(() => {
-        if (!matches)
-            handleClose()
-    }, [matches])
+    }
 
     const id = open ? 'simple-popover' : undefined;
 
     return (
-        <div>
-            <TextField onChange={handleSearch}/>
+        <div className={classes.root}>
+            <TextField
+                fullWidth
+                size="small"
+                onChange={handleSearch}
+                label="Search a movie"
+                variant="outlined"
+                InputProps={{
+                    endAdornment: loading
+                        ? (
+                            <InputAdornment position="end">
+                                <CircularProgress color="primary" size={20}/>
+                            </InputAdornment>
+                        ) : null,
+                }}
+            />
             <Popover
                 className={classes.popover}
                 id={id}
@@ -67,7 +76,7 @@ export default function SearchPopover(props) {
                 onClose={handleClose}
                 anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'right',
+                    horizontal: 'center',
                 }}
                 transformOrigin={{
                     vertical: 'top',
