@@ -4,7 +4,7 @@ import React from "react";
 import {useHistory} from "react-router-dom"
 import UserMenuItem from "./UserMenuItem";
 import PhoneSearch from "../../Search/PhoneSearch";
-import SearchPopover from "../../Search/SearchPopover";
+import DesktopSearch from "../../Search/DesktopSearch";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,7 +48,7 @@ export default function TopBar(props) {
             </div>
             <div className={classes.search}>
                 <Hidden smDown>
-                    <SearchPopover/>
+                    <DesktopSearch/>
                 </Hidden>
                 <Hidden mdUp>
                     <PhoneSearch/>

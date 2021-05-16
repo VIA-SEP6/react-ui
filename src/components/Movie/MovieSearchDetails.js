@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import {CardActions} from "@material-ui/core";
 import MovieRating from "./MovieRating";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -58,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MovieSearchDetails(props) {
     const classes = useStyles();
+    const history = useHistory();
 
     const {movie} = props
 
@@ -67,8 +69,12 @@ export default function MovieSearchDetails(props) {
         return "https://ngmintlsubs.nationalgeographic.com/Solo/Content/Images/noCover.gif"
     }
 
+    const handleClick = () => {
+        history.push(`/movie/${movie.id}`)
+    }
+
     return (
-        <Card elevation={0} className={classes.root}>
+        <Card elevation={0} className={classes.root} onClick={handleClick}>
             <CardMedia
                 className={classes.cover}
                 image={getImage()}
@@ -77,7 +83,7 @@ export default function MovieSearchDetails(props) {
             <div className={classes.details}>
                 <CardContent classes={{root: classes.cardContentRoot}} style={{paddingBottom: 0}}>
                     <p>{movie.title}</p>
-                    <div className={classes.overview}>{movie.overview.slice(0, 720)} ...</div>
+                    <div className={classes.overview}>{movie.overview.slice(0, 550)} ...</div>
                 </CardContent>
                 <CardActions className={classes.rating} style={{paddingTop: 0}}>
                     <MovieRating rating={movie.tma_vote_average}
