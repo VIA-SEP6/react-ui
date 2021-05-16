@@ -1,6 +1,7 @@
 import {makeStyles} from "@material-ui/core/styles";
 import {Grid, Icon, Paper} from "@material-ui/core";
 import Rank from "../Common/Rank";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -12,7 +13,8 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "row",
         width: 200,
         border: "1px solid",
-        borderColor: theme.palette.primary.main
+        borderColor: theme.palette.primary.main,
+        cursor: "pointer"
     },
     details: {
         width: "100%",
@@ -37,13 +39,18 @@ const useStyles = makeStyles(theme => ({
 
 export default function CommentRank(props) {
     const classes = useStyles()
+    const history = useHistory()
 
-    const {rank, username, likes, src} = props
+    const {rank, username, userId, likes, src} = props
+
+    const handleClick = () => {
+        history.push(`/profile/${userId}`)
+    }
 
     return (
         <Grid container direction="row" className={classes.root}>
             <Rank>{rank}</Rank>
-            <Paper elevation={8} className={classes.content}>
+            <Paper elevation={8} className={classes.content} onClick={handleClick}>
                 <img src={src} alt={username} height={72}/>
                 <div className={classes.details}>
                     {username}

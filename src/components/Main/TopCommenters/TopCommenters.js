@@ -54,7 +54,7 @@ export default function TopCommenters(props) {
 
     let content = (
         users.map((user, index) => (
-            <CommentRank key={user.id} rank={index + 1} username={user.userName} likes={user.likes} src={user.profileUrl}/>
+            <CommentRank key={user.id} userId={user.id} rank={index + 1} username={user.userName} likes={user.likes} src={user.profileUrl}/>
         ))
     )
 
