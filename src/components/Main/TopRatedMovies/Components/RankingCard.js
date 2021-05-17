@@ -20,7 +20,10 @@ const useStyles = makeStyles(theme => ({
         width: 140
     },
     image: {
-        width: 160
+        width: 160,
+        height: 240,
+        borderTopRightRadius: theme.spacing(0.4),
+        borderBottomRightRadius: theme.spacing(0.4),
     },
     title: {
         display: "flex",
