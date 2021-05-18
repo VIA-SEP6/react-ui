@@ -41,7 +41,7 @@ export default function CommentRank(props) {
     const classes = useStyles()
     const history = useHistory()
 
-    const {rank, username, userId, likes, src} = props
+    const {rank, username, userId, comments, src} = props
 
     const handleClick = () => {
         history.push(`/profile/${userId}`)
@@ -55,8 +55,8 @@ export default function CommentRank(props) {
                 <div className={classes.details}>
                     {username}
                     <div className={classes.likes}>
-                        <Icon>thumb_up_off_alt</Icon>
-                        <div>{likes}</div>
+                        <Icon color="primary">comment</Icon>
+                        <div>{comments}</div>
                     </div>
                 </div>
             </Paper>
