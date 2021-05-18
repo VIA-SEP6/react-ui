@@ -77,7 +77,7 @@ export default function RankingCard(props) {
                     <span className={classes.title}>{title}</span>
                     <span className={classes.releaseDate}>{formatDate(new Date(releaseDate))}</span>
                     <Rank>{rank}</Rank>
-                    <span className={classes.rating}>{rating}/<span>10</span></span>
+                    <span className={classes.rating}>{rating.toFixed(1)}/<span>10</span></span>
                     <span className={classes.count}>({ratingsCount})</span>
                 </div>
                 <img className={classes.image} src={imgSrc} alt={title}/>

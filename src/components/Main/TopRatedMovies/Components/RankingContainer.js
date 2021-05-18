@@ -33,8 +33,8 @@ export default function RankingContainer(props) {
                         title={movie.title}
                         releaseDate={movie.release_date}
                         rank={index + 1}
-                        rating={movie.vote_average}
-                        ratingsCount={movie.vote_count}
+                        rating={parseFloat(movie.vote_average)}
+                        ratingsCount={parseInt(movie.vote_count)}
                         imgSrc={movie.poster_path}
                     />
                 </Grid>

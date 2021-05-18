@@ -22,7 +22,7 @@ export default function MovieRating(props) {
     const {iconSrc, rating, icon} = props
 
     const getRating = () => {
-        return rating === 0 || !rating ? "No Rating" : `${rating}/10`
+        return rating === 0 || !rating ? "No Rating" : `${rating.toFixed(1)}/10`
     }
 
     const ratingIcon = (
