@@ -1,11 +1,7 @@
 import React, {Component} from "react";
-import {Grid} from "@material-ui/core";
-import PersonDetails from "../components/Person/Details/PersonDetails";
-import Spinner from "../components/Layout/Loader/Spinner";
-import KnownForMovies from "../components/Person/KnownFor/KnownForMovies";
-import PersonStatisticsContainer from "../components/Person/Statistics/PersonStatisticsContainer";
 import {searchMovie} from "../store/actions";
 import {connect} from "react-redux";
+import DetailedSearchResult from "../components/Search/DetailedSearchResult";
 
 class Search extends Component {
     init() {
@@ -29,7 +25,7 @@ class Search extends Component {
     render() {
         return (
             <div>
-                {this.getSearchMovieName()}
+                <DetailedSearchResult movieName={this.getSearchMovieName()} movies={this.props.movies}/>
             </div>
         )
     }
@@ -37,7 +33,7 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        movie: state.movie.movies,
+        movies: state.movie.movies,
         loading: state.movie.loading,
     }
 }

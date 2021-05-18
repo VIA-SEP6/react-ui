@@ -3,8 +3,8 @@ import {Hidden, Icon} from "@material-ui/core";
 import React from "react";
 import {useHistory} from "react-router-dom"
 import UserMenuItem from "./UserMenuItem";
-import PhoneSearch from "../../Search/PhoneSearch";
-import DesktopSearch from "../../Search/DesktopSearch";
+import PhoneSearch from "../Search/PhoneSearch";
+import DesktopSearch from "../Search/DesktopSearch";
 
 const useStyles = makeStyles(theme => ({
     root: {

@@ -43,10 +43,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         fontSize: 12,
     },
-    playIcon: {
-        height: 38,
-        width: 38,
-    },
     overview: {
         fontSize: 10,
         fontWeight: 300,
