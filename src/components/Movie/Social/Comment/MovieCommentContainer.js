@@ -16,7 +16,7 @@ export default function MovieCommentContainer(props) {
 
     const addComment = (comment) => {
         console.log(movieId)
-        movieApiService.addComment(currentUser.uid, movieId, comment)
+        movieApiService.addComment(movieId, comment)
     }
 
     return (
