@@ -10,6 +10,7 @@ import Main from "./containers/Main";
 import Profile from "./containers/Profile"
 import Movie from "./containers/Movie"
 import Person from "./containers/Person"
+import Search from "./containers/Search"
 
 class App extends Component {
     componentDidMount() {
@@ -22,6 +23,7 @@ class App extends Component {
                 <Route path="/" exact component={Main}/>
                 <Route path="/movie/:id" component={Movie}/>
                 <Route path="/person/:id" component={Person}/>
+                <Route path="/search/:name" component={Search}/>
                 <Redirect to="/"/>
             </Switch>
         );
@@ -33,7 +35,8 @@ class App extends Component {
                     <Route path="/profile" component={Profile}/>
                     <Route path="/movie/:id" component={Movie}/>
                     <Route path="/person/:id" component={Person}/>
-                    <Route path="/" exact component={Main}/>
+                    <Route path="/search/:name" component={Search}/>
+                    <Route path="/" exact component={Movies}/>
                     <Redirect to="/"/>
                 </Switch>
             )
