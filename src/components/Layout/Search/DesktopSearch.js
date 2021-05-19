@@ -1,7 +1,7 @@
-import {CircularProgress, TextField} from "@material-ui/core";
+import {Button, CircularProgress, Paper, TextField} from "@material-ui/core";
 import React, {useState} from "react";
 import {Autocomplete} from "@material-ui/lab";
-import MovieSearchDetails from "../MovieSearchDetails";
+import MovieSearchDetails from "../../Movie/MovieSearchDetails";
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {clearMovies, searchMovie} from "../../../store/actions"
@@ -10,7 +10,8 @@ import {useHistory} from "react-router-dom";
 const useStyles = makeStyles(theme => ({
     paper: {
         border: '1px solid',
-        borderColor: theme.palette.primary.main
+        borderColor: theme.palette.primary.main,
+        marginTop: theme.spacing(1),
     },
     option: {
         margin: 0,
@@ -23,13 +24,14 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
+
 export default function DesktopSearch(props) {
     const [open, setOpen] = useState(false);
     const [timeout, initTimeout] = useState(0)
-    const [value, setValue] = useState({})
+    const [searchMovieName, setSearchMovieName] = useState("")
     const movies = useSelector(state => state.movie.movies);
+    const loading = useSelector(state => state.movie.loading);
 
-    const loading = open && movies.length === 0;
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -46,23 +48,43 @@ export default function DesktopSearch(props) {
         }, 400));
     }
 
-    const handleSelect = (event, value) => {
-        if (value) {
+    const handleSelect = (event, value, reason) => {
+        if (reason === "select-option")
             history.push(`/movie/${value.id}`)
-        }
+        if (reason === "clear")
+            dispatch(clearMovies())
     }
 
     const handleClose = () => {
         setOpen(false)
-        dispatch(clearMovies())
-        setValue({})
     }
+
+    const PaperComponentCustom = options => {
+        const {containerProps, children} = options;
+        const history = useHistory();
+
+        const handleShowAll = () => {
+            history.push(`/search/${searchMovieName}`)
+        }
+
+        const showAllButton = movies.length === 0
+            ? null
+            : (<Button style={{fontWeight: 500}} size="small" color="primary" fullWidth onMouseDown={handleShowAll}>
+                Show all results
+            </Button>)
+
+        return (
+            <Paper {...containerProps} className={classes.paper}>
+                {children}
+                {showAllButton}
+            </Paper>
+        );
+    };
 
     return (
         <div>
             <Autocomplete
-                value={value}
-                classes={{option: classes.option, listbox: classes.listBox, paper: classes.paper}}
+                classes={{option: classes.option, listbox: classes.listBox}}
                 id="asynchronous-demo"
                 size="small"
                 style={{width: 500}}
@@ -70,13 +92,13 @@ export default function DesktopSearch(props) {
                 onOpen={() => {
                     setOpen(true);
                 }}
+                onInput={e => setSearchMovieName(e.target.value)}
                 onClose={handleClose}
                 onChange={handleSelect}
-                getOptionSelected={(option, value) => option.id === value.id}
+                getOptionSelected={() => true}
                 getOptionLabel={(option) => option.title || ""}
                 options={movies.slice(0, 3)}
                 loading={loading}
-                loadingText="Search movie"
                 renderInput={(params) => (
                     <TextField
                         {...params}
@@ -99,6 +121,7 @@ export default function DesktopSearch(props) {
                         <MovieSearchDetails movie={movie}/>
                     )
                 }}
+                PaperComponent={PaperComponentCustom}
             />
         </div>
     )

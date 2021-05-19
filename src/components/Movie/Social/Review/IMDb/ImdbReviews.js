@@ -15,7 +15,7 @@ export default function ImdbReviews(props) {
 
     const classes = useStyles()
 
-    const fetchReviews = () => {
+    const fetchReviews = (movieId) => {
         movieApiService.getReviews(movieId)
             .then(response => {
                 setReviews(response.reviews.results)
@@ -23,11 +23,11 @@ export default function ImdbReviews(props) {
     }
 
     useEffect(() => {
-        fetchReviews();
+        fetchReviews(movieId);
         return () => {
             setReviews([])
         }
-    }, [movieId, setReviews])
+    }, [movieId])
 
     return (
         <div className={classes.root}>
