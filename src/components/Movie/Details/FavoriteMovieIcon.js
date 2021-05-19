@@ -16,9 +16,9 @@ export default function FavoriteMovieIcon(props) {
 
     const handleClick = () => {
         if (isFavorite)
-            authApiService.removeMovieFromFavourites(`${movie.id}`, currentUser.uid)
+            authApiService.removeMovieFromFavourites(`${movie.id}`)
         else
-            authApiService.addMovieToFavourites(`${movie.id}`, currentUser.uid)
+            authApiService.addMovieToFavourites(`${movie.id}`)
     }
 
     const favoriteIcon = (

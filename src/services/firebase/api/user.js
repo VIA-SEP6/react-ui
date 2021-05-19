@@ -1,7 +1,7 @@
-import instance from "./axios";
+import {firebaseOnCall} from "../firebase";
 
-const registerUserAccount = (axios) => (newUserObject) => {
-    const data = {
+const registerUserAccount = (newUserObject) => {
+    const registerUserRequest = {
         userName: newUserObject.username,
         password: newUserObject.password,
         email: newUserObject.email,
@@ -11,36 +11,26 @@ const registerUserAccount = (axios) => (newUserObject) => {
             phone: newUserObject.phone
         }
     }
-
-    return axios.post("/user-register", {data}).then(response => response.data)
+    return firebaseOnCall('user-register', {...registerUserRequest})
 }
 
-const getUserProfile = (axios) => (userId) => {
-    return axios.post('/user-getProfile ', {data: {userId: userId}}).then(response => response.data.result.message.user)
+const getUserProfile = () => {
+    return firebaseOnCall('user-getProfile')
 }
 
-const addMovieToFavourites = axios => (movieId, userId) => {
-    const data = {
-        movieId,
-        userId
-    }
-    return axios.post("/user-addFavouriteMovie", {data}).then(response => response.data.data)
+const addMovieToFavourites = (movieId) => {
+    return firebaseOnCall('user-addFavouriteMovie', {movieId})
 }
 
-const removeMovieFromFavourites = axios => (movieId, userId) => {
-    console.log("Remove from favorites")
-    const data = {
-        movieId,
-        userId
-    }
-    return axios.post("/user-removeFavouriteMovie", {data}).then(response => response.data.data)
+const removeMovieFromFavourites = (movieId) => {
+    return firebaseOnCall('user-removeFavouriteMovie', {movieId})
 }
 
 const authApiService = {
-    registerUserAccount: registerUserAccount(instance),
-    getUserProfile: getUserProfile(instance),
-    addMovieToFavourites: addMovieToFavourites(instance),
-    removeMovieFromFavourites: removeMovieFromFavourites(instance),
+    registerUserAccount,
+    getUserProfile,
+    addMovieToFavourites,
+    removeMovieFromFavourites,
 }
 
 export default authApiService;

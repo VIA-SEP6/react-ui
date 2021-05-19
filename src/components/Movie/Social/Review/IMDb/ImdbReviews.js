@@ -4,8 +4,7 @@ import {useEffect, useState} from "react";
 import SocialCard from "../../SocialCard/SocialCard";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-    }
+    root: {}
 }));
 
 export default function ImdbReviews(props) {

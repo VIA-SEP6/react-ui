@@ -4,7 +4,7 @@ import {fetchProfile} from "../store/actions";
 
 class Profile extends Component {
     componentDidMount() {
-        this.props.getUserProfile(this.props.currentUser.uid)
+        this.props.getUserProfile()
     }
 
     render() {
@@ -20,13 +20,12 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
     return {
         currentUser: state.auth.user,
-        userProfile: state.profile.profile
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUserProfile: (uuid) => dispatch(fetchProfile(uuid))
+        getUserProfile: () => dispatch(fetchProfile())
     }
 }
 

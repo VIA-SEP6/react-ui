@@ -98,7 +98,7 @@ export default function MovieDetails(props) {
             <Grid item xs={12} sm={8}>
                 <Grid container direction="row">
                     <Grid item container xs={10} alignItems="center">
-                        <div className={classes.movieTitle}>{movie.original_title}</div>
+                        <div className={classes.movieTitle}>{movie.title}</div>
                     </Grid>
                     {addToFavorites}
                     <Grid container justify="space-between" alignItems="center">

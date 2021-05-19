@@ -6,7 +6,7 @@ import Layout from "./components/Layout/Layout";
 import {loginUser, logInWithGoogle, logoutUser, registerUser, searchMovie, verifyAuth} from "./store/actions";
 
 import SignOut from "./containers/Auth/SignOut";
-import Movies from "./containers/Movies";
+import Main from "./containers/Main";
 import Profile from "./containers/Profile"
 import Movie from "./containers/Movie"
 import Person from "./containers/Person"
@@ -20,7 +20,7 @@ class App extends Component {
     render() {
         let routes = (
             <Switch>
-                <Route path="/" exact component={Movies}/>
+                <Route path="/" exact component={Main}/>
                 <Route path="/movie/:id" component={Movie}/>
                 <Route path="/person/:id" component={Person}/>
                 <Route path="/search/:name" component={Search}/>
