@@ -26,7 +26,7 @@ export default function ImdbReviews(props) {
         return () => {
             setReviews([])
         }
-    }, [movieId, setReviews])
+    }, [movieId])
 
     return (
         <div className={classes.root}>

@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import {CardActions} from "@material-ui/core";
 import MovieRating from "./MovieRating";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,12 +15,13 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 300,
         fontSize: 14,
         borderBottom: '1px solid #d5d5d5',
-        cursor: "pointer"
+        cursor: "pointer",
     },
     details: {
         display: 'flex',
         flexDirection: 'column',
         width: '100%',
+        marginRight: theme.spacing(1),
         "& .MuiCardContent-root": {
             padding: theme.spacing(1)
         },
@@ -27,8 +29,9 @@ const useStyles = makeStyles((theme) => ({
             margin: 0
         }
     },
-    content: {
+    cardContentRoot: {
         flex: '1 0 auto',
+        paddingBottom: 0
     },
     cover: {
         minWidth: '100px',
@@ -40,22 +43,19 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         fontSize: 12,
     },
-    playIcon: {
-        height: 38,
-        width: 38,
-    },
     overview: {
         fontSize: 10,
         fontWeight: 300,
         textAlign: "justify",
         overflow: "hidden",
-        padding: theme.spacing(0.5, 1, 0, 1)
+        padding: theme.spacing(0.5, 0.5, 0, 0.5)
     }
 }));
 
 
 export default function MovieSearchDetails(props) {
     const classes = useStyles();
+    const history = useHistory();
 
     const {movie} = props
 
@@ -65,19 +65,23 @@ export default function MovieSearchDetails(props) {
         return "https://ngmintlsubs.nationalgeographic.com/Solo/Content/Images/noCover.gif"
     }
 
+    const handleClick = () => {
+        history.push(`/movie/${movie.id}`)
+    }
+
     return (
-        <Card elevation={0} className={classes.root}>
+        <Card elevation={0} className={classes.root} onClick={handleClick}>
             <CardMedia
                 className={classes.cover}
                 image={getImage()}
                 title="Live from space album cover"
             />
             <div className={classes.details}>
-                <CardContent className={classes.content}>
+                <CardContent classes={{root: classes.cardContentRoot}} style={{paddingBottom: 0}}>
                     <p>{movie.title}</p>
-                    <div className={classes.overview}>{movie.overview.slice(0, 220)} ...</div>
+                    <div className={classes.overview}>{movie.overview.slice(0, 550)} ...</div>
                 </CardContent>
-                <CardActions className={classes.rating}>
+                <CardActions className={classes.rating} style={{paddingTop: 0}}>
                     <MovieRating rating={movie.tma_vote_average}
                                  icon="star"/>
                     <MovieRating rating={movie.vote_average}
