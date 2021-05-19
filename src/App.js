@@ -36,7 +36,7 @@ class App extends Component {
                     <Route path="/movie/:id" component={Movie}/>
                     <Route path="/person/:id" component={Person}/>
                     <Route path="/search/:name" component={Search}/>
-                    <Route path="/" exact component={Movies}/>
+                    <Route path="/" exact component={Main}/>
                     <Redirect to="/"/>
                 </Switch>
             )

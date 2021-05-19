@@ -31,7 +31,9 @@ if (process.env.REACT_APP_LOCAL) {
 }
 
 
-export function firebaseOnCall(functionName, payloadObj) {
-    return functions.httpsCallable(functionName)(payloadObj).then(result => result.data)
+export function firebaseOnCall(functionName, payloadObj = {}) {
+    return functions.httpsCallable(functionName)(payloadObj)
+        .then(result => result.data)
+        .catch(err => console.log(err))
 }
 

@@ -15,19 +15,18 @@ export default function TheMovieAgentReviews(props) {
     const {movieId, currentUser} = props
 
     const handleLike = (reviewId) => {
-        movieApiService.likeReview(currentUser.uid, reviewId)
+        movieApiService.likeReview(reviewId)
     }
 
     const handleDislike = (reviewId) => {
-        movieApiService.dislikeReview(currentUser.uid, reviewId)
+        movieApiService.dislikeReview(reviewId)
     }
 
     const handleClearReaction = (reviewId) => {
-        movieApiService.clearReviewReaction(currentUser.uid, reviewId)
+        movieApiService.clearReviewReaction(reviewId)
     }
 
     useEffect(() => {
-
         firestoreReferenceService
             .getReviewsByMovieIdReference(movieId)
             .onSnapshot(

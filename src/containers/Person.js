@@ -22,7 +22,7 @@ class Person extends Component {
 
     fetchPersonDetails(id) {
         this.setState(this.initialState)
-        personApiService.fetchPersonDetails(id)
+        personApiService.getPersonDetails(id)
             .then(details => {
                 this.setState({
                     details,

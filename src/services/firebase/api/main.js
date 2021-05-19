@@ -1,21 +1,21 @@
-import axiosInstance from "./axios";
+import {firebaseOnCall} from "../firebase";
 
-const getUpcomingMovies = (axios) => () => {
-    return axios.post("/movies-getUpcoming").then(response => response.data.data.results)
+const getUpcomingMovies = () => {
+    return firebaseOnCall('movies-getUpcoming').then(result => result.results)
 }
 
-const getTopRatedMovies = (axios) => () => {
-    return axios.post("/movies-getTopRated").then(response => response.data.data)
+const getTopRatedMovies = () => {
+    return firebaseOnCall('movies-getTopRated')
 }
 
-const getPopularMovies = (axios) => () => {
-    return axios.post("/movies-getPopular").then(response => response.data.data.results)
+const getPopularMovies = () => {
+    return firebaseOnCall('movies-getPopular').then(result => result.results)
 }
 
 const mainPageApiService = {
-    getUpcomingMovies: getUpcomingMovies(axiosInstance),
-    getTopRatedMovies: getTopRatedMovies(axiosInstance),
-    getPopularMovies: getPopularMovies(axiosInstance)
+    getUpcomingMovies,
+    getTopRatedMovies,
+    getPopularMovies
 }
 
 export default mainPageApiService;

@@ -1,15 +1,11 @@
-import instance from "./axios";
 import {firebaseOnCall} from "../firebase";
 
-const searchMovie = (axios) => (movieName) => {
-    return axios.post("/movies-search", {query: movieName}).then(response => response.data)
+const searchMovie = (movieName) => {
+    return firebaseOnCall('movies-search', {query: movieName,})
 }
 
-const getMovieDetails = (axios) => (movieId) => {
-    return axios.post("/movies-get", {
-        id: movieId,
-        append_to_response: "credits,videos,recommendations"
-    }).then(response => response.data.data)
+const getMovieDetails = (movieId) => {
+    return firebaseOnCall('movies-get', {movieId, append_to_response: "credits,videos,recommendations"})
 }
 
 const addReview = (userId, description, rating, movieId) => {
@@ -45,15 +41,12 @@ const clearCommentReaction = (commentId) => {
 }
 
 const getReviews = (movieId) => {
-    return firebaseOnCall('movies-get', {
-        id: movieId,
-        append_to_response: "reviews"
-    })
+    return firebaseOnCall('movies-get', {movieId, append_to_response: "reviews"})
 }
 
 const movieApiService = {
-    searchMovie: searchMovie(instance),
-    getMovieDetails: getMovieDetails(instance),
+    searchMovie,
+    getMovieDetails,
     addReview,
     likeReview,
     dislikeReview,
