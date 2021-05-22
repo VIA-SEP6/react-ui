@@ -1,8 +1,9 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
-import {Grid, Icon, IconButton} from "@material-ui/core";
-import MovieRating from "./MovieRating";
-import WriteReview from "./Social/Review/WriteReview";
+import {Grid} from "@material-ui/core";
+import MovieRating from "../MovieRating";
+import WriteReview from "../Social/Review/WriteReview";
+import FavoriteMovieIcon from "./FavoriteMovieIcon";
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -65,13 +66,23 @@ export default function MovieDetails(props) {
     }
 
     let addReview = null
+    let addToFavorites = null
 
-    if (authenticated)
+    if (authenticated) {
         addReview = (
             <Grid container justify="center" alignItems="center">
                 <WriteReview submit={submitReview}/>
             </Grid>
         )
+
+        addToFavorites = (
+            <Grid item container xs={2} alignItems="center">
+                <Grid container justify="flex-end" alignItems="center">
+                    <FavoriteMovieIcon currentUser={currentUser} movie={movie}/>
+                </Grid>
+            </Grid>
+        )
+    }
 
     const content = (
         <Grid container spacing={2} direction="row">
@@ -87,16 +98,9 @@ export default function MovieDetails(props) {
             <Grid item xs={12} sm={8}>
                 <Grid container direction="row">
                     <Grid item container xs={10} alignItems="center">
-                        <div className={classes.movieTitle}>{movie.original_title}</div>
+                        <div className={classes.movieTitle}>{movie.title}</div>
                     </Grid>
-                    <Grid item container xs={2} alignItems="center">
-                        <Grid container justify="flex-end" alignItems="center">
-                            <IconButton>
-                                <Icon>favorite_border</Icon>
-                            </IconButton>
-                        </Grid>
-                    </Grid>
-
+                    {addToFavorites}
                     <Grid container justify="space-between" alignItems="center">
                         <Grid item xs={4}>
                             <div className={classes.releaseYear}>{new Date(movie.release_date).getFullYear()}</div>

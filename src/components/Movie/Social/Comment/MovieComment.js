@@ -17,15 +17,15 @@ export default function MovieComment(props) {
     const {movieId, currentUser} = props
 
     const handleLike = (commentId) => {
-        movieApiService.likeComment(currentUser.uid, commentId)
+        movieApiService.likeComment(commentId)
     }
 
     const handleDislike = (commentId) => {
-        movieApiService.dislikeComment(currentUser.uid, commentId)
+        movieApiService.dislikeComment(commentId)
     }
 
     const handleClearReaction = (commentId) => {
-        movieApiService.clearCommentReaction(currentUser.uid, commentId)
+        movieApiService.clearCommentReaction(commentId)
     }
 
     useEffect(() => {

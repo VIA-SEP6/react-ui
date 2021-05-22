@@ -33,7 +33,7 @@ export const searchMovie = (name) => {
         dispatch(setMoviesFetchStarted())
         movieApiService.searchMovie(name)
             .then((response) => {
-                dispatch(setMoviesFetchSuccess(response.data.results))
+                dispatch(setMoviesFetchSuccess(response.results))
             })
             .catch((error) => {
                 dispatch(setMoviesFetchError(error))

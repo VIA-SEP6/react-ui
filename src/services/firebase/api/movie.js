@@ -1,97 +1,61 @@
-import instance from "./axios";
+import {firebaseOnCall} from "../firebase";
 
-const searchMovie = (axios) => (movieName) => {
-    return axios.post("/movies-search", {query: movieName}).then(response => response.data)
+const searchMovie = (movieName) => {
+    return firebaseOnCall('movies-search', {query: movieName,})
 }
 
-const getMovieDetails = (axios) => (movieId) => {
-    return axios.post("/movies-get", {
-        id: movieId,
-        append_to_response: "credits,videos,recommendations"
-    }).then(response => response.data.data)
+const getMovieDetails = (movieId) => {
+    return firebaseOnCall('movies-get', {movieId, append_to_response: "credits,videos,recommendations"})
 }
 
-const addReview = (axios) => (userId, description, rating, movieId) => {
-    const data = {
-        userId, description, rating, movieId
-    }
-    return axios.post("/reviews-add", {data}).then(response => response.data.data)
+const addReview = (userId, description, rating, movieId) => {
+    return firebaseOnCall('reviews-add', {description, rating, movieId})
 }
 
-const likeReview = (axios) => (userId, reviewId) => {
-    const data = {
-        userId,
-        reviewId
-    }
-    return axios.post("/reviews-like", {data}).then(response => response.data.data)
+const likeReview = (reviewId) => {
+    return firebaseOnCall('reviews-like', {reviewId})
 }
 
-const dislikeReview = (axios) => (userId, reviewId) => {
-    const data = {
-        userId,
-        reviewId
-    }
-    return axios.post("/reviews-dislike", {data}).then(response => response.data.data)
+const dislikeReview = (reviewId) => {
+    return firebaseOnCall('reviews-dislike', {reviewId})
 }
 
-const clearReviewReaction = (axios) => (userId, reviewId) => {
-    const data = {
-        userId,
-        reviewId
-    }
-
-    return axios.post("/reviews-removeReaction", {data}).then(response => response.data.data)
+const clearReviewReaction = (reviewId) => {
+    return firebaseOnCall('reviews-removeReaction', {reviewId})
 }
 
-const addComment = axios => (userId, movieId, comment, parentComment) => {
-    const data = {
-        userId: userId,
-        movieId: movieId,
-        content: comment,
-        parent: parentComment
-    }
-
-    return axios.post("/comments-add", {data}).then(response => response.data.data)
+const addComment = (movieId, content, parent) => {
+    return firebaseOnCall('comments-add', {movieId, content, parent})
 }
 
-const likeComment = axios => (userId, commentId) => {
-    const data = {
-        userId: userId,
-        commentId: commentId
-    }
-
-    return axios.post("/comments-like", {data}).then(response => response.data.data)
+const likeComment = (commentId) => {
+    return firebaseOnCall('comments-like', {commentId})
 }
 
-const dislikeComment = axios => (userId, commentId) => {
-    const data = {
-        userId: userId,
-        commentId: commentId
-    }
-
-    return axios.post("/comments-dislike", {data}).then(response => response.data.data)
+const dislikeComment = (commentId) => {
+    return firebaseOnCall('comments-dislike', {commentId})
 }
 
-const clearCommentReaction = axios => (userId, commentId) => {
-    const data = {
-        userId: userId,
-        commentId: commentId
-    }
+const clearCommentReaction = (commentId) => {
+    return firebaseOnCall('comments-removeReaction', {commentId})
+}
 
-    return axios.post("/comments-removeReaction", {data}).then(response => response.data.data)
+const getReviews = (movieId) => {
+    return firebaseOnCall('movies-get', {movieId, append_to_response: "reviews"})
 }
 
 const movieApiService = {
-    searchMovie: searchMovie(instance),
-    getMovieDetails: getMovieDetails(instance),
-    addReview: addReview(instance),
-    likeReview: likeReview(instance),
-    dislikeReview: dislikeReview(instance),
-    clearReviewReaction: clearReviewReaction(instance),
-    addComment: addComment(instance),
-    likeComment: likeComment(instance),
-    dislikeComment: dislikeComment(instance),
-    clearCommentReaction: clearCommentReaction(instance),
+    searchMovie,
+    getMovieDetails,
+    addReview,
+    likeReview,
+    dislikeReview,
+    clearReviewReaction,
+    addComment,
+    likeComment,
+    dislikeComment,
+    clearCommentReaction,
+    getReviews,
 }
 
 export default movieApiService;

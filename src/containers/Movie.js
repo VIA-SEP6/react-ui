@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import movieApiService from "../services/firebase/api/movie";
 import {Grid} from "@material-ui/core";
 import Spinner from "../components/Layout/Loader/Spinner";
-import MovieDetails from "../components/Movie/MovieDetails";
+import MovieDetails from "../components/Movie/Details/MovieDetails";
 import MovieCarousel from "../components/Movie/Videos/MovieCarousel";
 import MovieCredits from "../components/Movie/Credits/MovieCredits";
 import SimilarMovies from "../components/Movie/Similar/SimilarMovies";
@@ -22,8 +22,6 @@ class Movie extends Component {
 
     init() {
         this.fetchMovieDetails(this.getSelectedMovieId());
-        this.fetchReviews(this.getSelectedMovieId());
-        this.fetchComments(this.getSelectedMovieId());
     }
 
     fetchMovieDetails = (id) => {
@@ -35,14 +33,6 @@ class Movie extends Component {
                     detailsLoading: false
                 })
             })
-    }
-
-    fetchComments = () => {
-        console.log("Fetch Comments not implemented")
-    }
-
-    fetchReviews = () => {
-        console.log("Fetch Review not implemented")
     }
 
     componentDidMount() {
