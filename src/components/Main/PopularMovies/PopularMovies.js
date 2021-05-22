@@ -3,7 +3,7 @@ import {GridList, Paper} from "@material-ui/core";
 import React, {useEffect, useState} from "react";
 import mainPageApiService from "../../../services/firebase/api/main";
 import MovieGridTile from "../Common/MovieGridTile";
-import TopicHeader from "../Common/TopicHeader";
+import TopicHeader from "../../Common/TopicHeader";
 import LoadingSkeleton from "./LoadingSkeleton"
 
 const useStyles = makeStyles((theme) => ({
