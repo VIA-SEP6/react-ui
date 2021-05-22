@@ -104,7 +104,7 @@ export default function MovieCredits(props) {
                                 {cast.map(cast =>
                                     <ImageDetails
                                         onClick={() => openPersonDetails(cast.id)}
-                                        key={cast.id}
+                                        key={cast.id + cast.character}
                                         imgSrc={cast.profile_path}
                                         title={cast.name}
                                         subtitle={cast.character}

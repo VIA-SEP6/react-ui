@@ -1,4 +1,4 @@
-import {Badge, Grid, Icon, IconButton, ListItemIcon, ListItemText, Menu, MenuItem, withStyles} from "@material-ui/core";
+import {Grid, Icon, IconButton, ListItemIcon, ListItemText, Menu, MenuItem, withStyles} from "@material-ui/core";
 import React from "react";
 import CustomModal from "../Layout/Modal/CustomModal";
 import Login from "../Auth/Login/Login";
