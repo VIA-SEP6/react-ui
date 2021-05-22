@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-    profile: null,
+    profile: {},
     loading: false,
     error: null
 }

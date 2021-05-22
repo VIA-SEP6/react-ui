@@ -1,31 +1,28 @@
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles, Grid} from "@material-ui/core";
+import BigAvatar from "./BigAvatar"
+import React from "react";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: "inline-block",
-        cursor: "pointer"
-    },
     content: {
-        fontSize: 10,
-        width: 100,
+        fontSize: 15,
         textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
         alignItems: "center",
-        justifyContent: "start",
-        overflow: "hidden",
-        margin: theme.spacing(0.5)
     },
-    image: {
-        width: 100,
-        height: 150,
+    userName: {
+        fontSize: 25,
+        marginBottom: theme.spacing(1)
     },
-    title: {
-        margin: theme.spacing(0.5, 0),
-        color: theme.palette.black.main,
+    email: {
+        marginBottom: theme.spacing(3)
     },
-    subtitle: {
-        color: theme.palette.gray.main
+    staticText: {
+        float: "right",
+        marginTop: theme.spacing(2)
+    },
+    text: {
+        float: "left",
+        color: theme.palette.gray.main,
+        marginTop: theme.spacing(2)
     }
 }))
 
@@ -35,9 +32,9 @@ export default function ProfileData(props) {
 
     return (
         <div className={classes.content}>
-            <Grid container spacing={2} justify="center" alignItems="center">
+            <Grid container>
                 <Grid item xs={12}>
-                    <Avatar src={profileData.profilePhotoUrl}/>
+                    <BigAvatar src={profileData?.profilePhotoUrl}/>
                 </Grid>
                 <Grid item xs={12}>
                     <div className={classes.userName}>{profileData.userName}</div>
@@ -45,28 +42,28 @@ export default function ProfileData(props) {
                 <Grid item xs={12}>
                     <div className={classes.email}>{profileData.email}</div>
                 </Grid>
-                <Grid container xs={12}>
+                <Grid spacing ={1} container xs={12}>
                     <Grid item xs={6}>
-                        <div className={classes.phoneText}>Phone</div>
+                        <div className={classes.staticText}>Phone</div>
                     </Grid>
                     <Grid item xs={6}>
-                        <div className={classes.phone}>{profileData.userInfo.phone}</div>
-                    </Grid>
-                </Grid>
-                <Grid container xs={12}>
-                    <Grid item xs={6}>
-                        <div className={classes.ageText}>Age</div>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <div className={classes.age}>{profileData.userInfo.age}</div>
+                        <div className={classes.text}>{profileData.phone}</div>
                     </Grid>
                 </Grid>
-                <Grid container xs={12}>
+                <Grid spacing ={1} container xs={12}>
                     <Grid item xs={6}>
-                        <div className={classes.countryText}>Country</div>
+                        <div className={classes.staticText}>Age</div>
                     </Grid>
                     <Grid item xs={6}>
-                        <div className={classes.country}>{profileData.userInfo.country}</div>
+                        <div className={classes.text}>{profileData.age}</div>
+                    </Grid>
+                </Grid>
+                <Grid spacing ={1} container xs={12}>
+                    <Grid item xs={6}>
+                        <div className={classes.staticText}>Country</div>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <div className={classes.text}>{profileData.country}</div>
                     </Grid>
                 </Grid>
             </Grid>

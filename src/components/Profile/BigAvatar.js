@@ -4,14 +4,14 @@ import React from "react";
 
 const useStyles = makeStyles(theme => ({
     avatarBig: {
-        width: theme.spacing(9),
-        height: theme.spacing(9),
+        width: theme.spacing(18),
+        height: theme.spacing(18),
         border: '1px solid',
         borderColor: theme.palette.primary.main
     },
 }));
 
-export default function Avatar(props) {
+export default function BigAvatar(props) {
     const classes = useStyles()
 
     const {src} = props
