@@ -30,6 +30,8 @@ const StyledMenu = withStyles(theme => ({
 export default function UserMenuItem(props) {
     const history = useHistory();
 
+    const {isAuthenticated, currentUser, loginUser, loginWithGoogle, registerUser, logoutUser} = props
+
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -42,7 +44,7 @@ export default function UserMenuItem(props) {
 
     const handleLogout = () => {
         handleClose()
-        props.logoutUser()
+        logoutUser()
     }
 
     const navigateToProfile = () => {
@@ -57,19 +59,19 @@ export default function UserMenuItem(props) {
 
     let userData = (
         <CustomModal toggle={<IconButton><Icon>login</Icon></IconButton>}>
-            <Login loginUser={props.loginUser}
-                   loginWithGoogle={props.loginWithGoogle}
-                   registerUser={props.registerUser}
+            <Login loginUser={loginUser}
+                   loginWithGoogle={loginWithGoogle}
+                   registerUser={registerUser}
             />
         </CustomModal>
     )
 
-    if (props.isAuthenticated) {
+    if (isAuthenticated) {
         userData = (
             <Grid container alignItems="center">
-                <NotificationsMenu/>
+                <NotificationsMenu userId={currentUser.uid}/>
                 <UserAvatar
-                    src={props.currentUser.photoURL}
+                    src={currentUser.photoURL}
                     onClick={handleClick}
                 />
                 <StyledMenu
