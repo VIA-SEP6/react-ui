@@ -7,13 +7,14 @@ const useStyles = makeStyles(theme => ({
         fontSize: 15,
         textAlign: "center",
         alignItems: "center",
+        overflowWrap: "break-word",
     },
     userName: {
         fontSize: 25,
         marginBottom: theme.spacing(1)
     },
     email: {
-        marginBottom: theme.spacing(3)
+        marginBottom: theme.spacing(3),
     },
     staticText: {
         float: "right",
