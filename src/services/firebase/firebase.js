@@ -15,21 +15,22 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config);
 }
 
-export const auth = firebase.auth();
+const auth = firebase.auth()
 
-export const db = firebase.database();
+const db = firebase.database();
 
-export const firestore = firebase.firestore();
+const firestore = firebase.firestore();
 
-let functions;
+const functions = firebase.app().functions("europe-west1")
 
 if (process.env.REACT_APP_LOCAL) {
-    functions = firebase.app().functions("europe-west1");
+    auth.useEmulator('http://localhost:9099')
+    db.useEmulator('localhost', 9000)
+    firestore.useEmulator('localhost', 8080)
     functions.useEmulator('localhost', 5001)
-} else {
-    functions = firebase.app().functions("europe-west1")
 }
 
+export {auth, db, firestore}
 
 export function firebaseOnCall(functionName, payloadObj = {}) {
     return functions.httpsCallable(functionName)(payloadObj)
