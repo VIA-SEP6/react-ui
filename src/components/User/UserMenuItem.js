@@ -1,9 +1,10 @@
 import {Badge, Grid, Icon, IconButton, ListItemIcon, ListItemText, Menu, MenuItem, withStyles} from "@material-ui/core";
 import React from "react";
-import CustomModal from "../Modal/CustomModal";
-import Login from "../../Auth/Login/Login";
+import CustomModal from "../Layout/Modal/CustomModal";
+import Login from "../Auth/Login/Login";
 import {useHistory} from "react-router-dom";
-import UserAvatar from "../../User/UserAvatar";
+import UserAvatar from "./UserAvatar";
+import NotificationsMenu from "./Notifications/NotificationsMenu";
 
 const StyledMenu = withStyles(theme => ({
     paper: {
@@ -66,11 +67,7 @@ export default function UserMenuItem(props) {
     if (props.isAuthenticated) {
         userData = (
             <Grid container alignItems="center">
-                <IconButton>
-                    <Badge color="primary" overlap="circle" variant="dot">
-                        <Icon>notifications</Icon>
-                    </Badge>
-                </IconButton>
+                <NotificationsMenu/>
                 <UserAvatar
                     src={props.currentUser.photoURL}
                     onClick={handleClick}
