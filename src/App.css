@@ -2,3 +2,9 @@ html, body {
   margin: 0;
   font-family: 'Ubuntu', sans-serif;
 }
+
+.scrollable::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+}

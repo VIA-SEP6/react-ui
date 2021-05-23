@@ -2,6 +2,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Grid, Icon, Paper} from "@material-ui/core";
 import Rank from "../Common/Rank";
 import {useHistory} from "react-router-dom";
+import {getImageSrc} from "../../../services/util/imageValidation";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,6 +35,12 @@ const useStyles = makeStyles(theme => ({
             fontSize: 14,
             fontWeight: 300
         }
+    },
+    image: {
+        borderTopLeftRadius: theme.spacing(0.4),
+        borderBottomLeftRadius: theme.spacing(0.4),
+        width: 72,
+        height: 72,
     }
 }));
 
@@ -41,7 +48,7 @@ export default function CommentRank(props) {
     const classes = useStyles()
     const history = useHistory()
 
-    const {rank, username, userId, comments, src} = props
+    const {rank, username, userId, commentCount, src} = props
 
     const handleClick = () => {
         history.push(`/profile/${userId}`)
@@ -51,12 +58,12 @@ export default function CommentRank(props) {
         <Grid container direction="row" className={classes.root}>
             <Rank>{rank}</Rank>
             <Paper elevation={8} className={classes.content} onClick={handleClick}>
-                <img src={src} alt={username} height={72}/>
+                <img className={classes.image} src={getImageSrc(src)} alt={username}/>
                 <div className={classes.details}>
                     {username}
                     <div className={classes.likes}>
                         <Icon color="primary">comment</Icon>
-                        <div>{comments}</div>
+                        <div>{commentCount}</div>
                     </div>
                 </div>
             </Paper>
