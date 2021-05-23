@@ -33,7 +33,7 @@ export default function MovieComment(props) {
     }
 
     useEffect(() => {
-        firestoreReferenceService
+        const unsub = firestoreReferenceService
             .getCommentsByMovieIdReference(movieId)
             .onSnapshot(
                 snapshot => {
@@ -51,6 +51,9 @@ export default function MovieComment(props) {
                 error => {
                     console.log(error.message)
                 })
+        return () => {
+            unsub()
+        }
     }, [setComments, movieId])
 
     return (
