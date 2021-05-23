@@ -32,6 +32,7 @@ export default function WriteComment(props) {
 
     const handleSubmitOnEnter = (event) => {
         if (event.keyCode === 13) {
+            event.preventDefault()
             handleSubmit()
         }
     }

@@ -28,23 +28,8 @@ export default function MovieComment(props) {
         movieApiService.clearCommentReaction(commentId)
     }
 
-    const handleGetReplies = (commentId, setReplies) => {
-        firestoreReferenceService
-            .getCommentsByMovieIdReference(movieId)
-            .onSnapshot(snapshot => {
-                    setReplies([])
-                    snapshot.forEach(document => {
-                        if (document.exists && document.data().parent === commentId) {
-                            const commentObject = {
-                                id: document.id, ...document.data(),
-                            }
-                            setReplies(replies => [...replies, commentObject])
-                        }
-                    })
-                },
-                error => {
-                    console.log(error.message)
-                })
+    const getReplies = (parentId) => {
+        return comments.filter(comment => comment.parent === parentId)
     }
 
     useEffect(() => {
@@ -54,7 +39,7 @@ export default function MovieComment(props) {
                 snapshot => {
                     setComments([])
                     snapshot.forEach(document => {
-                        if (document.exists && !document.data().parent) {
+                        if (document.exists) {
                             const commentObject = {
                                 id: document.id, ...document.data(),
                             }
@@ -70,7 +55,7 @@ export default function MovieComment(props) {
 
     return (
         <div className={classes.root}>
-            {comments.map(comment => (
+            {comments.filter(comment => !comment.parent).map(comment => (
                 <SocialCard
                     key={comment.id}
                     id={comment.id}
@@ -88,7 +73,7 @@ export default function MovieComment(props) {
                     userId={comment.userId}
                     description={comment.content}
                     postDate={comment.timestamp?.toDate()}
-                    getReplies={handleGetReplies}
+                    getReplies={getReplies}
                     addComment={(text, parent) => addComment(text, parent || comment.id)}
                 />
             ))}

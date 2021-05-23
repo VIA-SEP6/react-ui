@@ -3,7 +3,6 @@ import {Button, Icon, Paper} from "@material-ui/core";
 import CustomModal from "../../../../Layout/Modal/CustomModal";
 import React from "react";
 import WriteComment from "../../Comment/WriteComment";
-import movieApiService from "../../../../../services/firebase/api/movie";
 
 const useStyles = makeStyles(theme => ({
     root: {},
@@ -16,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 export default function WriteReply(props) {
     const classes = useStyles()
 
-    const { addComment, currentUser } = props
+    const {addComment, currentUser} = props
 
     const handleCreateReply = (comment) => {
         addComment(comment)

@@ -7,11 +7,6 @@ import Description from "./Components/Description";
 import Likes from "../Likes";
 import {formatDateTime} from "../../../../services/util/dateConverter";
 import WriteReply from "./Components/WriteReply";
-import firestoreReferenceService from "../../../../services/firebase/firestore/references";
-
-const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-];
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,7 +16,9 @@ const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(5),
     },
     overflow: {
-        overflow: "auto"
+        [theme.breakpoints.down('sm')]: {
+            overflow: "auto"
+        },
     },
     likesRight: {
         marginLeft: 'auto'
@@ -33,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SocialCard(props) {
     const [replies, setReplies] = useState([])
-    const [c, setOpen] = useState([])
+    const [open, setOpen] = useState(false)
     const classes = useStyles()
 
     const {
@@ -60,13 +57,12 @@ export default function SocialCard(props) {
     } = props
 
     const handleLoadReplies = () => {
-        if (replies.length === 0) {
-            getReplies(id, setReplies)
-        } else {
-            setReplies([])
-        }
+        setOpen(open => !open)
     }
 
+    useEffect(() => {
+        setReplies(getReplies(id) || [])
+    }, [setReplies, id, getReplies])
 
     const renderLikes = (
         <Grid item xs={12} sm={4} className={type === "comment" ? classes.likesRight : null}>
@@ -120,9 +116,15 @@ export default function SocialCard(props) {
     const renderRepliesOptions = (
         <Grid className={classes.replies} container justify="space-between" alignItems="center">
             <Grid item>
-                <Button color="primary" size="small" onClick={handleLoadReplies}>replies
-                    ({Math.floor(Math.random() * 100)})</Button>
+                {replies.length === 0
+                    ? null
+                    : (
+                        <Button color="primary" size="small" onClick={handleLoadReplies}>replies
+                            ({replies.length})</Button>
+                    )
+                }
             </Grid>
+
             <Grid item>
                 <WriteReply addComment={addComment} currentUser={currentUser}/>
             </Grid>
@@ -142,7 +144,7 @@ export default function SocialCard(props) {
                 <Description text={description}/>
             </Grid>
             {type === "comment" ? renderRepliesOptions : null}
-            {replies.length !== 0 ? renderReplies : null}
+            {open ? renderReplies : null}
         </Grid>
     )
 }
