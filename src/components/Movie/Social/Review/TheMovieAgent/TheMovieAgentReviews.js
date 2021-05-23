@@ -27,24 +27,18 @@ export default function TheMovieAgentReviews(props) {
     }
 
     useEffect(() => {
-        firestoreReferenceService
+        const unsub = firestoreReferenceService
             .getReviewsByMovieIdReference(movieId)
             .onSnapshot(
                 snapshot => {
-                    setReviews([])
-                    snapshot.forEach(document => {
-                        if (document.exists) {
-                            const reviewObject = {
-                                id: document.id, ...document.data(),
-                            }
-                            setReviews(reviews => [...reviews, reviewObject])
-                        }
-
-                    })
+                    setReviews(snapshot.docs.map(doc => {
+                        return {...doc.data(), id: doc.id}
+                    }))
                 },
                 error => {
                     console.log(error.message)
                 })
+        return () => unsub()
     }, [setReviews, movieId])
 
     return (

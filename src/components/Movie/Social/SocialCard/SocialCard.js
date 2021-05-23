@@ -49,7 +49,7 @@ export default function SocialCard(props) {
         description,
         postDate,
         rating,
-        reply,
+        reply = false,
         getReplies = () => {
         },
         currentUser,
@@ -61,11 +61,12 @@ export default function SocialCard(props) {
     }
 
     useEffect(() => {
-        setReplies(getReplies(id) || [])
-    }, [setReplies, id, getReplies])
+        if (type === "comment")
+            setReplies(getReplies(id) || [])
+    }, [setReplies, id, getReplies, reply])
 
     const renderLikes = (
-        <Grid item xs={12} sm={4} className={type === "comment" ? classes.likesRight : null}>
+        <Grid item xs={type === "comment" ? 6 : 12} sm={4} className={type === "comment" ? classes.likesRight : null}>
             <Likes
                 isDislike={isDislike}
                 dislikes={dislikes}

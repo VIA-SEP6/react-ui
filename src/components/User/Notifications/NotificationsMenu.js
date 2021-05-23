@@ -33,7 +33,9 @@ const useStyles = makeStyles(theme => ({
         position: 'fixed',
         bottom: theme.spacing(2),
         right: theme.spacing(2),
-        zIndex: 100
+        zIndex: 100,
+        border: '1px solid',
+        borderColor: theme.palette.primary.main,
     }
 }));
 
@@ -143,7 +145,7 @@ function NotificationsMenu(props) {
     const indicatorIcon = (
         phone
             ? (
-                <Fab color="secondary" onClick={handleClick} size="large" className={classes.fab}>
+                <Fab className={classes.fab} color="secondary" onClick={handleClick} size="large" >
                     <Badge color="primary" overlap="circle" {...badgeProps}>
                         <Icon>{getUnreadNotificationsLength() === 0 ? "notifications_none" : "notifications"} </Icon>
                     </Badge>
