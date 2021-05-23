@@ -61,7 +61,7 @@ export default function TheMovieAgentReviews(props) {
                     handleDislike={() => handleDislike(review.id)}
                     handleClearReaction={() => handleClearReaction(review.id)}
                     avatarSrc={review.user?.profilePhotoUrl}
-                    username={review.user?.username}
+                    username={review.user?.userName}
                     userId={review.userId}
                     description={review.description}
                     postDate={review.timestamp.toDate()}

@@ -63,7 +63,7 @@ export default function MovieComment(props) {
                     handleDislike={() => handleDislike(comment.id)}
                     handleClearReaction={() => handleClearReaction(comment.id)}
                     avatarSrc={comment.user?.profilePhotoUrl}
-                    username={comment.user?.username}
+                    username={comment.user?.userName}
                     userId={comment.userId}
                     description={comment.content}
                     postDate={comment.timestamp?.toDate()}
