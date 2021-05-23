@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     submitButton: {
         fontSize: 14,
         marginTop: theme.spacing(1)
+    },
+    textArea: {
+        margin: theme.spacing(0, 5)
     }
 }));
 
@@ -35,21 +38,20 @@ export default function WriteComment(props) {
 
     return (
         <Grid className={classes.root} container justify="center" alignItems="center" direction="row">
-            <Grid item xs={2} md={1}>
+            <Grid container alignItems="center">
                 <UserAvatar src={currentUser.photoURL}/>
+                <div className={classes.username}>
+                    {currentUser.displayName}
+                </div>
             </Grid>
-            <Grid xs={10} md={11} item className={classes.username}>
-                {currentUser.displayName}
+            <Grid container>
+                <Grid container className={classes.textArea}>
+                    <TextareaAutosize value={comment} onKeyDown={handleSubmitOnEnter} onChange={e => setComment(e.target.value)} placeholder="Write a comment" rows={6}/>
+                </Grid>
+                <Grid container justify="center" className={classes.submitButton}>
+                    <Button disabled={comment.trim() === ""} onClick={handleSubmit} color="primary">Add Comment</Button>
+                </Grid>
             </Grid>
-            <Grid item xs={10} md={11}>
-                    <Grid xs={12} item container>
-                        <TextareaAutosize value={comment} onKeyDown={handleSubmitOnEnter} onChange={e => setComment(e.target.value)} placeholder="Write a comment" rows={4}/>
-                    </Grid>
-                    <Grid xs={12} item container justify="center" className={classes.submitButton}>
-                        <Button disabled={comment.trim() === ""} onClick={handleSubmit} color="primary">Add Comment</Button>
-                    </Grid>
-            </Grid>
-
         </Grid>
     )
 }

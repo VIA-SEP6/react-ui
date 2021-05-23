@@ -14,9 +14,8 @@ export default function MovieCommentContainer(props) {
 
     const {movieId, currentUser} = props
 
-    const addComment = (comment) => {
-        console.log(movieId)
-        movieApiService.addComment(movieId, comment)
+    const addComment = (comment, parent) => {
+        movieApiService.addComment(movieId, comment, parent)
     }
 
     return (
@@ -25,7 +24,7 @@ export default function MovieCommentContainer(props) {
                 <WriteComment currentUser={currentUser} submit={addComment}/>
             </Grid>
             <Grid item xs={12} md={7}>
-                <MovieComment movieId={movieId} currentUser={currentUser}/>
+                <MovieComment addComment={addComment} movieId={movieId} currentUser={currentUser}/>
             </Grid>
         </Grid>
     )
