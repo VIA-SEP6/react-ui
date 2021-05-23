@@ -97,9 +97,9 @@ export default function SocialCard(props) {
                     dislikes={reply.dislikes?.length}
                     isLike={reply.likes?.includes(currentUser.uid)}
                     likes={reply.likes?.length}
-                    handleLike={() => handleLike(reply.id)}
-                    handleDislike={() => handleDislike(reply.id)}
-                    handleClearReaction={() => handleClearReaction(reply.id)}
+                    handleLike={(id) => handleLike(id || reply.id)}
+                    handleDislike={(id) => handleDislike(id || reply.id)}
+                    handleClearReaction={(id) => handleClearReaction(id || reply.id)}
                     avatarSrc={reply.user?.profilePhotoUrl}
                     username={reply.user?.userName}
                     userId={reply.userId}

@@ -101,23 +101,18 @@ function NotificationsMenu(props) {
     const classes = useStyles()
 
     useEffect(() => {
-        firestoreReferenceService
+        const unsub = firestoreReferenceService
             .getNotificationsForTheUserReference(userId)
             .onSnapshot(
                 snapshot => {
-                    setNotifications([])
-                    snapshot.forEach(document => {
-                        if (document.exists) {
-                            const notificationObject = {
-                                id: document.id, ...document.data(),
-                            }
-                            setNotifications(notifications => [...notifications, notificationObject])
-                        }
-                    })
+                    setNotifications(snapshot.docs.map(doc => {
+                        return {...doc.data(), id: doc.id}
+                    }))
                 },
                 error => {
                     console.log(error.message)
                 })
+        return () => unsub()
     }, [setNotifications, userId])
 
     const notificationsList = (
@@ -148,7 +143,7 @@ function NotificationsMenu(props) {
     const indicatorIcon = (
         phone
             ? (
-                <Fab color="secondary" onClick={handleClick} size="small" className={classes.fab}>
+                <Fab color="secondary" onClick={handleClick} size="large" className={classes.fab}>
                     <Badge color="primary" overlap="circle" {...badgeProps}>
                         <Icon>{getUnreadNotificationsLength() === 0 ? "notifications_none" : "notifications"} </Icon>
                     </Badge>

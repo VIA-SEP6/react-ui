@@ -37,23 +37,15 @@ export default function MovieComment(props) {
             .getCommentsByMovieIdReference(movieId)
             .onSnapshot(
                 snapshot => {
-                    setComments([])
-                    snapshot.forEach(document => {
-                        if (document.exists) {
-                            const commentObject = {
-                                id: document.id, ...document.data(),
-                            }
-                            setComments(comments => [...comments, commentObject])
-                        }
-
-                    })
+                    setComments(snapshot.docs.map(doc => {
+                        return {...doc.data(), id: doc.id}
+                    }))
                 },
                 error => {
                     console.log(error.message)
                 })
-        return () => {
-            unsub()
-        }
+        return () => unsub()
+
     }, [setComments, movieId])
 
     return (

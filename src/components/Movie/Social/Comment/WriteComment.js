@@ -50,7 +50,7 @@ export default function WriteComment(props) {
                     <TextareaAutosize value={comment} onKeyDown={handleSubmitOnEnter} onChange={e => setComment(e.target.value)} placeholder="Write a comment" rows={6}/>
                 </Grid>
                 <Grid container justify="center" className={classes.submitButton}>
-                    <Button disabled={comment.trim() === ""} onClick={handleSubmit} color="primary">Add Comment</Button>
+                    <Button disabled={comment.trim() === ""} onClick={handleSubmit} type="submit" color="primary">Add Comment</Button>
                 </Grid>
             </Grid>
         </Grid>
