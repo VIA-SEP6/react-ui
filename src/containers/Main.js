@@ -5,6 +5,7 @@ import TopRatedMovies from "../components/Main/TopRatedMovies/TopRatedMovies";
 import HorizontalLine from "../components/Layout/Seperator/HorizontalLine";
 import PopularMovies from "../components/Main/PopularMovies/PopularMovies";
 import TopCommenters from "../components/Main/TopCommenters/TopCommenters";
+import {connect} from "react-redux";
 
 class Main extends Component {
     render() {
@@ -21,12 +22,23 @@ class Main extends Component {
                 <Grid item xs={12} md={8}>
                     <PopularMovies/>
                 </Grid>
-                <Grid item xs={12} md={4}>
-                    <TopCommenters/>
-                </Grid>
+                {this.props.isAuthenticated
+                    ? (
+                        <Grid item xs={12} md={4}>
+                            <TopCommenters/>
+                        </Grid>
+                    )
+                    : null}
             </Grid>
         )
     }
 }
 
-export default Main;
+
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.user !== null,
+    }
+}
+
+export default connect(mapStateToProps, null)(Main)
