@@ -4,7 +4,6 @@ import {Button} from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
     googleButton: {
         background: '#fff',
-        width: '75%',
         '& img': {
             height: "32px"
         },
@@ -15,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
         textTransform: "none",
         fontFamily: ["Roboto", "sans-serif"].join(","),
-        width: 200
     }
 }));
 
@@ -25,9 +23,10 @@ const GoogleButton = (props) => {
 
     return (
         <Button
-            onClick={props.onClick}
-            classes={{root: classes.root}}
             className={classes.googleButton}
+            classes={{root: classes.root}}
+            variant="contained"
+            onClick={props.onClick}
             startIcon={<img alt="Google Sign In"
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>}>
             Sign in with Google

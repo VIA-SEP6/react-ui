@@ -3,6 +3,7 @@ import {Button, Grid, makeStyles, Paper, TextField} from "@material-ui/core";
 import GoogleButton from "./GoogleButton";
 import CustomModal from "../../Layout/Modal/CustomModal";
 import Register from "../Register";
+import TopicHeader from "../../Main/Common/TopicHeader";
 
 const useStyles = makeStyles((theme) => ({
     action: {
@@ -11,8 +12,6 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[5],
-        border: "none",
         padding: theme.spacing(3),
         maxWidth: '350px',
         display: "flex",
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1)
     },
     forgotPassword: {
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(2),
         fontWeight: '300',
         fontSize: "12px"
     }
@@ -42,8 +41,8 @@ const Login = (props) => {
     }
 
     return (
-        <Paper className={classes.paper}>
-            <h4>Sign In to account</h4>
+        <Paper elevation={8} className={classes.paper}>
+            <TopicHeader>Sign In to account</TopicHeader>
             <TextField
                 className={classes.input}
                 onInput={(e) => setEmail(e.target.value)}
@@ -61,7 +60,7 @@ const Login = (props) => {
                 onKeyDown={handleLogin}
             />
             <Grid container justify="center" spacing={2} className={classes.action}>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={6}>
                     <Button
                         onClick={() => props.loginUser(email, password)}
                         variant={"text"}
@@ -71,7 +70,7 @@ const Login = (props) => {
                         Login
                     </Button>
                 </Grid>
-                <Grid item sm={12} md={6}>
+                <Grid item sm={6}>
                     <CustomModal
                         toggle={<Button variant={"text"} color={"primary"} fullWidth>Register</Button>}
                     >

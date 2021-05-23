@@ -5,11 +5,6 @@ const registerUserAccount = (newUserObject) => {
         userName: newUserObject.username,
         password: newUserObject.password,
         email: newUserObject.email,
-        userInfo: {
-            age: newUserObject.age,
-            country: newUserObject.country,
-            phone: newUserObject.phone
-        }
     }
     return firebaseOnCall('user-register', {...registerUserRequest})
 }

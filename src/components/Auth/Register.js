@@ -1,19 +1,22 @@
 import {useState} from "react";
-import {Button, Grid, makeStyles, Paper, TextField} from "@material-ui/core";
+import {Button, makeStyles, Paper, TextField} from "@material-ui/core";
+import TopicHeader from "../Main/Common/TopicHeader";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        textAlign: "center",
-        backgroundColor: "#fff",
-        maxWidth: '600px',
+        backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(3),
-        margin: theme.spacing(3),
+        maxWidth: '350px',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center"
     },
     input: {
-        textAlign: "center"
+        margin: theme.spacing(1)
     },
     actions: {
-        margin: theme.spacing(2),
+        marginTop: theme.spacing(2),
     },
     error: {
         fontSize: "14px",
@@ -32,9 +35,6 @@ const Register = (props) => {
     const [emailError, setEmailError] = useState(null);
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState(null);
-    const [age, setAge] = useState("");
-    const [country, setCountry] = useState("");
-    const [phone, setPhone] = useState("");
     const [valid, setValid] = useState(false)
 
     const classes = useStyles();
@@ -44,9 +44,6 @@ const Register = (props) => {
             username,
             email,
             password,
-            age,
-            country,
-            phone
         }
     }
 
@@ -65,7 +62,7 @@ const Register = (props) => {
     const validateUsername = (value) => {
         setUsername(value)
         if (!value || value.length < 4) {
-            setUsernameError("Username must contain minimum 4 characters")
+            setUsernameError("Too short username")
         } else {
             setUsernameError(null)
         }
@@ -85,7 +82,7 @@ const Register = (props) => {
     const validatePassword = (value) => {
         setPassword(value)
         if (!value || value.length < 6)
-            return setPasswordError("Password must be at least 6 characters long")
+            return setPasswordError("Too short password")
         setPasswordError(null)
         validateForm()
     }
@@ -99,87 +96,48 @@ const Register = (props) => {
 
 
     return (
-        <Paper className={classes.paper}>
-            <h4 className={classes.header}>Create a new Account</h4>
-            <Grid container spacing={2} justify={"center"} alignItems={"center"}>
-                <Grid item xs={12} sm={6} className={classes.input}>
-                    <TextField
-                        error={usernameError != null}
-                        helperText={usernameError}
-                        label="Username"
-                        type="text"
-                        placeholder="Enter the username"
-                        onBlur={(e) => validateUsername(e.target.value)}
-                        onChange={(e) => validateUsername(e.target.value)}
-                        fullWidth={true}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} className={classes.input}>
-                    <TextField
-                        error={emailError != null}
-                        helperText={emailError}
-                        label="Email"
-                        type="email"
-                        placeholder="Enter the email address"
-                        onBlur={(e) => validateEmail(e.target.value)}
-                        onChange={(e) => validateEmail(e.target.value)}
-                        fullWidth={true}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} className={classes.input}>
-                    <TextField
-                        error={passwordError != null}
-                        helperText={passwordError}
-                        label="Password"
-                        type="password"
-                        placeholder="Type the password"
-                        onBlur={(e) => validatePassword(e.target.value)}
-                        onChange={(e) => validatePassword(e.target.value)}
-                        fullWidth={true}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} className={classes.input}>
-                    <TextField
-                        label="Repeat Password"
-                        type="password"
-                        placeholder="Re-type the password"
-                        onBlur={(e) => validateRepPassword(e.target.value)}
-                        onChange={(e) => validateRepPassword(e.target.value)}
-                        fullWidth={true}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={2} className={classes.input}>
-                    <TextField
-                        label="Age"
-                        type="number"
-                        placeholder="Enter the age"
-                        onChange={(e) => setAge(e.target.value)}
-                        fullWidth={true}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={5} className={classes.input}>
-                    <TextField
-                        label="Country"
-                        type="text"
-                        placeholder="Enter the country name"
-                        onChange={(e) => setCountry(e.target.value)}
-                        fullWidth={true}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={5} className={classes.input}>
-                    <TextField
-                        label="Phone"
-                        type="phone"
-                        placeholder="Enter the phone number"
-                        onChange={(e) => setPhone(e.target.value)}
-                        fullWidth={true}
-                    />
-                </Grid>
-                <Grid container justify="center" className={classes.actions}>
-                    <Button color={"primary"} variant={"text"} size={"small"} onClick={createAccount} disabled={!valid}>Create
-                        Account</Button>
-                </Grid>
-            </Grid>
+        <Paper elevation={8} className={classes.paper}>
+            <TopicHeader>Create a new Account</TopicHeader>
+            <TextField
+                className={classes.input}
+                error={usernameError != null}
+                helperText={usernameError}
+                label="Username"
+                type="text"
+                size="small"
+                onBlur={(e) => validateUsername(e.target.value)}
+                onChange={(e) => validateUsername(e.target.value)}
+            />
+            <TextField
+                className={classes.input}
+                error={emailError != null}
+                helperText={emailError}
+                label="Email"
+                type="email"
+                size="small"
+                onBlur={(e) => validateEmail(e.target.value)}
+                onChange={(e) => validateEmail(e.target.value)}
+            />
+            <TextField
+                className={classes.input}
+                error={passwordError != null}
+                helperText={passwordError}
+                label="Password"
+                type="password"
+                size="small"
+                onBlur={(e) => validatePassword(e.target.value)}
+                onChange={(e) => validatePassword(e.target.value)}
+            />
+            <TextField
+                className={classes.input}
+                label="Repeat Password"
+                type="password"
+                size="small"
+                onBlur={(e) => validateRepPassword(e.target.value)}
+                onChange={(e) => validateRepPassword(e.target.value)}
+            />
+            <Button className={classes.actions} color={"primary"} variant={"text"} size={"small"} onClick={createAccount} disabled={!valid}>Create
+                Account</Button>
         </Paper>
     )
 }
