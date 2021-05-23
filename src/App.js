@@ -11,6 +11,7 @@ import Profile from "./containers/Profile"
 import Movie from "./containers/Movie"
 import Person from "./containers/Person"
 import Search from "./containers/Search"
+import Settings from "./containers/Settings"
 
 class App extends Component {
     componentDidMount() {
@@ -33,6 +34,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/logout" component={SignOut}/>
                     <Route path="/profile" component={Profile}/>
+                    <Route path="/settings" component={Settings}/>
                     <Route path="/movie/:id" component={Movie}/>
                     <Route path="/person/:id" component={Person}/>
                     <Route path="/search/:name" component={Search}/>
