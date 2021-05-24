@@ -20,6 +20,7 @@ export default function ImageUploader(props) {
             </Button>
             <input
                 type="file"
+                accept=".jpg, .jpeg, .png"
                 ref={hiddenFileInput}
                 onChange={handleChange}
                 style={{ display: 'none' }}
