@@ -11,11 +11,13 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function HorizontalLine() {
+export default function HorizontalLine(props) {
     const classes = useStyles()
 
+    const {style} = props
+
     return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{...style}}>
             <Divider className={classes.divider}/>
         </div>
     )

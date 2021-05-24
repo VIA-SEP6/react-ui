@@ -2,7 +2,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Hidden, Icon} from "@material-ui/core";
 import React from "react";
 import {useHistory} from "react-router-dom"
-import UserMenuItem from "./UserMenuItem";
+import UserMenuItem from "../../User/UserMenuItem";
 import PhoneSearch from "../Search/PhoneSearch";
 import DesktopSearch from "../Search/DesktopSearch";
 

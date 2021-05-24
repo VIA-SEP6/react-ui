@@ -4,6 +4,7 @@ import TopicHeader from "../Common/TopicHeader";
 import {useEffect, useState} from "react";
 import {Grid} from "@material-ui/core";
 import LoadingSkeleton from "./LoadingSkeleton";
+import userStatisticsApiService from "../../../services/firebase/api/userStatistics";
 
 const useStyles = makeStyles(theme => ({
     root: {}
@@ -15,46 +16,17 @@ export default function TopCommenters(props) {
     const classes = useStyles()
 
     useEffect(() => {
-        setTimeout(() => {
-            setUsers([
-                {
-                    id: 1,
-                    userName: "David",
-                    comments: 566,
-                    profileUrl: "https://lh3.googleusercontent.com/a-/AOh14Gj-ueewFxQnzU8B8S7ESn2NJMaeDTy0IRybO0RC=s96-c"
-                },
-                {
-                    id: 2,
-                    userName: "Test",
-                    comments: 53,
-                    profileUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWOnlTR6M8ru8eup4smkyRvcS63JIGl6tIgm6mzQcHDlD4loJ61p2fHphe1GLqpaPkJ14&usqp=CAU"
-                },
-                {
-                    id: 3,
-                    userName: "Test",
-                    comments: 25,
-                    profileUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWOnlTR6M8ru8eup4smkyRvcS63JIGl6tIgm6mzQcHDlD4loJ61p2fHphe1GLqpaPkJ14&usqp=CAU"
-                },
-                {
-                    id: 4,
-                    userName: "Test",
-                    comments: 12,
-                    profileUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWOnlTR6M8ru8eup4smkyRvcS63JIGl6tIgm6mzQcHDlD4loJ61p2fHphe1GLqpaPkJ14&usqp=CAU"
-                },
-                {
-                    id: 5,
-                    userName: "Test",
-                    comments: 5,
-                    profileUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWOnlTR6M8ru8eup4smkyRvcS63JIGl6tIgm6mzQcHDlD4loJ61p2fHphe1GLqpaPkJ14&usqp=CAU"
-                }
-            ])
-            setLoading(false)
-        }, 2000)
+        userStatisticsApiService.getTopCommenters()
+            .then(commenters => {
+                setUsers(commenters || [])
+                setLoading(false)
+            })
     }, [setUsers])
 
     let content = (
         users.map((user, index) => (
-            <CommentRank key={user.id} userId={user.id} rank={index + 1} username={user.userName} comments={user.comments} src={user.profileUrl}/>
+            <CommentRank key={user.id} userId={user.id} rank={index + 1} username={user.userName}
+                         commentCount={user.nrOfComments} src={user.profilePhotoUrl}/>
         ))
     )
 
