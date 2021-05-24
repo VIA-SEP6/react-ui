@@ -1,5 +1,17 @@
 import {makeStyles} from "@material-ui/core/styles";
-import {Badge, Button, Grid, Icon, IconButton, Menu, Typography, withStyles} from "@material-ui/core";
+import {
+    Badge,
+    Button,
+    Fab,
+    Grid,
+    Icon,
+    IconButton,
+    isWidthDown,
+    Menu,
+    Typography,
+    withStyles,
+    withWidth
+} from "@material-ui/core";
 import React, {useEffect, useState} from "react";
 import firestoreReferenceService from "../../../services/firebase/firestore/references";
 import Notification from "./Notification";
@@ -16,6 +28,14 @@ const useStyles = makeStyles(theme => ({
     },
     actions: {
         padding: theme.spacing(0, 2)
+    },
+    fab: {
+        position: 'fixed',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+        zIndex: 100,
+        border: '1px solid',
+        borderColor: theme.palette.primary.main,
     }
 }));
 
@@ -23,7 +43,7 @@ const StyledMenu = withStyles(theme => ({
     paper: {
         border: '1px solid',
         borderColor: theme.palette.primary.main,
-        height: 400,
+        height: 300,
         width: 350,
         overflow: "hidden",
         position: "relative"
@@ -53,9 +73,10 @@ const StyledMenu = withStyles(theme => ({
     />
 ));
 
-export default function NotificationsMenu(props) {
+function NotificationsMenu(props) {
     const [notifications, setNotifications] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
+    const phone = isWidthDown('sm', props.width)
 
     const {userId} = props
 
@@ -82,23 +103,18 @@ export default function NotificationsMenu(props) {
     const classes = useStyles()
 
     useEffect(() => {
-        firestoreReferenceService
+        const unsub = firestoreReferenceService
             .getNotificationsForTheUserReference(userId)
             .onSnapshot(
                 snapshot => {
-                    setNotifications([])
-                    snapshot.forEach(document => {
-                        if (document.exists) {
-                            const notificationObject = {
-                                id: document.id, ...document.data(),
-                            }
-                            setNotifications(notifications => [...notifications, notificationObject])
-                        }
-                    })
+                    setNotifications(snapshot.docs.map(doc => {
+                        return {...doc.data(), id: doc.id}
+                    }))
                 },
                 error => {
                     console.log(error.message)
                 })
+        return () => unsub()
     }, [setNotifications, userId])
 
     const notificationsList = (
@@ -112,7 +128,8 @@ export default function NotificationsMenu(props) {
                 <Grid item>
                     {
                         notifications.map(notification => (
-                            <Notification key={notification.id} notification={notification} onClick={handleClearNotification}/>
+                            <Notification key={notification.id} notification={notification}
+                                          onClick={handleClearNotification}/>
                         ))
 
                     }
@@ -120,17 +137,32 @@ export default function NotificationsMenu(props) {
             )
     )
 
+
     const badgeProps = getUnreadNotificationsLength() === 0
         ? {}
         : {variant: "dot"}
 
+    const indicatorIcon = (
+        phone
+            ? (
+                <Fab className={classes.fab} color="secondary" onClick={handleClick} size="large" >
+                    <Badge color="primary" overlap="circle" {...badgeProps}>
+                        <Icon>{getUnreadNotificationsLength() === 0 ? "notifications_none" : "notifications"} </Icon>
+                    </Badge>
+                </Fab>
+            )
+            : (
+                <IconButton onClick={handleClick}>
+                    <Badge color="primary" overlap="circle" {...badgeProps}>
+                        <Icon>{getUnreadNotificationsLength() === 0 ? "notifications_none" : "notifications"} </Icon>
+                    </Badge>
+                </IconButton>
+            )
+    )
+
     return (
         <div className={classes.root}>
-            <IconButton onClick={handleClick}>
-                <Badge color="primary" overlap="circle" {...badgeProps}>
-                    <Icon>{getUnreadNotificationsLength() === 0 ? "notifications_none" : "notifications"} </Icon>
-                </Badge>
-            </IconButton>
+            {indicatorIcon}
             <StyledMenu
                 id="customized-menu"
                 anchorEl={anchorEl}
@@ -151,3 +183,5 @@ export default function NotificationsMenu(props) {
         </div>
     )
 }
+
+export default withWidth()(NotificationsMenu)

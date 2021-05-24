@@ -9,7 +9,7 @@ function prependZeroIfNeeded(number) {
     return number;
 }
 
-function formatTime(date) {
+export const formatTime = (date) => {
     let hours = prependZeroIfNeeded(date.getHours())
     let minutes = prependZeroIfNeeded(date.getMinutes());
     return `${hours}:${minutes}`
