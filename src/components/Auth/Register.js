@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Button, makeStyles, Paper, TextField} from "@material-ui/core";
-import TopicHeader from "../Main/Common/TopicHeader";
+import TopicHeader from "../Common/TopicHeader";
 
 const useStyles = makeStyles((theme) => ({
     paper: {

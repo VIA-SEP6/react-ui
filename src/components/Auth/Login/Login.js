@@ -3,7 +3,7 @@ import {Button, Grid, makeStyles, Paper, TextField} from "@material-ui/core";
 import GoogleButton from "./GoogleButton";
 import CustomModal from "../../Layout/Modal/CustomModal";
 import Register from "../Register";
-import TopicHeader from "../../Main/Common/TopicHeader";
+import TopicHeader from "../../Common/TopicHeader";
 
 const useStyles = makeStyles((theme) => ({
     action: {
