@@ -18,6 +18,9 @@ const theme = createMuiTheme({
             main: "#828282",
             darker: "#757575"
         },
+        yellow: {
+            main: "#ffaa00"
+        }
     },
     typography: {
         fontFamily: [

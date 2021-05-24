@@ -47,7 +47,6 @@ const FavoriteMovies = (props) => {
         authApiService.removeMovieFromFavourites(`${movieId}`).then(
             refreshProfile()
         )
-        //.then(favoriteMovies = favoriteMovies.filter(({id}) => id == movieId))
     }
 
     useEffect(() => {
