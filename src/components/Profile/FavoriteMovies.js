@@ -49,7 +49,6 @@ const FavoriteMovies = (props) => {
                 refreshProfile()
             }
         )
-        //.then(favoriteMovies = favoriteMovies.filter(({id}) => id == movieId))
     }
 
     useEffect(() => {

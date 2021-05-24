@@ -69,12 +69,12 @@ export default function MovieCard(props) {
     return (
         <div className={classes.content}>
             <Grid container direction="column">
-                <Grid container sx={4}>
+                <Grid item container sx={4}>
                     <Grid container direction="row">
                         <Grid item xs={2}>
                             <Avatar className={classes.number}><span>{number}</span></Avatar>
                         </Grid>
-                        <Grid container direction="column" xs={8}>
+                        <Grid item container direction="column" xs={8}>
                             <Grid item>
                                 <div className={classes.title}>{favoriteMovie.title}</div>
                             </Grid>
@@ -91,7 +91,7 @@ export default function MovieCard(props) {
                     <Grid item container direction="row">
                         <Grid item xs={4}>
                             <MovieRating className={classes.imdbRating} rating={favoriteMovie.vote_average} 
-                            icon="star" color={theme.palette.tertiary.main}/>
+                            icon="star" color={theme.palette.yellow.main}/>
                         </Grid>
                         <Grid item xs={4}>
                             <div className={classes.year}>{favoriteMovie.release_date.substring(0,4)}</div>
