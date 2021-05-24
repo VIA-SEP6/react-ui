@@ -1,10 +1,9 @@
-import {makeStyles} from "@material-ui/core";
+import {Grid, makeStyles} from "@material-ui/core";
 import React, {useEffect, useState} from "react";
-import {Grid} from "@material-ui/core";
 import MovieCard from "./MovieCard"
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import withWidth, {isWidthUp} from '@material-ui/core/withWidth';
 import {Pagination} from "@material-ui/lab";
 import authApiService from "../../services/firebase/api/user";
 
@@ -30,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const FavoriteMovies = (props) => {
-    var {favoriteMovies} = props
+    const {favoriteMovies, refreshProfile} = props
     const classes = useStyles()
     const [pages, setPages] = useState(0)
     const [pageNumber, setPageNumber] = useState(1)
@@ -41,11 +40,13 @@ const FavoriteMovies = (props) => {
     }
 
     const getNumber = (index) => {
-        return index+1+(pageNumber-1)*10
+        return index + 1 + (pageNumber - 1) * 10
     }
 
     const removeFavorite = (movieId) => {
-        authApiService.removeMovieFromFavourites(`${movieId}`)
+        authApiService.removeMovieFromFavourites(`${movieId}`).then(
+            refreshProfile()
+        )
         //.then(favoriteMovies = favoriteMovies.filter(({id}) => id == movieId))
     }
 
@@ -54,19 +55,19 @@ const FavoriteMovies = (props) => {
         setPaginatedMovies(favoriteMovies.slice((pageNumber - 1) * ITEMS_PER_PAGE, pageNumber * ITEMS_PER_PAGE))
     }, [favoriteMovies, pageNumber])
 
-    const getGridListCols = () => {  
-        if (isWidthUp('lg', props.width) && paginatedMovies.length>=5) {
-          return 5;
+    const getGridListCols = () => {
+        if (isWidthUp('lg', props.width) && paginatedMovies.length >= 5) {
+            return 5;
         }
-    
-        if (isWidthUp('md', props.width) && paginatedMovies.length>=3) {
-          return 3;
+
+        if (isWidthUp('md', props.width) && paginatedMovies.length >= 3) {
+            return 3;
         }
-        
-        if (isWidthUp('sm', props.width) && paginatedMovies.length>=2) {
+
+        if (isWidthUp('sm', props.width) && paginatedMovies.length >= 2) {
             return 2;
         }
-    
+
         return 1;
     }
 
@@ -84,18 +85,19 @@ const FavoriteMovies = (props) => {
                 />
             </Grid>
         )
-    
+
 
     return (
         <div className={classes.content}>
             <div className={classes.title}>Favorite Movies</div>
             <div className={classes.movies}>
-                <GridList cellHeight={350}  spacing={4} cols={getGridListCols()}>
-                {paginatedMovies.map((favMovie, index) => (
-                    <GridListTile key={favMovie.id}className={classes.tile} >
-                        <MovieCard removeFavorite={removeFavorite} className={classes.tile} favoriteMovie={favMovie} number={getNumber(index)}/>
-                    </GridListTile>
-                ))}
+                <GridList cellHeight={350} spacing={4} cols={getGridListCols()}>
+                    {paginatedMovies.map((favMovie, index) => (
+                        <GridListTile key={favMovie.id} className={classes.tile}>
+                            <MovieCard removeFavorite={removeFavorite} className={classes.tile} favoriteMovie={favMovie}
+                                       number={getNumber(index)}/>
+                        </GridListTile>
+                    ))}
                 </GridList>
             </div>
             {pagination}

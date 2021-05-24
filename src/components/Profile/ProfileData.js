@@ -76,7 +76,7 @@ export default function ProfileData(props) {
                         <div className={classes.staticText}>Favorites</div>
                     </Grid>
                     <Grid item xs={6}>
-                        <div className={classes.text}>{profileData.favouriteMovies.length}</div>
+                        <div className={classes.text}>{profileData.favouriteMovies?.length}</div>
                     </Grid>
                 </Grid>
                 <Grid spacing ={1} container>

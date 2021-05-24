@@ -17,7 +17,7 @@ class Profile extends Component {
                         <ProfileData profileData={this.props.profileData}/>
                     </Grid>
                     <Grid item  sm={8} lg={10}>
-                        <FavoriteMovies favoriteMovies={this.props.favoriteMovies}/> 
+                        <FavoriteMovies refreshProfile={this.props.getUserProfile} favoriteMovies={this.props.favoriteMovies}/>
                     </Grid>
                 </Grid> 
         )
