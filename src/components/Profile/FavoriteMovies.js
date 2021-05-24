@@ -44,8 +44,10 @@ const FavoriteMovies = (props) => {
     }
 
     const removeFavorite = (movieId) => {
-        authApiService.removeMovieFromFavourites(`${movieId}`).then(
-            refreshProfile()
+        authApiService.removeMovieFromFavourites(`${movieId}`).then(res => {
+                console.log("response", res)
+                refreshProfile()
+            }
         )
         //.then(favoriteMovies = favoriteMovies.filter(({id}) => id == movieId))
     }
