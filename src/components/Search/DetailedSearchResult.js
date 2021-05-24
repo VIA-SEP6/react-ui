@@ -3,6 +3,7 @@ import {Grid, Paper} from "@material-ui/core";
 import MovieSearchDetails from "../Movie/MovieSearchDetails";
 import React, {useEffect, useState} from "react";
 import {Pagination} from "@material-ui/lab";
+import TopicHeader from "../Common/TopicHeader";
 
 const ITEMS_PER_PAGE = 10
 
@@ -50,7 +51,7 @@ export default function DetailedSearchResult(props) {
 
     return (
         <div className={classes.root}>
-            <h3 style={{textAlign: "center"}}>Showing Search Result for: {movieName}</h3>
+            <TopicHeader>Showing Search Result for: {movieName}</TopicHeader>
             <Grid container spacing={4} alignItems="center">
                 <Grid container spacing={1} item xs={12} className={classes.content}>
                     {paginatedMovies.map(movie => (

@@ -57,8 +57,14 @@ export default function UserMenuItem(props) {
         history.push("/settings")
     }
 
+    const navigateToPlatformStatistics = () => {
+        handleClose()
+        history.push("/platform/statistics")
+    }
+
     const menuItems = [
         {text: "Profile", icon: "person", onClickFunction: navigateToProfile},
+        {text: "Platform Statistics", icon: "assessment", onClickFunction: navigateToPlatformStatistics},
         {text: "Settings", icon: "settings", onClickFunction: navigateToSettings},
         {text: "Sign Out", icon: "logout", onClickFunction: handleLogout},
     ]

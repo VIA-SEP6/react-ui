@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core/styles";
 import CommentRank from "./CommentRank";
-import TopicHeader from "../Common/TopicHeader";
+import TopicHeader from "../../Common/TopicHeader";
 import {useEffect, useState} from "react";
 import {Grid} from "@material-ui/core";
 import LoadingSkeleton from "./LoadingSkeleton";

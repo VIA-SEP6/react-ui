@@ -5,7 +5,7 @@ import mainPageApiService from "../../../services/firebase/api/main";
 import {Icon, Tab, Tabs} from "@material-ui/core";
 import {TabContext, TabPanel} from "@material-ui/lab";
 import RankingContainer from "./Components/RankingContainer";
-import TopicHeader from "../Common/TopicHeader";
+import TopicHeader from "../../Common/TopicHeader";
 
 
 const useStyles = makeStyles(theme => ({

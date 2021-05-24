@@ -1,7 +1,7 @@
 import {Tab, Tabs} from "@material-ui/core";
 import {TabContext, TabPanel} from "@material-ui/lab";
 import React from "react";
-import DoughnutChart from "./DoughnutChart";
+import DoughnutChart from "../../Common/Charts/DoughnutChart";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({

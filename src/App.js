@@ -12,6 +12,7 @@ import Movie from "./containers/Movie"
 import Person from "./containers/Person"
 import Search from "./containers/Search"
 import Settings from "./containers/Settings"
+import PlatformStatistics from "./containers/PlatformStatistics";
 
 class App extends Component {
     componentDidMount() {
@@ -38,6 +39,7 @@ class App extends Component {
                     <Route path="/movie/:id" component={Movie}/>
                     <Route path="/person/:id" component={Person}/>
                     <Route path="/search/:name" component={Search}/>
+                    <Route path="/platform/statistics" component={PlatformStatistics}/>
                     <Route path="/" exact component={Main}/>
                     <Redirect to="/"/>
                 </Switch>
