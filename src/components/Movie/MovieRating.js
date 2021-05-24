@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
-import {Icon} from "@material-ui/core";
+import {Icon, useTheme} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -18,15 +18,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function MovieRating(props) {
     const classes = useStyles();
+    const theme = useTheme()
 
-    const {iconSrc, rating, icon} = props
+    const {iconSrc, rating, icon, color} = props
 
     const getRating = () => {
         return rating === 0 || !rating ? "No Rating" : `${rating.toFixed(1)}/10`
     }
 
+    const iconColor = {
+        color: theme.palette.primary.main
+    }
+
+    if (color) {
+        iconColor.color = color
+    }
+
     const ratingIcon = (
-        icon ? <Icon color="primary">{icon}</Icon>
+        icon ? <Icon style={{...iconColor}}>{icon}</Icon>
             : <img
                 className={classes.icon}
                 src={iconSrc}

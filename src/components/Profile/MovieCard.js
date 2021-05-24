@@ -1,4 +1,4 @@
-import {makeStyles, Grid} from "@material-ui/core";
+import {makeStyles, Grid, useTheme} from "@material-ui/core";
 import {IconButton, Avatar} from '@material-ui/core';
 import MovieRating from "../Movie/MovieRating"
 import React from "react";
@@ -60,6 +60,7 @@ export default function MovieCard(props) {
     const {favoriteMovie, number, removeFavorite} = props
     const classes = useStyles()
     const history = useHistory();
+    const theme = useTheme()
 
     const moveToMovie = () => {
         history.push(`/movie/${favoriteMovie.id}`)
@@ -90,13 +91,13 @@ export default function MovieCard(props) {
                     <Grid item container direction="row">
                         <Grid item xs={4}>
                             <MovieRating className={classes.imdbRating} rating={favoriteMovie.vote_average} 
-                            icon="star"/>
+                            icon="star" color={theme.palette.tertiary.main}/>
                         </Grid>
                         <Grid item xs={4}>
                             <div className={classes.year}>{favoriteMovie.release_date.substring(0,4)}</div>
                         </Grid>
                         <Grid item xs={4}>
-                            <MovieRating className={classes.localRating} rating={favoriteMovie.tma_vote_average} 
+                            <MovieRating className={classes.localRating} rating={favoriteMovie.tma_vote_average}
                             icon="star"/>
                         </Grid>
                     </Grid>
