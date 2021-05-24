@@ -63,7 +63,7 @@ export default function SocialCard(props) {
     useEffect(() => {
         if (type === "comment")
             setReplies(getReplies(id) || [])
-    }, [setReplies, id, getReplies, reply])
+    }, [setReplies, id, getReplies, type])
 
     const renderLikes = (
         <Grid item xs={type === "comment" ? 6 : 12} sm={4} className={type === "comment" ? classes.likesRight : null}>
