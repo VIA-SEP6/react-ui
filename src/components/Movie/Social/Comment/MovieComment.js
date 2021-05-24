@@ -14,7 +14,7 @@ export default function MovieComment(props) {
     const [comments, setComments] = useState([])
     const classes = useStyles()
 
-    const {movieId, currentUser} = props
+    const {movieId, currentUser, addComment} = props
 
     const handleLike = (commentId) => {
         movieApiService.likeComment(commentId)
@@ -28,45 +28,48 @@ export default function MovieComment(props) {
         movieApiService.clearCommentReaction(commentId)
     }
 
+    const getReplies = (parentId) => {
+        return comments.filter(comment => comment.parent === parentId)
+    }
+
     useEffect(() => {
-        firestoreReferenceService
+        const unsub = firestoreReferenceService
             .getCommentsByMovieIdReference(movieId)
             .onSnapshot(
                 snapshot => {
-                    setComments([])
-                    snapshot.forEach(document => {
-                        if (document.exists) {
-                            const commentObject = {
-                                id: document.id, ...document.data(),
-                            }
-                            setComments(comments => [...comments, commentObject])
-                        }
-
-                    })
+                    setComments(snapshot.docs.map(doc => {
+                        return {...doc.data(), id: doc.id}
+                    }))
                 },
                 error => {
                     console.log(error.message)
                 })
+        return () => unsub()
+
     }, [setComments, movieId])
 
     return (
         <div className={classes.root}>
-            {comments.map(comment => (
+            {comments.filter(comment => !comment.parent).map(comment => (
                 <SocialCard
                     key={comment.id}
+                    id={comment.id}
+                    currentUser={currentUser}
                     type="comment"
                     isDislike={comment.dislikes?.includes(currentUser.uid)}
                     dislikes={comment.dislikes?.length}
                     isLike={comment.likes?.includes(currentUser.uid)}
                     likes={comment.likes?.length}
-                    handleLike={() => handleLike(comment.id)}
-                    handleDislike={() => handleDislike(comment.id)}
-                    handleClearReaction={() => handleClearReaction(comment.id)}
+                    handleLike={(id) => handleLike(id || comment.id)}
+                    handleDislike={(id) => handleDislike(id || comment.id)}
+                    handleClearReaction={(id) => handleClearReaction(id || comment.id)}
                     avatarSrc={comment.user?.profilePhotoUrl}
-                    username={comment.user?.username}
+                    username={comment.user?.userName}
                     userId={comment.userId}
                     description={comment.content}
                     postDate={comment.timestamp?.toDate()}
+                    getReplies={getReplies}
+                    addComment={(text, parent) => addComment(text, parent || comment.id)}
                 />
             ))}
         </div>

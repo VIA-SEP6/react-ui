@@ -33,8 +33,10 @@ export default function FavoriteMovieIcon(props) {
                 .getFavoriteMoviesByUserIdReference(currentUser.uid)
                 .onSnapshot(
                     docSnapshot => {
-                        const favouriteMovies = docSnapshot.data().favouriteMovies || [];
-                        setIsFavorite(favouriteMovies.includes(`${movie.id}`))
+                        if (docSnapshot.exists) {
+                            const favouriteMovies = docSnapshot.data().favouriteMovies || [];
+                            setIsFavorite(favouriteMovies.includes(`${movie.id}`))
+                        }
                     },
                     error => {
                         console.log(`Encountered error: ${error}`);

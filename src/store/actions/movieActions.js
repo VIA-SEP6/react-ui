@@ -44,11 +44,25 @@ export const searchMovie = (name) => {
 export const addReview = (userId, description, rating, movieId) => {
     return (dispatch) => {
         movieApiService.addReview(userId, description, rating, movieId)
-            .then((response) => {
+            .then(() => {
                 dispatch(addSnackbar("Review successfully added"))
             })
             .catch((error) => {
+                console.log(error)
                 dispatch(addErrorSnackbar("Error Submitting review"))
+            })
+    }
+}
+
+export const addComment = (movieId, comment, parent) => {
+    return (dispatch) => {
+        movieApiService.addComment(movieId, comment, parent)
+            .then(() => {
+                dispatch(addSnackbar("Comment successfully added"))
+            })
+            .catch((error) => {
+                console.log(error)
+                dispatch(addErrorSnackbar("Error creating comment"))
             })
     }
 }
