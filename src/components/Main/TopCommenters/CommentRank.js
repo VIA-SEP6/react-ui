@@ -12,13 +12,15 @@ const useStyles = makeStyles(theme => ({
     content: {
         display: "flex",
         flexDirection: "row",
-        width: 200,
+        width: 240,
         border: "1px solid",
         borderColor: theme.palette.primary.main,
         cursor: "pointer"
     },
     details: {
         width: "100%",
+        textAlign: "center",
+        fontSize: 14,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -39,8 +41,9 @@ const useStyles = makeStyles(theme => ({
     image: {
         borderTopLeftRadius: theme.spacing(0.4),
         borderBottomLeftRadius: theme.spacing(0.4),
-        width: 72,
-        height: 72,
+        width: 80,
+        height: 80,
+        objectFit: "cover"
     }
 }));
 
