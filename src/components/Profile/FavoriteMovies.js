@@ -1,15 +1,12 @@
 import {makeStyles} from "@material-ui/core";
-import ScrollButton from "../Movie/Credits/ScrollButton";
-import React, {createRef, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Grid} from "@material-ui/core";
 import MovieCard from "./MovieCard"
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import IconButton from '@material-ui/core/IconButton';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import {Pagination} from "@material-ui/lab";
+import authApiService from "../../services/firebase/api/user";
 
 const ITEMS_PER_PAGE = 10
 
@@ -21,26 +18,35 @@ const useStyles = makeStyles(theme => ({
     },
     movies: {
         display: 'flex',
-        flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
-        flexWrap: 'nowrap',
     },
     title: {
         paddingBottom: 25
     },
+    pagination: {
+        paddingTop: 20
+    },
 }))
 
-const ProfileData = (props) => {
-    const {favoriteMovies} = props
+const FavoriteMovies = (props) => {
+    var {favoriteMovies} = props
     const classes = useStyles()
     const [pages, setPages] = useState(0)
     const [pageNumber, setPageNumber] = useState(1)
     const [paginatedMovies, setPaginatedMovies] = useState([])
 
     const handlePageChange = (event, page) => {
-        console.log(page)
         setPageNumber(page)
+    }
+
+    const getNumber = (index) => {
+        return index+1+(pageNumber-1)*10
+    }
+
+    const removeFavorite = (movieId) => {
+        authApiService.removeMovieFromFavourites(`${movieId}`)
+        //.then(favoriteMovies = favoriteMovies.filter(({id}) => id == movieId))
     }
 
     useEffect(() => {
@@ -68,7 +74,7 @@ const ProfileData = (props) => {
 
     if (pages > 0)
         pagination = (
-            <Grid container item xs={12} justify="center">
+            <Grid className={classes.pagination} container item xs={12} justify="center">
                 <Pagination
                     page={pageNumber}
                     onChange={handlePageChange}
@@ -86,8 +92,8 @@ const ProfileData = (props) => {
             <div className={classes.movies}>
                 <GridList cellHeight={350}  spacing={4} cols={getGridListCols()}>
                 {paginatedMovies.map((favMovie, index) => (
-                    <GridListTile className={classes.tile} >
-                        <MovieCard className={classes.tile} favoriteMovie={favMovie} number={index+1}></MovieCard>
+                    <GridListTile key={favMovie.id}className={classes.tile} >
+                        <MovieCard removeFavorite={removeFavorite} className={classes.tile} favoriteMovie={favMovie} number={getNumber(index)}/>
                     </GridListTile>
                 ))}
                 </GridList>
@@ -97,4 +103,4 @@ const ProfileData = (props) => {
     )
 }
 
-export default withWidth()(ProfileData)
+export default withWidth()(FavoriteMovies)

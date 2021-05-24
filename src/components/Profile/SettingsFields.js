@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Button, Grid, makeStyles, Paper, TextField } from "@material-ui/core";
-import { string } from "prop-types";
+import { Button, Grid, makeStyles, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     textField: {
@@ -153,7 +152,7 @@ const SettingsFields = (props) => {
                     onChange={(e) => setOldPassword(e.target.value)}
                     onBlur={(e) => setOldPassword(e.target.value)} />
                 <div className={classes.text}>New Password</div>
-                <TextField className={classes.textField} variant="outlined" error={passwordError != null} helperText={passwordError} type="password" size="small"
+                <TextField className={classes.textField} variant="outlined" helperText={passwordError} type="password" size="small"
                     onChange={(e) => validatePassword(e.target.value)}
                     onBlur={(e) => validatePassword(e.target.value)} error={passwordError != null}/>
                 <div className={classes.text}>Repeat New Password</div>

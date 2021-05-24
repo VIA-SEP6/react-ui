@@ -21,16 +21,12 @@ const removeMovieFromFavourites = (movieId) => {
     return firebaseOnCall('user-removeFavouriteMovie', {movieId})
 }
 
-const uploadedImage = () => {
+const uploadImage = () => {
     return firebaseOnCall('user-getProfile')
 }
 
-const updatePassword = () => {
-    return firebaseOnCall('user-getProfile')
-}
-
-const updateInfo = () => {
-    return firebaseOnCall('user-getProfile')
+const updateInfo = (infoObject) => {
+    return firebaseOnCall('user-updateProfile', (infoObject))
 }
 
 const authApiService = {
@@ -38,6 +34,8 @@ const authApiService = {
     getUserProfile,
     addMovieToFavourites,
     removeMovieFromFavourites,
+    updateInfo,
+    uploadImage,
 }
 
 export default authApiService;

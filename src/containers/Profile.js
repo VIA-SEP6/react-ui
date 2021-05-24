@@ -26,7 +26,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        favoriteMovies: state.profile.profile.favouriteMovies,
+        favoriteMovies: state.profile.profile.favouriteMovies || [],
         profileData: state.profile.profile
     }
 }

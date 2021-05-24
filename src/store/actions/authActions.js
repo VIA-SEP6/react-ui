@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import {loginUserAccount, loginUserWithGoogle, logoutUserAccount} from '../../services/firebase/auth'
+import {loginUserAccount, loginUserWithGoogle, logoutUserAccount, updateUserPassword} from '../../services/firebase/auth'
 import {addErrorSnackbar, addSnackbar} from '../actions/index'
 import authApiService from "../../services/firebase/api/user";
 import {auth} from "../../services/firebase/firebase";
@@ -107,5 +107,17 @@ export const verifyAuth = () => {
                 dispatch(setAuthLogOut());
             }
         });
+    }
+}
+
+export const updatePassword = (passwordObject) => {
+    return (dispatch) => {
+        updateUserPassword(passwordObject)
+            .then(() => {
+                dispatch(addSnackbar("Password successfully updated"))
+            })
+            .catch(() => {
+                dispatch(addErrorSnackbar("Error updating password"))
+            })
     }
 }

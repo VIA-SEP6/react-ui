@@ -47,18 +47,6 @@ export const uploadImage = (uploadedImage) => {
     }
 }
 
-export const updatePassword = (passwordObject) => {
-    return (dispatch) => {
-        authApiService.updatePassword(passwordObject)
-            .then(() => {
-                dispatch(addSnackbar("Password successfully updated"))
-            })
-            .catch(() => {
-                dispatch(addErrorSnackbar("Error updating password"))
-            })
-    }
-}
-
 export const updateInfo = (infoObject) => {
     return (dispatch) => {
         authApiService.updateInfo(infoObject)

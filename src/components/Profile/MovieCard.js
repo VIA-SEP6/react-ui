@@ -3,7 +3,6 @@ import {IconButton, Avatar} from '@material-ui/core';
 import MovieRating from "../Movie/MovieRating"
 import React from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
-import authApiService from "../../services/firebase/api/user";
 import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
@@ -13,11 +12,11 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         maxWidth: 185,
         justifyContent: "center",
-        alignItems: "center",
     },
     image: {
         width: "100%",
-        maxWidth: 185
+        maxWidth: 185,
+        cursor: "pointer"
     },
     genre: {
         paddingTop: 15,
@@ -50,21 +49,17 @@ const useStyles = makeStyles(theme => ({
     },
     imdbRating: {
         float: "left",
-        color: "#fff"
+        fill: "#fff"
     },
     localRating: {
         alignItems: "right",
     }
 }))
 
-export default function ProfileData(props) {
-    const {favoriteMovie, number} = props
+export default function MovieCard(props) {
+    const {favoriteMovie, number, removeFavorite} = props
     const classes = useStyles()
     const history = useHistory();
-
-    const removeFavorite = () => {
-        authApiService.removeMovieFromFavourites(`${favoriteMovie.id}`)
-    }
 
     const moveToMovie = () => {
         history.push(`/movie/${favoriteMovie.id}`)
@@ -83,11 +78,11 @@ export default function ProfileData(props) {
                                 <div className={classes.title}>{favoriteMovie.title}</div>
                             </Grid>
                             <Grid item>
-                                <div className={classes.genre}>{favoriteMovie.genres.slice(0, 3).map(function(elem){return elem.name;}).join(", ")}</div>
+                                <div className={classes.genre}>{favoriteMovie.genres.slice(0, 3).map(genre => genre.name).join(", ")}</div>
                             </Grid>
                         </Grid>
                         <Grid item xs={2}>
-                            <IconButton onClick={removeFavorite} className={classes.icon} >
+                            <IconButton onClick={() => removeFavorite(favoriteMovie.id)} className={classes.icon} >
                                 <DeleteIcon/>
                             </IconButton>
                         </Grid>

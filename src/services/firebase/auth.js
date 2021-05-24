@@ -14,3 +14,14 @@ export const loginUserWithGoogle = () => {
             return result.user;
         })
 }
+
+export const updateUserPassword = (passwordObject) =>
+{
+    var user = firebase.auth().currentUser;
+    var credentials = firebase.auth.EmailAuthProvider.credential(
+        user.email,
+        passwordObject.oldPassword
+      );
+    
+    return user.reauthenticateWithCredential(credentials).then(user.updatePassword(passwordObject.password))
+}

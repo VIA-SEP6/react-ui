@@ -1,12 +1,9 @@
 import {Component} from "react";
 import {connect} from "react-redux";
-import {Grid} from "@material-ui/core";
 import {fetchProfile, uploadImage, updatePassword, updateInfo} from "../store/actions";
 import BigAvatar from "../components/Profile/BigAvatar"
 import SettingsFields from "../components/Profile/SettingsFields"
 import ImageUploader from "../components/Profile/ImageUploader"
-import TextField from '@material-ui/core/TextField';
-import { TextFields } from "@material-ui/icons";
 
 class Settings extends Component {
 

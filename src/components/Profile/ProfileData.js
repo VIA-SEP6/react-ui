@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
     },
     email: {
         marginBottom: theme.spacing(3),
+        color: "#828282"
     },
     staticText: {
         float: "right",
@@ -24,6 +25,9 @@ const useStyles = makeStyles(theme => ({
         float: "left",
         color: theme.palette.gray.main,
         marginTop: theme.spacing(2)
+    },
+    statistics: {
+        paddingTop: 30
     }
 }))
 
@@ -43,7 +47,7 @@ export default function ProfileData(props) {
                 <Grid item xs={12}>
                     <div className={classes.email}>{profileData.email}</div>
                 </Grid>
-                <Grid spacing ={1} container xs={12}>
+                <Grid spacing ={1} container>
                     <Grid item xs={6}>
                         <div className={classes.staticText}>Phone</div>
                     </Grid>
@@ -51,7 +55,7 @@ export default function ProfileData(props) {
                         <div className={classes.text}>{profileData.phone}</div>
                     </Grid>
                 </Grid>
-                <Grid spacing ={1} container xs={12}>
+                <Grid spacing ={1} container>
                     <Grid item xs={6}>
                         <div className={classes.staticText}>Age</div>
                     </Grid>
@@ -59,12 +63,36 @@ export default function ProfileData(props) {
                         <div className={classes.text}>{profileData.age}</div>
                     </Grid>
                 </Grid>
-                <Grid spacing ={1} container xs={12}>
+                <Grid spacing ={1} container>
                     <Grid item xs={6}>
                         <div className={classes.staticText}>Country</div>
                     </Grid>
                     <Grid item xs={6}>
                         <div className={classes.text}>{profileData.country}</div>
+                    </Grid>
+                </Grid>
+                <Grid className={classes.statistics} spacing ={1} container>
+                    <Grid item xs={6}>
+                        <div className={classes.staticText}>Favorites</div>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <div className={classes.text}>{profileData.favouriteMovies.length}</div>
+                    </Grid>
+                </Grid>
+                <Grid spacing ={1} container>
+                    <Grid item xs={6}>
+                        <div className={classes.staticText}>Comments</div>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <div className={classes.text}>{profileData.nrOfComments}</div>
+                    </Grid>
+                </Grid>
+                <Grid spacing ={1} container>
+                    <Grid item xs={6}>
+                        <div className={classes.staticText}>Reviews</div>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <div className={classes.text}>{profileData.nrOfReviews}</div>
                     </Grid>
                 </Grid>
             </Grid>
