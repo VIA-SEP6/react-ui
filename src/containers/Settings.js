@@ -17,7 +17,7 @@ class Settings extends Component {
                 <div style={{fontSize: "24px"}}> {this.props.profileData.userName}</div>
                 <div style={{fontSize: "16px", color: "#828282"}}> {this.props.profileData.email}</div>
                 <div><BigAvatar src={this.props.profileData.profilePhotoUrl}/></div>
-                <div><ImageUploader handleFile={this.props.uploadImage}/></div>
+                <div><ImageUploader handleFile={(file) => this.props.uploadImage(this.props.currentUser.uid, file)}/></div>
                 <div><SettingsFields profileData={this.props.profileData} updatePassword={this.props.updatePassword} updateInfo={this.props.updateInfo}/></div>
             </div>
         )
@@ -26,6 +26,7 @@ class Settings extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        currentUser: state.auth.user,
         profileData: state.profile.profile
     }
 }
@@ -33,7 +34,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserProfile: () => dispatch(fetchProfile()),
-        uploadImage: (imageObject) => dispatch(uploadImage(imageObject)),
+        uploadImage: (userId, imageObject) => dispatch(uploadImage(userId, imageObject)),
         updatePassword: (passwordObject) => dispatch(updatePassword(passwordObject)),
         updateInfo: (infoObject) => dispatch(updateInfo(infoObject)),
     }

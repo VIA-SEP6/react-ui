@@ -1,4 +1,5 @@
 import {firebaseOnCall} from "../firebase";
+import storageReferenceService from "../storage/references";
 
 const registerUserAccount = (newUserObject) => {
     const registerUserRequest = {
@@ -21,9 +22,11 @@ const removeMovieFromFavourites = (movieId) => {
     return firebaseOnCall('user-removeFavouriteMovie', {movieId})
 }
 
-const uploadImage = () => {
-    return firebaseOnCall('user-getProfile')
+const uploadUserProfileImage = (userId, file) => {
+    const storageRef = storageReferenceService.getProfileImageReferenceForUser(userId)
+    return storageRef.put(file)
 }
+
 
 const updateInfo = (infoObject) => {
     return firebaseOnCall('user-updateProfile', (infoObject))
@@ -35,7 +38,7 @@ const authApiService = {
     addMovieToFavourites,
     removeMovieFromFavourites,
     updateInfo,
-    uploadImage,
+    uploadUserProfileImage
 }
 
 export default authApiService;

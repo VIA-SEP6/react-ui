@@ -35,9 +35,9 @@ export const fetchProfile = () => {
     }
 }
 
-export const uploadImage = (uploadedImage) => {
+export const uploadImage = (userId, uploadedImage) => {
     return (dispatch) => {
-        authApiService.uploadImage(uploadedImage)
+        authApiService.uploadUserProfileImage(userId, uploadedImage)
             .then(() => {
                 dispatch(addSnackbar("Avatar successfully updated"))
             })

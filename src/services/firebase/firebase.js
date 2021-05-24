@@ -4,11 +4,13 @@ import "firebase/auth";
 import "firebase/database";
 import 'firebase/firestore';
 import 'firebase/functions';
+import 'firebase/storage';
 
 const config = {
     apiKey: "AIzaSyAJ0f2lWAEXNGgvKRwXPxrDdWZi_eSjR7E",
     projectId: "sep6-310611",
-    authDomain: "sep6-310611.firebaseapp.com"
+    authDomain: "sep6-310611.firebaseapp.com",
+    storageBucket: "sep6-310611.appspot.com",
 };
 
 if (!firebase.apps.length) {
@@ -21,6 +23,8 @@ const db = firebase.database();
 
 const firestore = firebase.firestore();
 
+const storage = firebase.storage();
+
 const functions = firebase.app().functions("europe-west1")
 
 if (process.env.REACT_APP_LOCAL) {
@@ -30,11 +34,13 @@ if (process.env.REACT_APP_LOCAL) {
     functions.useEmulator('localhost', 5001)
 }
 
-export {auth, db, firestore}
-
-export function firebaseOnCall(functionName, payloadObj = {}) {
+function firebaseOnCall(functionName, payloadObj = {}) {
     return functions.httpsCallable(functionName)(payloadObj)
         .then(result => result.data)
         .catch(err => console.log(err))
 }
+
+export {auth, db, firestore, storage, firebaseOnCall}
+
+
 
