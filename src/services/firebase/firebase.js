@@ -32,6 +32,7 @@ if (process.env.REACT_APP_LOCAL) {
     db.useEmulator('localhost', 9000)
     firestore.useEmulator('localhost', 8080)
     functions.useEmulator('localhost', 5001)
+    storage.useEmulator('localhost', 9199)
 }
 
 function firebaseOnCall(functionName, payloadObj = {}) {
