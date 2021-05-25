@@ -28,8 +28,8 @@ export default function FavoriteMovieIcon(props) {
     )
 
     useEffect(() => {
-        if (currentUser)
-            firestoreReferenceService
+        if (currentUser) {
+            const unsub = firestoreReferenceService
                 .getFavoriteMoviesByUserIdReference(currentUser.uid)
                 .onSnapshot(
                     docSnapshot => {
@@ -41,6 +41,8 @@ export default function FavoriteMovieIcon(props) {
                     error => {
                         console.log(`Encountered error: ${error}`);
                     })
+            return () => unsub()
+        }
     }, [setIsFavorite, currentUser, movie.id])
 
     return (
