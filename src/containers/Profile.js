@@ -13,10 +13,10 @@ class Profile extends Component {
     render() {
         return (
                 <Grid container spacing={2} >
-                    <Grid item  sm={4} lg={2}>
+                    <Grid item xs={12} sm={4} lg={3}>
                         <ProfileData profileData={this.props.profileData}/>
                     </Grid>
-                    <Grid item  sm={8} lg={10}>
+                    <Grid item xs={12} sm={8} lg={9}>
                         <FavoriteMovies refreshProfile={this.props.getUserProfile} favoriteMovies={this.props.favoriteMovies}/>
                     </Grid>
                 </Grid> 

@@ -6,22 +6,23 @@ import GridListTile from '@material-ui/core/GridListTile';
 import withWidth, {isWidthUp} from '@material-ui/core/withWidth';
 import {Pagination} from "@material-ui/lab";
 import userApiService from "../../services/firebase/api/user";
+import TopicHeader from "../Common/TopicHeader";
 
 const ITEMS_PER_PAGE = 10
 
 const useStyles = makeStyles(theme => ({
     content: {
         fontSize: 22,
-        textAlign: "center",
-        alignItems: "center",
     },
     movies: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
+        display: "flex",
+        [theme.breakpoints.down('xs')]: {
+            justifyContent: "center",
+        },
     },
-    title: {
-        paddingBottom: 25
+    tile: {
+        marginBottom: theme.spacing(1),
+        maxWidth: 210
     },
     pagination: {
         paddingTop: 20
@@ -90,17 +91,15 @@ const FavoriteMovies = (props) => {
 
     return (
         <div className={classes.content}>
-            <div className={classes.title}>Favorite Movies</div>
-            <div className={classes.movies}>
-                <GridList cellHeight={350} spacing={4} cols={getGridListCols()}>
-                    {paginatedMovies.map((favMovie, index) => (
-                        <GridListTile key={favMovie.id} className={classes.tile}>
-                            <MovieCard removeFavorite={removeFavorite} className={classes.tile} favoriteMovie={favMovie}
-                                       number={getNumber(index)}/>
-                        </GridListTile>
-                    ))}
-                </GridList>
-            </div>
+            <TopicHeader>Favorite Movies</TopicHeader>
+            <GridList className={classes.movies} cellHeight={350} spacing={4} cols={getGridListCols()}>
+                {paginatedMovies.map((favMovie, index) => (
+                    <GridListTile key={favMovie.id} className={classes.tile}>
+                        <MovieCard removeFavorite={removeFavorite} className={classes.tile} favoriteMovie={favMovie}
+                                   number={getNumber(index)}/>
+                    </GridListTile>
+                ))}
+            </GridList>
             {pagination}
         </div>
     )

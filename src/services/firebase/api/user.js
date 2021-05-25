@@ -28,7 +28,6 @@ const uploadUserProfileImage = (userId, file) => {
     return resizedStorageRef.delete().catch(e => {}).finally(() => storageRef.put(file))
 }
 
-
 const updateInfo = (infoObject) => {
     return firebaseOnCall('user-updateProfile', (infoObject))
 }

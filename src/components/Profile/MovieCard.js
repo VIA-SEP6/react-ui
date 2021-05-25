@@ -1,25 +1,21 @@
-import {makeStyles, Grid, useTheme} from "@material-ui/core";
-import {IconButton, Avatar} from '@material-ui/core';
+import {Grid, IconButton, makeStyles, useTheme} from "@material-ui/core";
 import MovieRating from "../Movie/MovieRating"
 import React from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {useHistory} from "react-router-dom";
+import Rank from "../Main/Common/Rank";
 
 const useStyles = makeStyles(theme => ({
     content: {
         fontSize: 10,
         textAlign: "center",
-        alignItems: "center",
-        maxWidth: 185,
-        justifyContent: "center",
     },
     image: {
         width: "100%",
-        maxWidth: 185,
-        cursor: "pointer"
+        cursor: "pointer",
+        marginTop: theme.spacing(0.5),
     },
     genre: {
-        paddingTop: 15,
         verticalAlign: "bottom",
         color: theme.palette.gray.main
     },
@@ -31,13 +27,9 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         fontSize: 12,
-        fontWeight: "bold",
-        display: "-webkit-box",
-        boxOrient: "vertical",
-        lineClamp: 2,
-        wordBreak: "break-all",
+        fontWeight: 400,
         overflow: "hidden",
-        height: 25
+        height: 32,
     },
     icon: {
         padding: 0
@@ -70,35 +62,33 @@ export default function MovieCard(props) {
         <div className={classes.content}>
             <Grid container direction="column">
                 <Grid item container sx={4}>
-                    <Grid container direction="row">
+                    <Grid container direction="row" justify="center" alignItems="center">
                         <Grid item xs={2}>
-                            <Avatar className={classes.number}><span>{number}</span></Avatar>
+                            <Rank size="medium" style={{margin: 0}}>{number}</Rank>
                         </Grid>
-                        <Grid item container direction="column" xs={8}>
-                            <Grid item>
-                                <div className={classes.title}>{favoriteMovie.title}</div>
-                            </Grid>
-                            <Grid item>
-                                <div className={classes.genre}>{favoriteMovie.genres.slice(0, 3).map(genre => genre.name).join(", ")}</div>
-                            </Grid>
+                        <Grid item xs={8}>
+                            <div className={classes.title}>{favoriteMovie.title}</div>
                         </Grid>
                         <Grid item xs={2}>
-                            <IconButton onClick={() => removeFavorite(favoriteMovie.id)} className={classes.icon} >
+                            <IconButton onClick={() => removeFavorite(favoriteMovie.id)} className={classes.icon}>
                                 <DeleteIcon/>
                             </IconButton>
                         </Grid>
                     </Grid>
-                    <Grid item container direction="row">
+                    <Grid item xs={12} className={classes.genre}>
+                        {favoriteMovie.genres.slice(0, 3).map(genre => genre.name).join(", ")}
+                    </Grid>
+                    <Grid item container spacing={2}>
                         <Grid item xs={4}>
-                            <MovieRating className={classes.imdbRating} rating={favoriteMovie.vote_average} 
-                            icon="star" color={theme.palette.yellow.main}/>
+                            <MovieRating className={classes.imdbRating} rating={favoriteMovie.vote_average}
+                                         icon="star" color={theme.palette.yellow.main}/>
                         </Grid>
                         <Grid item xs={4}>
-                            <div className={classes.year}>{favoriteMovie.release_date.substring(0,4)}</div>
+                            <div className={classes.year}>{favoriteMovie.release_date.substring(0, 4)}</div>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={4} >
                             <MovieRating className={classes.localRating} rating={favoriteMovie.tma_vote_average}
-                            icon="star"/>
+                                         icon="star" style={{justifyContent: "end"}}/>
                         </Grid>
                     </Grid>
                 </Grid>
