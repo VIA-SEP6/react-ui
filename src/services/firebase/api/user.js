@@ -33,7 +33,7 @@ const updateInfo = (infoObject) => {
     return firebaseOnCall('user-updateProfile', (infoObject))
 }
 
-const authApiService = {
+const userApiService = {
     registerUserAccount,
     getUserProfile,
     addMovieToFavourites,
@@ -42,4 +42,4 @@ const authApiService = {
     uploadUserProfileImage
 }
 
-export default authApiService;
+export default userApiService;

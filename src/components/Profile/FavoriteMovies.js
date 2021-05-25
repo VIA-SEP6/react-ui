@@ -5,7 +5,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import withWidth, {isWidthUp} from '@material-ui/core/withWidth';
 import {Pagination} from "@material-ui/lab";
-import authApiService from "../../services/firebase/api/user";
+import userApiService from "../../services/firebase/api/user";
 
 const ITEMS_PER_PAGE = 10
 
@@ -44,7 +44,7 @@ const FavoriteMovies = (props) => {
     }
 
     const removeFavorite = (movieId) => {
-        authApiService.removeMovieFromFavourites(`${movieId}`).then(res => {
+        userApiService.removeMovieFromFavourites(`${movieId}`).then(res => {
                 console.log("response", res)
                 refreshProfile()
             }
