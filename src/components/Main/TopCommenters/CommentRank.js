@@ -7,7 +7,7 @@ import {getImageSrc} from "../../../services/util/imageValidation";
 const useStyles = makeStyles(theme => ({
     root: {
         width: "auto",
-        margin: theme.spacing(2)
+        margin: theme.spacing(2, 0)
     },
     content: {
         display: "flex",
@@ -18,13 +18,14 @@ const useStyles = makeStyles(theme => ({
         cursor: "pointer"
     },
     details: {
-        width: "100%",
-        textAlign: "center",
         fontSize: 14,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        textAlign: "center",
+        marginLeft: "auto",
+        marginRight: "auto"
     },
     likes: {
         margin: theme.spacing(1, 0),
