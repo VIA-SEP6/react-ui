@@ -24,7 +24,8 @@ const removeMovieFromFavourites = (movieId) => {
 
 const uploadUserProfileImage = (userId, file) => {
     const storageRef = storageReferenceService.getProfileImageReferenceForUser(userId)
-    return storageRef.put(file)
+    const resizedStorageRef = storageReferenceService.getProfileImageResizedReferenceForUser(userId)
+    return resizedStorageRef.delete().then(() => storageRef.put(file))
 }
 
 

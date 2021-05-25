@@ -93,7 +93,6 @@ export const logInWithGoogle = () => {
                 dispatch(addSnackbar("Successfully logged In"))
             })
             .catch(error => {
-                console.log(error)
             })
     }
 }
