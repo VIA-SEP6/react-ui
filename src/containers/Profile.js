@@ -6,9 +6,19 @@ import ProfileData from "../components/Profile/ProfileData"
 import FavoriteMovies from "../components/Profile/FavoriteMovies"
 
 class Profile extends Component {
-    componentDidMount() {
+    init() {
         this.props.getUserProfile(this.getSelectedProfileId())
     }
+
+    componentDidMount() {
+        this.init()
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if (this.getSelectedProfileId() !== prevProps.match.params.id) {
+            this.init()
+        }
+    };
 
     getSelectedProfileId() {
         return this.props.match.params.id
