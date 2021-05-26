@@ -1,11 +1,9 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
-import {Grid, Paper} from "@material-ui/core";
-import MovieRating from "../MovieRating";
+import {Grid} from "@material-ui/core";
 import WriteReview from "../Social/Review/WriteReview";
 import FavoriteMovieIcon from "./FavoriteMovieIcon";
-import CustomModal from "../../Layout/Modal/CustomModal"
-import RadarChart from "../../../components/Common/Charts/RadarChart"
+import MovieReviews from "./MovieReviews"
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -23,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     ratings: {
         justifyContent: "space-between",
         padding: theme.spacing(1, 1),
+        alignItems: "center"
     },
     movieDetails: {
         padding: theme.spacing(0, 2),
@@ -93,28 +92,10 @@ export default function MovieDetails(props) {
         <Grid container spacing={2} direction="row">
             <Grid item xs={12} sm={4}>
                 <img width="100%" src={getImage(movie.poster_path)} alt="Movie Poster"/>
-                <div className={[classes.row, classes.ratings].join(' ')}>
-                    <CustomModal 
-                        toggle={<MovieRating rating={movie.tma_vote_average}
-                        icon="star"/>}
-                    >
-                        <Paper>
-                            <RadarChart labels={Object.keys(reviewStatistics.tma_review_count || {})} 
-                        data={Object.values(reviewStatistics.tma_review_count || {})} label="TMA Review Distribution"
-                        color={"primary"}/>
-                        </Paper>
-                    </CustomModal>
-                    <CustomModal
-                        toggle={<MovieRating rating={movie.vote_average}
-                        iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>}
-                    >
-                        <Paper>
-                            <RadarChart style={classes.reviewStatistics} labels={Object.keys(reviewStatistics.tmdb_review_count || {})} 
-                            data={Object.values(reviewStatistics.tmdb_review_count || {})} label="IMDb Review Distribution"
-                            color={"yellow"}/>
-                        </Paper>
-                    </CustomModal>
-                </div>
+                <Grid container item xs={12} justify="space-between" alignItems="center">
+                    <MovieReviews tmaVoteAverage={movie.tma_vote_average} 
+                    imdbVoteAverage={movie.vote_average} reviewStatistics={reviewStatistics}/>
+                </Grid>
             </Grid>
             <Grid item xs={12} sm={8}>
                 <Grid container direction="row">

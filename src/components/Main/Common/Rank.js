@@ -30,6 +30,7 @@ export default function Rank(props) {
             sizeStyle.fontSize = 13
             break;
         case "small":
+            default:
             sizeStyle.width = 20
             sizeStyle.height = 20
             sizeStyle.fontSize = 11

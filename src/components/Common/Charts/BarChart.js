@@ -3,7 +3,7 @@ import {Bar} from 'react-chartjs-2';
 export default function BarChart(props) {
     const {labels, datasets} = props
 
-    function getDoughnutData() {
+    function getBarData() {
         return {
             labels,
             datasets: datasets
@@ -11,6 +11,6 @@ export default function BarChart(props) {
     }
 
     return (
-        <Bar data={getDoughnutData()}/>
+        <Bar data={getBarData()}/>
     )
 }
