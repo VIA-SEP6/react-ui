@@ -36,6 +36,7 @@ export default function MovieCarousel(props) {
             animation="slide"
             autoPlay={false}
             indicators={false}
+            fullHeightHover={false}
             NextIcon={<Icon color="primary">arrow_forward_ios</Icon>}
             PrevIcon={<Icon className={classes.backIconRotate} color="primary">arrow_forward_ios</Icon>}
         >

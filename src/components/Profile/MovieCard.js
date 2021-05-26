@@ -1,8 +1,8 @@
-import {Grid, IconButton, makeStyles, useTheme} from "@material-ui/core";
+import { Grid, IconButton, makeStyles, useTheme } from "@material-ui/core";
 import MovieRating from "../Movie/MovieRating"
 import React from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Rank from "../Main/Common/Rank";
 
 const useStyles = makeStyles(theme => ({
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function MovieCard(props) {
-    const {favoriteMovie, number, removeFavorite, myProfile} = props
+    const { favoriteMovie, number, removeFavorite, myProfile } = props
     const classes = useStyles()
     const history = useHistory();
     const theme = useTheme()
@@ -72,15 +72,16 @@ export default function MovieCard(props) {
                 <Grid item container sx={4}>
                     <Grid container direction="row" justify="center" alignItems="center">
                         <Grid item xs={2}>
-                            <Rank size="medium" style={{margin: 0}}>{number}</Rank>
+                            <Rank size="medium" style={{ margin: 0 }}>{number}</Rank>
                         </Grid>
                         <Grid item xs={8}>
                             <div className={classes.title}>{favoriteMovie.title}</div>
                         </Grid>
                         <Grid item xs={2}>
-                            <IconButton disabled={!myProfile} onClick={() => removeFavorite(favoriteMovie.id)} className={classes.icon}>
-                                <DeleteIcon/>
-                            </IconButton>
+                            {!myProfile ? null :
+                            <IconButton onClick={() => removeFavorite(favoriteMovie.id)} className={classes.icon}>
+                                <DeleteIcon />
+                            </IconButton>}
                         </Grid>
                     </Grid>
                     <Grid item xs={12} className={classes.genre}>
@@ -89,19 +90,19 @@ export default function MovieCard(props) {
                     <Grid className={classes.reviews} item container>
                         <Grid item xs={4}>
                             <MovieRating className={classes.imdbRating} rating={favoriteMovie.vote_average}
-                                         icon="star" color={theme.palette.yellow.main}/>
+                                icon="star" color={theme.palette.yellow.main} />
                         </Grid>
                         <Grid item xs={4}>
                             <div className={classes.year}>{favoriteMovie.release_date.substring(0, 4)}</div>
                         </Grid>
                         <Grid item xs={4} >
                             <MovieRating className={classes.localRating} rating={favoriteMovie.tma_vote_average}
-                                         icon="star" style={{justifyContent: "end"}}/>
+                                icon="star" style={{ justifyContent: "end" }} />
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid item sx={8}>
-                    <img className={classes.image} src={favoriteMovie.poster_path} onClick={moveToMovie} alt="Movie"/>
+                    <img className={classes.image} src={favoriteMovie.poster_path} onClick={moveToMovie} alt="Movie" />
                 </Grid>
             </Grid>
         </div>
