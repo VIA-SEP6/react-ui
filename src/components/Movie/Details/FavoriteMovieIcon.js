@@ -2,7 +2,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Icon, IconButton} from "@material-ui/core";
 import React, {useEffect, useState} from "react";
 import firestoreReferenceService from "../../../services/firebase/firestore/references";
-import authApiService from "../../../services/firebase/api/user";
+import {useDispatch} from "react-redux";
+import {addToFavourites, removeFromFavourite} from "../../../store/actions";
 
 const useStyles = makeStyles(theme => ({
     root: {}
@@ -11,14 +12,15 @@ const useStyles = makeStyles(theme => ({
 export default function FavoriteMovieIcon(props) {
     const [isFavorite, setIsFavorite] = useState(false)
     const classes = useStyles()
+    const dispatch = useDispatch()
 
     const {movie, currentUser} = props
 
     const handleClick = () => {
         if (isFavorite)
-            authApiService.removeMovieFromFavourites(`${movie.id}`)
+            dispatch(removeFromFavourite(`${movie.id}`))
         else
-            authApiService.addMovieToFavourites(`${movie.id}`)
+            dispatch(addToFavourites(`${movie.id}`))
     }
 
     const favoriteIcon = (
@@ -28,8 +30,8 @@ export default function FavoriteMovieIcon(props) {
     )
 
     useEffect(() => {
-        if (currentUser)
-            firestoreReferenceService
+        if (currentUser) {
+            const unsub = firestoreReferenceService
                 .getFavoriteMoviesByUserIdReference(currentUser.uid)
                 .onSnapshot(
                     docSnapshot => {
@@ -41,6 +43,8 @@ export default function FavoriteMovieIcon(props) {
                     error => {
                         console.log(`Encountered error: ${error}`);
                     })
+            return () => unsub()
+        }
     }, [setIsFavorite, currentUser, movie.id])
 
     return (

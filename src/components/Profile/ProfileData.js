@@ -6,8 +6,8 @@ const useStyles = makeStyles(theme => ({
     content: {
         fontSize: 15,
         textAlign: "center",
-        alignItems: "center",
         overflowWrap: "break-word",
+        marginTop: theme.spacing(20)
     },
     userName: {
         fontSize: 25,

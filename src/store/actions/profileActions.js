@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import authApiService from "../../services/firebase/api/user";
+import userApiService from "../../services/firebase/api/user";
 import {addErrorSnackbar, addSnackbar} from "./snackbarActions";
 
 const setProfileFetchStarted = () => {
@@ -25,7 +25,7 @@ const setProfileFetchError = (error) => {
 export const fetchProfile = () => {
     return (dispatch) => {
         dispatch(setProfileFetchStarted())
-        authApiService.getUserProfile()
+        userApiService.getUserProfile()
             .then((response) => {
                 dispatch(setProfileFetchSuccess(response))
             })
@@ -37,7 +37,7 @@ export const fetchProfile = () => {
 
 export const uploadImage = (userId, uploadedImage) => {
     return (dispatch) => {
-        authApiService.uploadUserProfileImage(userId, uploadedImage)
+        userApiService.uploadUserProfileImage(userId, uploadedImage)
             .then(() => {
                 dispatch(addSnackbar("Avatar successfully updated"))
             })
@@ -49,7 +49,7 @@ export const uploadImage = (userId, uploadedImage) => {
 
 export const updateInfo = (infoObject) => {
     return (dispatch) => {
-        authApiService.updateInfo(infoObject)
+        userApiService.updateInfo(infoObject)
             .then(() => {
                 dispatch(addSnackbar("Personal information successfully updated"))
             })

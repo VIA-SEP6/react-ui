@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import {loginUserAccount, loginUserWithGoogle, logoutUserAccount, updateUserPassword} from '../../services/firebase/auth'
 import {addErrorSnackbar, addSnackbar} from '../actions/index'
-import authApiService from "../../services/firebase/api/user";
+import userApiService from "../../services/firebase/api/user";
 import {auth} from "../../services/firebase/firebase";
 
 const setAuthStarted = () => {
@@ -34,7 +34,7 @@ const setAuthLogOut = () => {
 export const registerUser = (newUserObject) => {
     return (dispatch) => {
         dispatch(setAuthStarted())
-        authApiService.registerUserAccount(newUserObject)
+        userApiService.registerUserAccount(newUserObject)
             .then(response => {
                 dispatch(loginUser(newUserObject.email, newUserObject.password))
             })
@@ -93,7 +93,6 @@ export const logInWithGoogle = () => {
                 dispatch(addSnackbar("Successfully logged In"))
             })
             .catch(error => {
-                console.log(error)
             })
     }
 }

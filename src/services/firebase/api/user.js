@@ -24,15 +24,15 @@ const removeMovieFromFavourites = (movieId) => {
 
 const uploadUserProfileImage = (userId, file) => {
     const storageRef = storageReferenceService.getProfileImageReferenceForUser(userId)
-    return storageRef.put(file)
+    const resizedStorageRef = storageReferenceService.getProfileImageResizedReferenceForUser(userId)
+    return resizedStorageRef.delete().catch(e => {}).finally(() => storageRef.put(file))
 }
-
 
 const updateInfo = (infoObject) => {
     return firebaseOnCall('user-updateProfile', (infoObject))
 }
 
-const authApiService = {
+const userApiService = {
     registerUserAccount,
     getUserProfile,
     addMovieToFavourites,
@@ -41,4 +41,4 @@ const authApiService = {
     uploadUserProfileImage
 }
 
-export default authApiService;
+export default userApiService;

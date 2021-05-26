@@ -27,14 +27,28 @@ export default function BarChartWrapper(props) {
     const getData = () => {
         return [
             {
-                values: comments,
-                label: "# of Comments"
+                label: "# of Comments",
+                data: comments,
+                backgroundColor: ["rgba(104,176,171, 0.2)"],
+                hoverBackgroundColor: ["rgba(104,176,171, 0.5)"],
+                borderColor: ["rgba(104,176,171, 1)"],
+                borderWidth: 1,
             },
             {
-                values: reviews,
-                label: "# of Reviews"
-            }
+                label: "# of Reviews",
+                data: reviews,
+                backgroundColor: ["rgba(229, 61, 0, 0.2)"],
+                hoverBackgroundColor: ["rgba(229, 61, 0, 0.5)"],
+                borderColor: ["rgba(229, 61, 0, 1)"],
+                borderWidth: 1,
+            },
         ]
+    }
+
+    const handleResult = (response) => {
+        setComments(response.comments)
+        setReviews(response.reviews)
+        setLoading(false)
     }
 
     const noDataIndicator = (
@@ -48,14 +62,8 @@ export default function BarChartWrapper(props) {
         </Grid>
     )
 
-    const handleResult = (response) => {
-        setComments(response.comments)
-        setReviews(response.reviews)
-        setLoading(false)
-    }
-
     const chart = (
-        noData ? noDataIndicator : <BarChart labels={labels} data={getData()}/>
+        noData ? noDataIndicator : <BarChart labels={labels} datasets={getData()}/>
     )
 
     useEffect(() => {

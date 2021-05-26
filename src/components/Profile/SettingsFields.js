@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SettingsFields = (props) => {
     const {profileData} = props
-    const [username, setUsername] = useState("");
+    const [userName, setUsername] = useState("");
     const [usernameError, setUsernameError] = useState(null);
     const [password, setPassword] = useState("");
     const [oldPassword, setOldPassword] = useState("");
@@ -42,7 +42,7 @@ const SettingsFields = (props) => {
 
     const getInfoObject = () => {
         return {
-            username,
+            userName,
             phone,
             age,
             country
@@ -65,7 +65,7 @@ const SettingsFields = (props) => {
 
     const validateInfoForm = () => {
         setInfoValid(
-            usernameError == null && ( username != null || (phone != null && phone.length>0)
+            usernameError == null && ( userName != null || (phone != null && phone.length>0)
             || (age != null && age.length>0) || (country != null && country.length>0))
         )
     }
@@ -118,7 +118,7 @@ const SettingsFields = (props) => {
 
 
     return (
-        <Grid style={{justifyContent: "center"}}container spacing={6}>
+        <Grid style={{justifyContent: "center"}} container spacing={6}>
             <Grid item xm={6}>
                 <div className={classes.header}>Personal information</div>
                 <div className={classes.text}>Username</div>

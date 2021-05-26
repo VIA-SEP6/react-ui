@@ -20,10 +20,10 @@ export default function MovieRating(props) {
     const classes = useStyles();
     const theme = useTheme()
 
-    const {iconSrc, rating, icon, color} = props
+    const {iconSrc, rating, icon, color, style} = props
 
     const getRating = () => {
-        return rating === 0 || !rating ? "No Rating" : `${rating.toFixed(1)}/10`
+        return rating === 0 || !rating ? "None" : `${rating.toFixed(1)}/10`
     }
 
     const iconColor = {
@@ -43,7 +43,7 @@ export default function MovieRating(props) {
     )
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{...style}}>
             {ratingIcon}
             <span className={classes.rating}>{getRating()}</span>
         </div>

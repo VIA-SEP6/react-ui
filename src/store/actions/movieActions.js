@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes"
 import movieApiService from "../../services/firebase/api/movie";
 import {addErrorSnackbar, addSnackbar} from "./snackbarActions";
+import userApiService from "../../services/firebase/api/user";
 
 const setMoviesFetchStarted = () => {
     return {
@@ -63,6 +64,32 @@ export const addComment = (movieId, comment, parent) => {
             .catch((error) => {
                 console.log(error)
                 dispatch(addErrorSnackbar("Error creating comment"))
+            })
+    }
+}
+
+export const addToFavourites = (movieId) => {
+    return (dispatch) => {
+        userApiService.addMovieToFavourites(movieId)
+            .then(() => {
+                dispatch(addSnackbar("Movie added to favourites"))
+            })
+            .catch((error) => {
+                console.log(error)
+                dispatch(addErrorSnackbar("Movie couldn't be added to favourites"))
+            })
+    }
+}
+
+export const removeFromFavourite = (movieId) => {
+    return (dispatch) => {
+        userApiService.removeMovieFromFavourites(movieId)
+            .then(() => {
+                dispatch(addSnackbar("Movie removed from favourites"))
+            })
+            .catch((error) => {
+                console.log(error)
+                dispatch(addErrorSnackbar("Movie couldn't be removed from favourites"))
             })
     }
 }
