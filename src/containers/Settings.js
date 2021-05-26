@@ -4,6 +4,7 @@ import {fetchProfile, uploadImage, updatePassword, updateInfo} from "../store/ac
 import BigAvatar from "../components/Profile/BigAvatar"
 import SettingsFields from "../components/Profile/SettingsFields"
 import ImageUploader from "../components/Profile/ImageUploader"
+import Spinner from "../components/Layout/Loader/Spinner";
 
 class Settings extends Component {
 
@@ -12,6 +13,11 @@ class Settings extends Component {
     }
 
     render() {
+        if (this.props.profileLoading)
+            return (
+                <Spinner />
+            )
+        else
         return (
             <div style={{textAlign: "center"}}>
                 <div style={{fontSize: "24px"}}> {this.props.profileData.userName}</div>
@@ -27,7 +33,8 @@ class Settings extends Component {
 const mapStateToProps = (state) => {
     return {
         currentUser: state.auth.user,
-        profileData: state.profile.profile
+        profileData: state.profile.profile,
+        profileLoading: state.profile.loading
     }
 }
 
