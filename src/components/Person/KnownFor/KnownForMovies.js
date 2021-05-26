@@ -14,7 +14,9 @@ export default function KnownForMovies(props) {
 
     return (
         <HorizontalScroll title="Known for">
-            {movies.map((movie) => (
+            {Object.values(
+                movies.reduce((acc, value) => {acc[value.id] = value; return acc}, {})
+            ).map((movie) => (
                 <ImageDetails
                     key={movie.id}
                     imgSrc={movie.poster_path}

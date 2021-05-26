@@ -63,6 +63,10 @@ class Movie extends Component {
         return this.props.match.params.id
     }
 
+    getDirector() {
+        return this.state.details.credits?.crew.filter(cew => cew.job === "Director")[0]
+    }
+
     render() {
         let socialData = null
 
@@ -85,6 +89,7 @@ class Movie extends Component {
                             currentUser={this.props.currentUser}
                             addReview={this.props.addReview}
                             reviewStatistics={this.state.reviewStatistics}
+                            director={this.getDirector()}
                         />
                     </Grid>
                     <Grid item xs={12} style={{padding: "1rem 0"}}>
@@ -101,7 +106,7 @@ class Movie extends Component {
             </Grid>
         )
 
-        if (this.state.detailsLoading || this.state.statisticsLoading)
+        if (this.state.detailsLoading)
             content = (
                 <Spinner/>
             )

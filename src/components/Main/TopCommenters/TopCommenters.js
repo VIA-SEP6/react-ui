@@ -21,6 +21,10 @@ export default function TopCommenters(props) {
                 setUsers(commenters || [])
                 setLoading(false)
             })
+        return () => {
+            setUsers([])
+            setLoading(true)
+        }
     }, [setUsers])
 
     let content = (

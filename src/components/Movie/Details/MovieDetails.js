@@ -1,11 +1,17 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
-import {Grid} from "@material-ui/core";
+import {Grid, Typography} from "@material-ui/core";
 import WriteReview from "../Social/Review/WriteReview";
 import FavoriteMovieIcon from "./FavoriteMovieIcon";
 import MovieReviews from "./MovieReviews"
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
+    "@global": {
+        "a:link, a:visited": {
+            color: theme.palette.primary.main
+        },
+    },
     row: {
         display: 'flex',
         flexDirection: 'row',
@@ -56,8 +62,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function MovieDetails(props) {
     const classes = useStyles()
+    const history = useHistory();
 
-    const {movie, authenticated, currentUser, reviewStatistics} = props
+    const {movie, authenticated, currentUser, reviewStatistics, director} = props
 
     const getImage = (imagePath) => {
         if (imagePath)
@@ -67,6 +74,10 @@ export default function MovieDetails(props) {
 
     const submitReview = (reviewData) => {
         props.addReview(currentUser.uid, reviewData.description, reviewData.rating, `${movie.id}`)
+    }
+
+    const handleDirectorClick = () => {
+        history.push(`/person/${director.id}`)
     }
 
     let addReview = null
@@ -93,8 +104,8 @@ export default function MovieDetails(props) {
             <Grid item xs={12} sm={4}>
                 <img width="100%" src={getImage(movie.poster_path)} alt="Movie Poster"/>
                 <Grid container item xs={12} justify="space-between" alignItems="center">
-                    <MovieReviews tmaVoteAverage={movie.tma_vote_average} 
-                    imdbVoteAverage={movie.vote_average} reviewStatistics={reviewStatistics}/>
+                    <MovieReviews tmaVoteAverage={movie.tma_vote_average}
+                                  imdbVoteAverage={movie.vote_average} reviewStatistics={reviewStatistics}/>
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={8}>
@@ -114,8 +125,13 @@ export default function MovieDetails(props) {
                     <Grid item xs={12}>
                         <div className={classes.description}>{movie.overview}</div>
                     </Grid>
+                    <Grid onClick={handleDirectorClick} style={{textAlign: "right"}} item xs={12}>
+                        <Typography component="span" variant="caption">
+                            {"Directed by "}
+                            <a href="#">{director.name}</a>
+                        </Typography>
+                    </Grid>
                     {addReview}
-
                 </Grid>
             </Grid>
         </Grid>

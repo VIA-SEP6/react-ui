@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
         boxOrient: "vertical",
         lineClamp: 2,
         wordBreak: "break-all",
-        height: 26
+        height: 30
     },
     icon: {
         padding: 0
