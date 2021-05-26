@@ -16,6 +16,7 @@ class Movie extends Component {
         details: {},
         reviewStatistics: {},
         detailsLoading: true,
+        statisticsLoading: true,
     }
 
     state = {
@@ -43,7 +44,7 @@ class Movie extends Component {
             .then(reviewStatistics => {
                 this.setState({
                     reviewStatistics,
-                    detailsLoading: false
+                    statisticsLoading: false
                 })
             })
     }
@@ -100,7 +101,7 @@ class Movie extends Component {
             </Grid>
         )
 
-        if (this.state.detailsLoading)
+        if (this.state.detailsLoading || this.state.statisticsLoading)
             content = (
                 <Spinner/>
             )
