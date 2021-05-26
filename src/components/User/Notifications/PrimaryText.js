@@ -23,6 +23,9 @@ export default function PrimaryText(props) {
             case "dislike":
                 text = "disliked"
                 break
+            case "reply":
+                text = "replied to"
+                break
             default:
                 text = "<UNKNOWN>"
         }
