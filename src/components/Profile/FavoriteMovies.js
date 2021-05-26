@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const FavoriteMovies = (props) => {
-    const {favoriteMovies, refreshProfile} = props
+    const {favoriteMovies, refreshProfile, myProfile} = props
     const classes = useStyles()
     const [pages, setPages] = useState(0)
     const [pageNumber, setPageNumber] = useState(1)
@@ -96,7 +96,7 @@ const FavoriteMovies = (props) => {
                 {paginatedMovies.map((favMovie, index) => (
                     <GridListTile key={favMovie.id} className={classes.tile}>
                         <MovieCard removeFavorite={removeFavorite} className={classes.tile} favoriteMovie={favMovie}
-                                   number={getNumber(index)}/>
+                                   number={getNumber(index)} myProfile={myProfile}/>
                     </GridListTile>
                 ))}
             </GridList>

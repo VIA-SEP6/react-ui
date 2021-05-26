@@ -65,7 +65,7 @@ const SettingsFields = (props) => {
 
     const validateInfoForm = () => {
         setInfoValid(
-            usernameError == null && ( userName != null || (phone != null && phone.length>0)
+            usernameError == null && ( (userName != null && userName.length>3) || (phone != null && phone.length>0)
             || (age != null && age.length>0) || (country != null && country.length>0))
         )
     }

@@ -22,10 +22,10 @@ const setProfileFetchError = (error) => {
     }
 }
 
-export const fetchProfile = () => {
+export const fetchProfile = (userId) => {
     return (dispatch) => {
         dispatch(setProfileFetchStarted())
-        userApiService.getUserProfile()
+        userApiService.getUserProfile(userId)
             .then((response) => {
                 dispatch(setProfileFetchSuccess(response))
             })

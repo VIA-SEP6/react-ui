@@ -2,6 +2,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import UserAvatar from "../../../../User/UserAvatar";
 import React from "react";
 import {Grid} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,16 +21,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function UserData(props) {
     const classes = useStyles()
+    const history = useHistory()
 
     const {
-        avatarSrc, username, postDate,
+        avatarSrc, username, postDate, userId, disabled,
         onClick = () => {
+            history.push(`/profile/${userId}`)
         }
     } = props
 
     return (
         <Grid container alignItems="center" direction="row">
             <UserAvatar
+                disabled={disabled}
                 src={avatarSrc}
                 onClick={onClick}
             />

@@ -7,7 +7,11 @@ import FavoriteMovies from "../components/Profile/FavoriteMovies"
 
 class Profile extends Component {
     componentDidMount() {
-        this.props.getUserProfile()
+        this.props.getUserProfile(this.getSelectedProfileId())
+    }
+
+    getSelectedProfileId() {
+        return this.props.match.params.id
     }
 
     render() {
@@ -17,7 +21,9 @@ class Profile extends Component {
                         <ProfileData profileData={this.props.profileData}/>
                     </Grid>
                     <Grid item xs={12} sm={8} lg={9}>
-                        <FavoriteMovies refreshProfile={this.props.getUserProfile} favoriteMovies={this.props.favoriteMovies}/>
+                        <FavoriteMovies refreshProfile={this.props.getUserProfile} 
+                            favoriteMovies={this.props.favoriteMovies} 
+                            myProfile={this.getSelectedProfileId() === this.props.currentUser}/>
                     </Grid>
                 </Grid> 
         )
@@ -27,13 +33,14 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
     return {
         favoriteMovies: state.profile.profile.favouriteMovies || [],
-        profileData: state.profile.profile
+        profileData: state.profile.profile,
+        currentUser: state.auth.user.uid
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUserProfile: () => dispatch(fetchProfile())
+        getUserProfile: (userId) => dispatch(fetchProfile(userId))
     }
 }
 

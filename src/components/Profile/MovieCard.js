@@ -52,10 +52,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function MovieCard(props) {
-    const {favoriteMovie, number, removeFavorite} = props
+    const {favoriteMovie, number, removeFavorite, myProfile} = props
     const classes = useStyles()
     const history = useHistory();
     const theme = useTheme()
+
 
     const moveToMovie = () => {
         history.push(`/movie/${favoriteMovie.id}`)
@@ -73,7 +74,7 @@ export default function MovieCard(props) {
                             <div className={classes.title}>{favoriteMovie.title}</div>
                         </Grid>
                         <Grid item xs={2}>
-                            <IconButton onClick={() => removeFavorite(favoriteMovie.id)} className={classes.icon}>
+                            <IconButton disabled={!myProfile} onClick={() => removeFavorite(favoriteMovie.id)} className={classes.icon}>
                                 <DeleteIcon/>
                             </IconButton>
                         </Grid>

@@ -10,8 +10,8 @@ const registerUserAccount = (newUserObject) => {
     return firebaseOnCall('user-register', {...registerUserRequest})
 }
 
-const getUserProfile = () => {
-    return firebaseOnCall('user-getProfile')
+const getUserProfile = (userId) => {
+    return firebaseOnCall('user-getProfile', {userId})
 }
 
 const addMovieToFavourites = (movieId) => {

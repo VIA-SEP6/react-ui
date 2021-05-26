@@ -8,7 +8,7 @@ import ImageUploader from "../components/Profile/ImageUploader"
 class Settings extends Component {
 
     componentDidMount() {
-        this.props.getUserProfile()
+        this.props.getUserProfile(this.props.currentUser.uid)
     }
 
     render() {
@@ -33,7 +33,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUserProfile: () => dispatch(fetchProfile()),
+        getUserProfile: (userId) => dispatch(fetchProfile(userId)),
         uploadImage: (userId, imageObject) => dispatch(uploadImage(userId, imageObject)),
         updatePassword: (passwordObject) => dispatch(updatePassword(passwordObject)),
         updateInfo: (infoObject) => dispatch(updateInfo(infoObject)),

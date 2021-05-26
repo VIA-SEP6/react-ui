@@ -39,6 +39,7 @@ export default function ImdbReviews(props) {
                     description={review.content}
                     postDate={new Date(review.created_at)}
                     rating={review.author_details.rating}
+                    disabled={true}
                 />
             ))}
         </div>

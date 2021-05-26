@@ -53,7 +53,8 @@ export default function SocialCard(props) {
         getReplies = () => {
         },
         currentUser,
-        addComment
+        addComment,
+        disabled
     } = props
 
     const handleLoadReplies = () => {
@@ -137,7 +138,7 @@ export default function SocialCard(props) {
               className={`${classes.root} ${reply ? classes.reply : classes.overflow}`}>
             <Grid item xs={6} sm={4}>
                 <UserData avatarSrc={avatarSrc} username={username} postDate={formatDateTime(postDate)}
-                          userId={userId}/>
+                          userId={userId} disabled={disabled}/>
             </Grid>
             {type !== "comment" ? renderRating : null}
             {type !== "external-review" ? renderLikes : null}

@@ -49,7 +49,7 @@ export default function UserMenuItem(props) {
 
     const navigateToProfile = () => {
         handleClose()
-        history.push("/profile")
+        history.push(`/profile/${currentUser.uid}`)
     }
 
     const navigateToSettings = () => {

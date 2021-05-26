@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 export default function UserAvatar(props) {
     const classes = useStyles()
 
-    const {onClick, src} = props
+    const {onClick, src, disabled} = props
 
     return (
         <IconButton
@@ -22,6 +22,7 @@ export default function UserAvatar(props) {
             aria-haspopup="true"
             variant="contained"
             color="primary"
+            disabled={disabled || false}
             onClick={onClick}
         >
             <Avatar className={classes.avatarSmall} alt="Profile UserAvatar" src={src}/>
