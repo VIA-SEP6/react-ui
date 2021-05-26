@@ -77,11 +77,16 @@ export default function BarChartWrapper(props) {
                 setLabels(MONTH_LABELS)
                 break;
             case YEAR:
-                platformStatisticsApiService.getMonthlyPlatformStatistics.then(handleResult)
+                platformStatisticsApiService.getYearlyPlatformStatistics.then(handleResult)
                 setLabels(YEAR_LABELS)
                 break;
             default:
                 throw new DOMException("Unrecognized type " + type)
+        }
+        return () => {
+            setComments([])
+            setReviews([])
+            setLoading(false)
         }
     }, [setComments, setReviews, type])
 

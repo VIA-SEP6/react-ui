@@ -35,13 +35,13 @@ export default function PlatformStatisticsContainer(props) {
                     <Tab label="Year" value="year"/>
                 </Tabs>
                 <TabPanel value="week">
-                    <BarChartWrapper type="week" comments={[3, 8, 8, 19]} reviews={[1, 2, 55, 13]}/>
+                    <BarChartWrapper type="week"/>
                 </TabPanel>
                 <TabPanel value="month">
-                    <BarChartWrapper type="month" comments={[3, 8, 8, 19]} reviews={[1, 2, 55, 13]}/>
+                    <BarChartWrapper type="month"/>
                 </TabPanel>
                 <TabPanel value="year">
-                    <BarChartWrapper type="year" comments={[1123, 4422, 2333, 6724]} reviews={[4562, 1235, 6453, 2341]}/>
+                    <BarChartWrapper type="year"/>
                 </TabPanel>
             </TabContext>
         </div>

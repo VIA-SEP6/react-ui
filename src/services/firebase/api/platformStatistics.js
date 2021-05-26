@@ -1,16 +1,22 @@
+import {firebaseOnCall} from "../firebase";
+
 const getWeekly = () => {
-    return Promise.resolve({comments: ["3"], reviews: ["5"]})
-    // return firebaseOnCall('')
+    return firebaseOnCall('platformStatistics-getWeekly', {year: new Date().getFullYear()}).then(mapResponse)
 }
 
 const getMonthly = () => {
-    return Promise.resolve({comments: ["3"], reviews: ["5"]})
-    // return firebaseOnCall('')
+    return firebaseOnCall('platformStatistics-getMonthly', {year: new Date().getFullYear()}).then(mapResponse)
 }
 
 const getYearly = () => {
-    return Promise.resolve({comments: [], reviews: []})
-    // return firebaseOnCall('')
+    return firebaseOnCall('platformStatistics-getYearly', {year: new Date().getFullYear()}).then(mapResponse)
+}
+
+const mapResponse = (response) => {
+    return {
+        reviews: Object.values(response.reviews),
+        comments: Object.values(response.comments)
+    }
 }
 
 const platformStatisticsApiService = {
