@@ -45,6 +45,9 @@ const useStyles = makeStyles(theme => ({
     },
     localRating: {
         alignItems: "right",
+    },
+    reviews: {
+        padding: theme.spacing(0, 0.5)
     }
 }))
 
@@ -78,7 +81,7 @@ export default function MovieCard(props) {
                     <Grid item xs={12} className={classes.genre}>
                         {favoriteMovie.genres.slice(0, 3).map(genre => genre.name).join(", ")}
                     </Grid>
-                    <Grid item container spacing={2}>
+                    <Grid className={classes.reviews} item container>
                         <Grid item xs={4}>
                             <MovieRating className={classes.imdbRating} rating={favoriteMovie.vote_average}
                                          icon="star" color={theme.palette.yellow.main}/>
