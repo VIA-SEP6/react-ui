@@ -29,7 +29,11 @@ const useStyles = makeStyles(theme => ({
         fontSize: 12,
         fontWeight: 400,
         overflow: "hidden",
-        height: 32,
+        display: "-webkit-box",
+        boxOrient: "vertical",
+        lineClamp: 2,
+        wordBreak: "break-all",
+        height: 26
     },
     icon: {
         padding: 0

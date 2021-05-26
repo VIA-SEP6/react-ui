@@ -52,6 +52,16 @@ const FavoriteMovies = (props) => {
         )
     }
 
+    const getHeader = () => {
+        if (favoriteMovies.length === 0){
+            return "No Favorite Movies"
+        }
+        else
+        {
+            return "Favorite Movies"
+        }
+    }
+
     useEffect(() => {
         setPages(Math.ceil(favoriteMovies.length / ITEMS_PER_PAGE))
         setPaginatedMovies(favoriteMovies.slice((pageNumber - 1) * ITEMS_PER_PAGE, pageNumber * ITEMS_PER_PAGE))
@@ -91,7 +101,7 @@ const FavoriteMovies = (props) => {
 
     return (
         <div className={classes.content}>
-            <TopicHeader>Favorite Movies</TopicHeader>
+            <TopicHeader>{getHeader()}</TopicHeader>
             <GridList className={classes.movies} cellHeight={350} spacing={4} cols={getGridListCols()}>
                 {paginatedMovies.map((favMovie, index) => (
                     <GridListTile key={favMovie.id} className={classes.tile}>
