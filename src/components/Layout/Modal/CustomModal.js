@@ -64,7 +64,7 @@ export default function CustomModal(props) {
 
     return (
         <div>
-            <div onClick={handleOpen}>
+            <div style={{cursor: 'pointer'}}onClick={handleOpen}>
                 {props.toggle}
             </div>
             <Modal

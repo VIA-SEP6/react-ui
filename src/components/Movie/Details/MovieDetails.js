@@ -1,9 +1,11 @@
 import {makeStyles} from "@material-ui/core/styles";
 import React from "react";
-import {Grid} from "@material-ui/core";
+import {Grid, Paper} from "@material-ui/core";
 import MovieRating from "../MovieRating";
 import WriteReview from "../Social/Review/WriteReview";
 import FavoriteMovieIcon from "./FavoriteMovieIcon";
+import CustomModal from "../../Layout/Modal/CustomModal"
+import RadarChart from "../../../components/Common/Charts/RadarChart"
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -48,12 +50,15 @@ const useStyles = makeStyles(theme => ({
         fontStyle: "italic",
         textAlign: "right"
     },
+    reviewStatistics: {
+        width: 400
+    }
 }))
 
 export default function MovieDetails(props) {
     const classes = useStyles()
 
-    const {movie, authenticated, currentUser} = props
+    const {movie, authenticated, currentUser, reviewStatistics} = props
 
     const getImage = (imagePath) => {
         if (imagePath)
@@ -89,10 +94,26 @@ export default function MovieDetails(props) {
             <Grid item xs={12} sm={4}>
                 <img width="100%" src={getImage(movie.poster_path)} alt="Movie Poster"/>
                 <div className={[classes.row, classes.ratings].join(' ')}>
-                    <MovieRating rating={movie.tma_vote_average}
-                                 icon="star"/>
-                    <MovieRating rating={movie.vote_average}
-                                 iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>
+                    <CustomModal 
+                        toggle={<MovieRating rating={movie.tma_vote_average}
+                        icon="star"/>}
+                    >
+                        <Paper>
+                            <RadarChart labels={Object.keys(reviewStatistics.tma_review_count || {})} 
+                        data={Object.values(reviewStatistics.tma_review_count || {})} label="TMA Review Distribution"
+                        color={"primary"}/>
+                        </Paper>
+                    </CustomModal>
+                    <CustomModal
+                        toggle={<MovieRating rating={movie.vote_average}
+                        iconSrc="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"/>}
+                    >
+                        <Paper>
+                            <RadarChart style={classes.reviewStatistics} labels={Object.keys(reviewStatistics.tmdb_review_count || {})} 
+                            data={Object.values(reviewStatistics.tmdb_review_count || {})} label="IMDb Review Distribution"
+                            color={"yellow"}/>
+                        </Paper>
+                    </CustomModal>
                 </div>
             </Grid>
             <Grid item xs={12} sm={8}>

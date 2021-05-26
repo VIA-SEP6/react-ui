@@ -9,10 +9,12 @@ import SimilarMovies from "../components/Movie/Similar/SimilarMovies";
 import {connect} from "react-redux";
 import {addReview} from "../store/actions";
 import MovieSocialData from "../components/Movie/Social/MovieSocialData";
+import reviewStatisticsApiService from "../services/firebase/api/reviewStatistics"
 
 class Movie extends Component {
     initialState = {
         details: {},
+        reviewStatistics: {},
         detailsLoading: true,
     }
 
@@ -22,6 +24,7 @@ class Movie extends Component {
 
     init() {
         this.fetchMovieDetails(this.getSelectedMovieId());
+        this.fetchReviewStatistics(this.getSelectedMovieId());
     }
 
     fetchMovieDetails = (id) => {
@@ -30,6 +33,16 @@ class Movie extends Component {
             .then(details => {
                 this.setState({
                     details,
+                    detailsLoading: false
+                })
+            })
+    }
+
+    fetchReviewStatistics = (id) => {
+        reviewStatisticsApiService.getReviewStatistics(id)
+            .then(reviewStatistics => {
+                this.setState({
+                    reviewStatistics,
                     detailsLoading: false
                 })
             })
@@ -70,6 +83,7 @@ class Movie extends Component {
                             authenticated={this.props.isAuthenticated}
                             currentUser={this.props.currentUser}
                             addReview={this.props.addReview}
+                            reviewStatistics={this.state.reviewStatistics}
                         />
                     </Grid>
                     <Grid item xs={12} style={{padding: "1rem 0"}}>
