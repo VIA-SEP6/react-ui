@@ -45,7 +45,6 @@ export default function MovieComment(props) {
                     console.log(error.message)
                 })
         return () => unsub()
-
     }, [setComments, movieId])
 
     return (

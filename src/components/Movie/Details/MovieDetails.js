@@ -7,11 +7,6 @@ import MovieReviews from "./MovieReviews"
 import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
-    "@global": {
-        "a:link, a:visited": {
-            color: theme.palette.primary.main
-        },
-    },
     row: {
         display: 'flex',
         flexDirection: 'row',
@@ -57,6 +52,11 @@ const useStyles = makeStyles(theme => ({
     },
     reviewStatistics: {
         width: 400
+    },
+    link: {
+        textDecoration: "underline",
+        color: theme.palette.primary.main,
+        cursor: "pointer"
     }
 }))
 
@@ -128,7 +128,7 @@ export default function MovieDetails(props) {
                     <Grid onClick={handleDirectorClick} style={{textAlign: "right"}} item xs={12}>
                         <Typography component="span" variant="caption">
                             {"Directed by "}
-                            <a href="#">{director.name}</a>
+                            <span className={classes.link}>{director.name}</span>
                         </Typography>
                     </Grid>
                     {addReview}
